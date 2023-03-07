@@ -31,8 +31,65 @@ public class MultiLevelGame extends Game {
 
 
     private final Player player;
+
+    public int getStartStage() {
+        return StartStage;
+    }
+
+    public void setStartStage(int startStage) {
+        StartStage = startStage;
+    }
+
+    public StopWatch getStopWatch() {
+        return stopWatch;
+    }
+
+    public void setStopWatch(StopWatch stopWatch) {
+        this.stopWatch = stopWatch;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public List<Level> getLevels() {
+        return levels;
+    }
+
+    public void setLevels(List<Level> levels) {
+        this.levels = levels;
+    }
+
+    public Level getLevel_tmp0() {
+        return level_tmp0;
+    }
+
+    public void setLevel_tmp0(Level level_tmp0) {
+        this.level_tmp0 = level_tmp0;
+    }
+
+    public Object getProgressLock() {
+        return progressLock;
+    }
+
+    public void setInProgress(boolean inProgress) {
+        this.inProgress = inProgress;
+    }
+
+    public void setLevelNumber(int levelNumber) {
+        this.levelNumber = levelNumber;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    private int StartStage = 0;
     private List<Level> levels;
-    private final Level level_tmp;
     private Level level_tmp0;
     private final Object progressLock = new Object();
 
@@ -41,7 +98,7 @@ public class MultiLevelGame extends Game {
     private int levelNumber = 0;
     private int count = 0;
 
-    public MultiLevelGame(Player player, List<Level> levels,Level level0 , PointCalculator pointCalculator) {
+    public MultiLevelGame(Player player, List<Level> levels, PointCalculator pointCalculator) {
         super(pointCalculator);
 
         assert player != null;
@@ -51,17 +108,12 @@ public class MultiLevelGame extends Game {
         this.player = player;
         this.levels = levels;
 
-        this.level = levels.get(0);
-        level_tmp = level0;
+        this.level = levels.get(StartStage);
         this.level.registerPlayer(player);
         this.inProgress = false;
 
     }
 
-    public void setLevel(Level level0){
-        this.level_tmp0 = level0;
-        this.level = level0;
-    }
     @Override
     public void restart() {
         player.setAlive(true);
