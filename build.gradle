@@ -18,6 +18,7 @@ sourceSets {
     }
 }
 
+apply plugin: 'java-library'
 apply plugin: 'maven'
 apply plugin: 'java'
 
