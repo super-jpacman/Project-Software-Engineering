@@ -4,18 +4,16 @@ import com.google.common.collect.ImmutableList;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
-import nl.tudelft.jpacman.MultiLevelLauncher;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class MultiLevelGame extends Game {
     
     private final Player player;
-    private final List<Level> levels;
-    private final List<Level> levels_tmp;
-    private final List<Level> levels_tmp1;
+    private List<Level> levels;
+    private final Level level_tmp;
+    private Level level_tmp0;
     private final Object progressLock = new Object();
 
     private Level level;
@@ -23,7 +21,7 @@ public class MultiLevelGame extends Game {
     private int levelNumber = 0;
     private int count = 0;
 
-    public MultiLevelGame(Player player, List<Level> levels, List<Level> levels_tmp, List<Level> levels_tmp1, PointCalculator pointCalculator) {
+    public MultiLevelGame(Player player, List<Level> levels,Level level0 , PointCalculator pointCalculator) {
         super(pointCalculator);
 
         assert player != null;
@@ -32,15 +30,18 @@ public class MultiLevelGame extends Game {
     
         this.player = player;
         this.levels = levels;
-        this.levels_tmp = levels_tmp;
-        this.levels_tmp1 = levels_tmp1;
-        
+
         this.level = levels.get(0);
+        level_tmp = level0;
         this.level.registerPlayer(player);
         this.inProgress = false;
+
     }
 
-
+    public void setLevel(Level level0){
+        this.level_tmp0 = level0;
+        this.level = level0;
+    }
     @Override
     public void start() {
 
@@ -58,39 +59,14 @@ public class MultiLevelGame extends Game {
                 return;
             }
 
-            if (getLevel().isAnyPlayerAlive() == false && getLevel().remainingPellets() > 0) {
-                System.out.println("Test Die");
-
-
-/*                    levels.clear();
-                    List<Level> levels_tmp1 = new ArrayList<>(levels_tmp);
-                    List<Level> levels_tmp2 = new ArrayList<>(levels_tmp1);
-                    levels.addAll(levels_tmp1);
-                    levels_tmp1.clear();
-                    levels_tmp1.addAll(levels_tmp2);
-                    level = levels.get(0);
-                }
-
-                else {
-                    levels_tmp.clear();
-                    List<Level> levels_tmp3 = new ArrayList<>(levels);
-                    levels_tmp.addAll(levels_tmp3);
-                    level = levels.get(0);
-                }*/
-                levels.clear();
-                List<Level> levels_tmp1 = new ArrayList<>(levels_tmp);
-                List<Level> levels_tmp2 = new ArrayList<>(levels_tmp1);
-                levels.addAll(levels_tmp1);
-                levels_tmp1.clear();
-                levels_tmp1.addAll(levels_tmp2);
-                level = levels.get(0);
-
+            if (getLevel().isAnyPlayerAlive() == false) {
                 player.setAlive(true);
+                level = makeLevel("1");
                 level.registerPlayer(player);
                 inProgress = true;
                 getLevel().addObserver(this);
                 getLevel().start();
-                count++;
+
             }
 
 

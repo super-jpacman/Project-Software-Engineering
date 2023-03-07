@@ -1,20 +1,24 @@
 package nl.tudelft.jpacman.game;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.MultiLevelLauncher;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Level.LevelObserver;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
+import nl.tudelft.jpacman.points.PointCalculatorLoader;
+
 
 /**
  * A basic implementation of a Pac-Man game.
  *
  * @author Jeroen Roosen 
  */
-public abstract class Game implements LevelObserver {
+public abstract class Game extends MultiLevelLauncher implements LevelObserver {
 
     /**
      * <code>true</code> if the game is in progress.
@@ -58,7 +62,6 @@ public abstract class Game implements LevelObserver {
             }
         }
     }
-
     /**
      * Pauses the game.
      */
@@ -112,7 +115,7 @@ public abstract class Game implements LevelObserver {
 
     @Override
     public void levelLost() {
-        start();
         stop();
+
     }
 }

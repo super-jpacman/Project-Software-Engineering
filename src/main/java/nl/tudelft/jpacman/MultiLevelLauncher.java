@@ -29,24 +29,17 @@ public class MultiLevelLauncher extends Launcher {
             for (int i = 1; i < NUMBER_OF_LEVELS+1; i++) {
                 String _INDEX_MAP_ = String.valueOf(i);
                 levels.add(makeLevel(_INDEX_MAP_));
-            }
-            List<Level> levels_tmp = new ArrayList<>();
-            for (int i = 1; i < NUMBER_OF_LEVELS+1; i++) {
-                String _INDEX_MAP_ = String.valueOf(i);
-                levels_tmp.add(makeLevel(_INDEX_MAP_));
-            }
 
-            List<Level> levels_tmp1 = new ArrayList<>();
-            for (int i = 1; i < NUMBER_OF_LEVELS+1; i++) {
-                String _INDEX_MAP_ = String.valueOf(i);
-                levels_tmp1.add(makeLevel(_INDEX_MAP_));
             }
-            multiGame = new MultiLevelGame(player, levels, levels_tmp, levels_tmp1, loadPointCalculator());
+            Level level0 = makeLevel("1");
+            multiGame = new MultiLevelGame(player, levels,level0, loadPointCalculator());
+
+
         } finally {
             System.err.println("989997987");
         }
 
-        
+
 
         return multiGame;
     }
