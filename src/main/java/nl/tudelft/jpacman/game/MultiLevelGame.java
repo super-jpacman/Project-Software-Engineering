@@ -5,6 +5,7 @@ import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,27 +33,23 @@ public class MultiLevelGame extends Game {
 
     private final Player player;
     private List<Level> levels;
-    private final Level level_tmp;
-    private Level level_tmp0;
     private final Object progressLock = new Object();
 
     private Level level;
     private boolean inProgress;
     private int levelNumber = 0;
-    private int count = 0;
 
-    public MultiLevelGame(Player player, List<Level> levels,Level level0 , PointCalculator pointCalculator) {
+    public MultiLevelGame(Player player, List<Level> levels, PointCalculator pointCalculator) {
         super(pointCalculator);
 
         assert player != null;
         assert levels != null;
         assert !levels.isEmpty();
-    
+
         this.player = player;
         this.levels = levels;
 
         this.level = levels.get(0);
-        level_tmp = level0;
         this.level.registerPlayer(player);
         this.inProgress = false;
 
@@ -64,19 +61,25 @@ public class MultiLevelGame extends Game {
         start();
 //        getLevel().stop();
     }
-    public void setLevel(Level level0){
-        this.level_tmp0 = level0;
-        this.level = level0;
-    }
     @Override
     public void restart() {
         player.setScore(0);
         player.setAlive(true);
-        level = makeLevel("1");
+        List<Level> levels_ = new ArrayList<>();
+        for (int i = 1; i < 5+1; i++) {
+            String _INDEX_MAP_ = String.valueOf(i);
+            levels_.add(makeLevel(_INDEX_MAP_));
+
+        }
+        levelNumber = 0;
+        levels.clear();
+        levels.addAll(levels_);
+        level = levels.get(0);
         level.registerPlayer(player);
         inProgress = false;
         getLevel().addObserver(this);
         getLevel().stop();
+
 
     }
     @Override
@@ -100,12 +103,7 @@ public class MultiLevelGame extends Game {
             }
 
             if (getLevel().isAnyPlayerAlive() == false) {
-                player.setAlive(true);
-                level = makeLevel("1");
-                level.registerPlayer(player);
-                inProgress = true;
-                getLevel().addObserver(this);
-                getLevel().start();
+
 
             }
 
@@ -135,7 +133,7 @@ public class MultiLevelGame extends Game {
             if (!isInProgress()) {
                 return;
             }
-            
+
             inProgress = false;
             stopWatch.stopWatch();
             long elapsedTime = stopWatch.getElapsedTime();
@@ -148,17 +146,17 @@ public class MultiLevelGame extends Game {
             getLevel().stop();
         }
     }
-    
+
     @Override
     public boolean isInProgress() {
         return inProgress;
     }
-    
+
     @Override
     public List<Player> getPlayers() {
         return ImmutableList.of(player);
     }
-    
+
     @Override
     public Level getLevel() {
         return level;
