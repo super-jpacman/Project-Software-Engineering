@@ -13,7 +13,7 @@ import java.util.List;
 
 public class MultiLevelLauncher extends Launcher {
 
-    private static final int NUMBER_OF_LEVELS = 5;
+    private static final int NUMBER_OF_LEVELS = 1;
 
     private MultiLevelGame multiGame;
     

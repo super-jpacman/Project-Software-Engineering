@@ -95,9 +95,9 @@ public class LevelFactory {
      *
      * @return The new ghost.
      */
-    Ghost createGhost() {
-        ghostIndex++;
-        ghostIndex %= GHOSTS;
+    Ghost createGhost(int i) {
+        ghostIndex = i;
+        //ghostIndex %= GHOSTS;
         switch (ghostIndex) {
             case BLINKY:
                 return ghostFact.createBlinky();

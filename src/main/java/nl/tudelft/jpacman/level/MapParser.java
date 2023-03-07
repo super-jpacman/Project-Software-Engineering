@@ -49,7 +49,27 @@ public class MapParser {
      *
      * <ul>
      * <li>Supported characters:
-     * <li>' ' (space) an empty square.
+     * <li>' ' (space) an empty square.case 'b':
+     *                 Square ghostSquare = makeGhostSquare(ghosts, levelCreator.createGhost(0));
+     *                 grid[x][y] = ghostSquare;
+     *                 break;
+     *             case 'i':
+     *                 Square ghostSquare1 = makeGhostSquare(ghosts, levelCreator.createGhost(1));
+     *                 grid[x][y] = ghostSquare1;
+     *                 break;
+     *             case 'p':
+     *                 Square ghostSquare2 = makeGhostSquare(ghosts, levelCreator.createGhost(2));
+     *                 grid[x][y] = ghostSquare2;
+     *                 break;
+     *             case 'c':
+     *                 Square ghostSquare3 = makeGhostSquare(ghosts, levelCreator.createGhost(3));
+     *                 grid[x][y] = ghostSquare3;
+     *                 break;
+     *             case 'P':
+     *                 Square playerSquare = boardCreator.createGround();
+     *                 grid[x][y] = playerSquare;
+     *                 startPositions.add(playerSquare);
+     *                 break;
      * <li>'#' (bracket) a wall.
      * <li>'.' (period) a square with a pellet.
      * <li>'P' (capital P) a starting square for players.
@@ -120,9 +140,21 @@ public class MapParser {
                 grid[x][y] = pelletSquare;
                 levelCreator.createPellet().occupy(pelletSquare);
                 break;
-            case 'G':
-                Square ghostSquare = makeGhostSquare(ghosts, levelCreator.createGhost());
+            case 'b':
+                Square ghostSquare = makeGhostSquare(ghosts, levelCreator.createGhost(0));
                 grid[x][y] = ghostSquare;
+                break;
+            case 'i':
+                Square ghostSquare1 = makeGhostSquare(ghosts, levelCreator.createGhost(1));
+                grid[x][y] = ghostSquare1;
+                break;
+            case 'p':
+                Square ghostSquare2 = makeGhostSquare(ghosts, levelCreator.createGhost(2));
+                grid[x][y] = ghostSquare2;
+                break;
+            case 'c':
+                Square ghostSquare3 = makeGhostSquare(ghosts, levelCreator.createGhost(3));
+                grid[x][y] = ghostSquare3;
                 break;
             case 'P':
                 Square playerSquare = boardCreator.createGround();
