@@ -63,6 +63,16 @@ public class MultiLevelGame extends Game {
         this.level = level0;
     }
     @Override
+    public void restart() {
+        player.setAlive(true);
+        level = makeLevel("1");
+        level.registerPlayer(player);
+        inProgress = true;
+        getLevel().addObserver(this);
+        getLevel().stop();
+
+    }
+    @Override
     public void start() {
 
         synchronized (progressLock) {
