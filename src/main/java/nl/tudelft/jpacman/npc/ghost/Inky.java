@@ -95,7 +95,7 @@ public class Inky extends Ghost {
         Square playerDestination = player.squaresAheadOf(SQUARES_AHEAD);
 
         List<Direction> firstHalf = Navigation.shortestPath(blinky.getSquare(),
-            playerDestination, null);
+            playerDestination, this);
 
         if (firstHalf == null) {
             return Optional.empty();
