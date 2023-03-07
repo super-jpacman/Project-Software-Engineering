@@ -32,7 +32,6 @@ public class MultiLevelGame extends Game {
 
     private final Player player;
     private List<Level> levels;
-    private final Level level_tmp;
     private Level level_tmp0;
     private final Object progressLock = new Object();
 
@@ -41,7 +40,7 @@ public class MultiLevelGame extends Game {
     private int levelNumber = 0;
     private int count = 0;
 
-    public MultiLevelGame(Player player, List<Level> levels,Level level0 , PointCalculator pointCalculator) {
+    public MultiLevelGame(Player player, List<Level> levels, PointCalculator pointCalculator) {
         super(pointCalculator);
 
         assert player != null;
@@ -52,7 +51,6 @@ public class MultiLevelGame extends Game {
         this.levels = levels;
 
         this.level = levels.get(0);
-        level_tmp = level0;
         this.level.registerPlayer(player);
         this.inProgress = false;
 
@@ -77,6 +75,7 @@ public class MultiLevelGame extends Game {
         inProgress = false;
         getLevel().addObserver(this);
         getLevel().stop();
+
 
     }
     @Override
