@@ -71,6 +71,7 @@ public class MultiLevelGame extends Game {
             levels_.add(makeLevel(_INDEX_MAP_));
 
         }
+        levelNumber = 0;
         levels.clear();
         levels.addAll(levels_);
         level = levels.get(0);
