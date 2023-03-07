@@ -1,6 +1,7 @@
 package nl.tudelft.jpacman;
 
 import nl.tudelft.jpacman.game.MultiLevelGame;
+import nl.tudelft.jpacman.game.StopWatch;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
@@ -11,7 +12,7 @@ import java.util.List;
 
 
 public class MultiLevelLauncher extends Launcher {
-    
+
     private static final int NUMBER_OF_LEVELS = 5;
 
     private MultiLevelGame multiGame;

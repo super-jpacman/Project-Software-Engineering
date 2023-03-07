@@ -9,7 +9,27 @@ import java.util.List;
 
 
 public class MultiLevelGame extends Game {
-    
+    StopWatch stopWatch = new StopWatch();
+    private int totalScore=0;
+    private double totalTime=0;
+
+    public int getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(int totalScore) {
+        this.totalScore = totalScore;
+    }
+
+    public double getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(double totalTime) {
+        this.totalTime = totalTime;
+    }
+
+
     private final Player player;
     private List<Level> levels;
     private final Level level_tmp;
@@ -56,6 +76,9 @@ public class MultiLevelGame extends Game {
                 inProgress = true;
                 getLevel().addObserver(this);
                 getLevel().start();
+                System.out.println("Start Pressed");
+                stopWatch.startWatch();
+                System.out.println(getTotalTime());
                 return;
             }
 
@@ -94,6 +117,14 @@ public class MultiLevelGame extends Game {
             }
             
             inProgress = false;
+            stopWatch.stopWatch();
+            long elapsedTime = stopWatch.getElapsedTime();
+            double seconds = (double) elapsedTime / 1_000_000_000.0;
+            System.out.println("first Totaltime is: " + getTotalTime() + " seconds");
+            setTotalTime(getTotalTime()+seconds);
+            System.out.println("Totaltime is: " + getTotalTime() + " seconds");
+            System.out.println("Stop Pressed" + seconds);
+            System.out.println("Elapsed time: " + getTotalTime() + " seconds");
             getLevel().stop();
         }
     }
