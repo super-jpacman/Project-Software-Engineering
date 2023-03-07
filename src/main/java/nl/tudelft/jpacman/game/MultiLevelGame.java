@@ -5,6 +5,7 @@ import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,13 +33,11 @@ public class MultiLevelGame extends Game {
 
     private final Player player;
     private List<Level> levels;
-    private Level level_tmp0;
     private final Object progressLock = new Object();
 
     private Level level;
     private boolean inProgress;
     private int levelNumber = 0;
-    private int count = 0;
 
     public MultiLevelGame(Player player, List<Level> levels, PointCalculator pointCalculator) {
         super(pointCalculator);
@@ -62,15 +61,19 @@ public class MultiLevelGame extends Game {
         start();
 //        getLevel().stop();
     }
-    public void setLevel(Level level0){
-        this.level_tmp0 = level0;
-        this.level = level0;
-    }
     @Override
     public void restart() {
         player.setScore(0);
         player.setAlive(true);
-        level = makeLevel("1");
+        List<Level> levels_ = new ArrayList<>();
+        for (int i = 1; i < 5+1; i++) {
+            String _INDEX_MAP_ = String.valueOf(i);
+            levels_.add(makeLevel(_INDEX_MAP_));
+
+        }
+        levels.clear();
+        levels.addAll(levels_);
+        level = levels.get(0);
         level.registerPlayer(player);
         inProgress = false;
         getLevel().addObserver(this);
@@ -99,12 +102,7 @@ public class MultiLevelGame extends Game {
             }
 
             if (getLevel().isAnyPlayerAlive() == false) {
-                player.setAlive(true);
-                level = makeLevel("1");
-                level.registerPlayer(player);
-                inProgress = true;
-                getLevel().addObserver(this);
-                getLevel().start();
+
 
             }
 
