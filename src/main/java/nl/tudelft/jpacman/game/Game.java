@@ -15,6 +15,25 @@ import nl.tudelft.jpacman.points.PointCalculator;
  * @author Jeroen Roosen 
  */
 public abstract class Game implements LevelObserver {
+    private double totalTime=0;
+    StopWatch stopWatch = new StopWatch();
+    public int getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(int totalScore) {
+        this.totalScore = totalScore;
+    }
+
+    private int totalScore=0;
+
+    public double getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(double totalTime) {
+        this.totalTime = totalTime;
+    }
 
     /**
      * <code>true</code> if the game is in progress.
@@ -55,6 +74,8 @@ public abstract class Game implements LevelObserver {
                 inProgress = true;
                 getLevel().addObserver(this);
                 getLevel().start();
+                System.out.println("Start Pressed");
+                stopWatch.startWatch();
             }
         }
     }
@@ -68,7 +89,14 @@ public abstract class Game implements LevelObserver {
                 return;
             }
             inProgress = false;
+            stopWatch.stopWatch();
+            long elapsedTime = stopWatch.getElapsedTime();
+            double seconds = (double) elapsedTime / 1_000_000_000.0;
+            setTotalTime(getTotalTime()+seconds);
+            //System.out.println("Stop Pressed");
+            //System.out.println("Elapsed time: " + seconds + " seconds");
             getLevel().stop();
+
         }
     }
 
@@ -107,11 +135,21 @@ public abstract class Game implements LevelObserver {
 
     @Override
     public void levelWon() {
+
         stop();
     }
 
     @Override
     public void levelLost() {
+        Player curPlayer = getPlayers().get(0);
+        //stopWatch.startWatch();
+        stopWatch.stopWatch();
+        long elapsedTime = stopWatch.getElapsedTime();
+        double seconds = (double) elapsedTime / 1_000_000_000.0;
+        //setTotalTime(getTotalTime()+seconds);
+        //setTotalScore(curPlayer.getScore());
+        //System.out.println("You die");
+        //System.out.println("Total time is: "+getTotalTime() + " Seconds");
         start();
         stop();
     }
