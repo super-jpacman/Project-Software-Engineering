@@ -14,6 +14,10 @@ import nl.tudelft.jpacman.sprite.Sprite;
  */
 public class Player extends Unit {
 
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     /**
      * The amount of points accumulated by this player.
      */

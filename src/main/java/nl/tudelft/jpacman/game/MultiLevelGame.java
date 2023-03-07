@@ -57,13 +57,20 @@ public class MultiLevelGame extends Game {
         this.inProgress = false;
 
     }
-
+    @Override
+    public void levelWon() {
+        stop();
+        System.out.println("Game WON");
+        start();
+//        getLevel().stop();
+    }
     public void setLevel(Level level0){
         this.level_tmp0 = level0;
         this.level = level0;
     }
     @Override
     public void restart() {
+        player.setScore(0);
         player.setAlive(true);
         level = makeLevel("1");
         level.registerPlayer(player);
@@ -80,7 +87,7 @@ public class MultiLevelGame extends Game {
             if (isInProgress()) {
                 return;
             }
-            
+
             // First start and unpause
             if (getLevel().isAnyPlayerAlive() && getLevel().remainingPellets() > 0) {
                 inProgress = true;
@@ -111,13 +118,16 @@ public class MultiLevelGame extends Game {
                 levelNumber++;
                 level = levels.get(levelNumber);
                 level.registerPlayer(player);
-                inProgress = true;
+                inProgress = false;
                 getLevel().addObserver(this);
-                getLevel().start();
+                getLevel().stop();
             }
         }
     }
+    public void levelLost() {
+        stop();
 
+    }
     @Override
     public void stop() {
         synchronized (progressLock) {
