@@ -50,8 +50,12 @@ public class Launcher {
      *
      * @return The name of the map file.
      */
-    protected String getLevelMap() {
-        return levelMap;
+    protected String getLevelMap(String _INDEX_MAP_) {
+        return levelMap = "/board" + _INDEX_MAP_ + ".txt";
+    }
+
+    protected String getLevelMaptmp(String _INDEX_MAP_) {
+        return levelMap = "/board" + _INDEX_MAP_ + "tmp.txt";
     }
 
     /**
@@ -66,14 +70,10 @@ public class Launcher {
         return this;
     }
 
-    /**
-     * Creates a new game using the level from {@link #makeLevel()}.
-     *
-     * @return a new Game.
-     */
+
     public Game makeGame() {
         GameFactory gf = getGameFactory();
-        Level level = makeLevel();
+        Level level = makeLevel("1");
         game = gf.createSinglePlayerGame(level, loadPointCalculator());
         return game;
     }
@@ -88,12 +88,21 @@ public class Launcher {
      *
      * @return A new level.
      */
-    public Level makeLevel() {
+    public Level makeLevel(String _INDEX_MAP_) {
         try {
-            return getMapParser().parseMap(getLevelMap());
+            return getMapParser().parseMap(getLevelMap(_INDEX_MAP_));
         } catch (IOException e) {
             throw new PacmanConfigurationException(
-                    "Unable to create level, name = " + getLevelMap(), e);
+                    "Unable to create level, name = " + getLevelMap("1"), e);
+        }
+    }
+
+    public Level makeLeveltmp(String _INDEX_MAP_) {
+        try {
+            return getMapParser().parseMap(getLevelMaptmp(_INDEX_MAP_));
+        } catch (IOException e) {
+            throw new PacmanConfigurationException(
+                "Unable to create level, name = " + getLevelMaptmp("1"), e);
         }
     }
 
@@ -203,11 +212,18 @@ public class Launcher {
      * Main execution method for the Launcher.
      *
      * @param args
-     *            The command line arguments - which are ignored.
+     *            The command line arguments. The first and only option {@code --singlelevel} can be
+     *            used to disable the multiple levels feature.
      * @throws IOException
      *             When a resource could not be read.
      */
     public static void main(String[] args) throws IOException {
-        new Launcher().launch();
+        if (args.length > 0 && args[0].equals("--singlelevel")) {
+            new Launcher().launch();
+            System.out.println("test");
+        } else {
+            new MultiLevelLauncher().launch();
+            System.out.println("sss");
+        }
     }
 }
