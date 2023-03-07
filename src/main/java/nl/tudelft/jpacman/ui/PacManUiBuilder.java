@@ -23,6 +23,7 @@ public class PacManUiBuilder {
      * Caption for the default start button.
      */
     private static final String START_CAPTION = "Start";
+    private static final String RESTART_CAPTION = "Restart";
 
     /**
      * Map of buttons and their actions.
@@ -66,6 +67,7 @@ public class PacManUiBuilder {
         if (defaultButtons) {
             addStartButton(game);
             addStopButton(game);
+            addRestartButton(game);
         }
         return new PacManUI(game, buttons, keyMappings, scoreFormatter);
     }
@@ -94,6 +96,12 @@ public class PacManUiBuilder {
         assert game != null;
 
         buttons.put(START_CAPTION, game::start);
+    }
+
+    private void addRestartButton(final Game game) {
+        assert game != null;
+
+        buttons.put(RESTART_CAPTION, game::restart);
     }
 
     /**

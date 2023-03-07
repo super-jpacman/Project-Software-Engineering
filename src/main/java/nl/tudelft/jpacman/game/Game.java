@@ -62,6 +62,9 @@ public abstract class Game extends MultiLevelLauncher implements LevelObserver {
             }
         }
     }
+    public void restart() {
+        System.out.println("PRESS RESTART");
+    }
     /**
      * Pauses the game.
      */
