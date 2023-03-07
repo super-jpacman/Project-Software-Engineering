@@ -67,7 +67,7 @@ public class MultiLevelGame extends Game {
         player.setAlive(true);
         level = makeLevel("1");
         level.registerPlayer(player);
-        inProgress = true;
+        inProgress = false;
         getLevel().addObserver(this);
         getLevel().stop();
 
