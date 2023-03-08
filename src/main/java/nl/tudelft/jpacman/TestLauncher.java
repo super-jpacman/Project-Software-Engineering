@@ -12,9 +12,41 @@ import java.util.List;
 
 public class TestLauncher extends Launcher {
 
-    private static final int NUMBER_OF_LEVELS = 7+4;
+    public static int getNumberOfLevels() {
+        return NUMBER_OF_LEVELS;
+    }
+
+    public static void setNumberOfLevels(int numberOfLevels) {
+        NUMBER_OF_LEVELS = numberOfLevels;
+    }
+
+    private static int NUMBER_OF_LEVELS = 15;
 
     private MultiLevelGame multiGame;
+
+    public int getStartStage() {
+        return StartStage;
+    }
+
+    public void setStartStage(int startStage) {
+        StartStage = startStage;
+    }
+
+    private int StartStage = 7;
+
+    public String getNameoftest() {
+        return Nameoftest;
+    }
+
+    public void setNameoftest(String nameoftest) {
+        Nameoftest = nameoftest;
+    }
+    public void LenghtOfMap(int StartStage,int EndStage){
+        this.StartStage = StartStage;
+        NUMBER_OF_LEVELS = EndStage;
+
+    }
+    private String Nameoftest = "";
 
     @Override
     public MultiLevelGame getGame() {
@@ -26,8 +58,8 @@ public class TestLauncher extends Launcher {
         try{
             Player player = getPlayerFactory().createPacMan();
             List<Level> levels = new ArrayList<>();
-            for (int i = 7; i < NUMBER_OF_LEVELS+1; i++) {
-                String _INDEX_MAP_ = String.valueOf(i);
+            for (int i = StartStage; i < NUMBER_OF_LEVELS+1; i++) {
+                String _INDEX_MAP_ = String.valueOf(i)+Nameoftest;
                 levels.add(makeLevel(_INDEX_MAP_));
             }
             multiGame = new MultiLevelGame(player, levels, loadPointCalculator());
