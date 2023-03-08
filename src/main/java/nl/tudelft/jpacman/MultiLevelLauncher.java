@@ -27,19 +27,20 @@ public class MultiLevelLauncher extends Launcher {
         try{
             Player player = getPlayerFactory().createPacMan();
             List<Level> levels = new ArrayList<>();
-            List<Level> levels_test = new ArrayList<>();
             for (int i = 1; i < NUMBER_OF_LEVELS+1; i++) {
                 String _INDEX_MAP_ = String.valueOf(i);
                 levels.add(makeLevel(_INDEX_MAP_));
-            }
 
+            }
+<<<<<<< HEAD
+            Level level0 = makeLevel("1");
+=======
+>>>>>>> 9c6a4d86892d50d33fcac229c8b8a2aa7641024a
             multiGame = new MultiLevelGame(player, levels, loadPointCalculator());
 
 
         } finally {
         }
-
-
 
         return multiGame;
     }
@@ -47,5 +48,4 @@ public class MultiLevelLauncher extends Launcher {
     private PointCalculator loadPointCalculator() {
         return new PointCalculatorLoader().load();
     }
-
 }

@@ -206,6 +206,7 @@ public class Level {
             }
             startNPCs();
             inProgress = true;
+//            stopNPCs();
             updateObservers();
         }
     }
