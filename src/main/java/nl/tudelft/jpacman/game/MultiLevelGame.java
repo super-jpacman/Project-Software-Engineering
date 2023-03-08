@@ -144,6 +144,7 @@ public class MultiLevelGame extends Game {
         }
         stop();
         Player p = getPlayers().get(0);
+
         new GameEnd("You Lose !!",p.getScore());
     }
     @Override

@@ -69,10 +69,10 @@ public class GameEnd extends JFrame {
         Header.setIconTextGap(-60);
         Header.setBackground(new Color(1f,0f,0f,0f ));
         Header.setOpaque(true);
-        Header.setBounds(155, 20, 300, 60);
+        Header.setBounds(0, 20, 600, 40);
 
         Score.setLayout(new FlowLayout());
-        Score.setText("Score "+String.valueOf(Text_Score)+" Point");
+        Score.setText("Score "+String.valueOf(Text_Score));
         Score.setHorizontalTextPosition(JLabel.CENTER);
         Score.setVerticalTextPosition(JLabel.TOP);
         Score.setAlignmentX(JLabel.CENTER);
@@ -83,7 +83,7 @@ public class GameEnd extends JFrame {
         Score.setIconTextGap(-60);
         Score.setBackground(new Color(1f,0f,0f,0f ));
         Score.setOpaque(true);
-        Score.setBounds(168, 90, 300, 40);
+        Score.setBounds(140, 90, 420, 30);
 
         name.setLayout(new FlowLayout());
         name.setSize(100,50);
