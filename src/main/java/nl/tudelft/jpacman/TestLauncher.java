@@ -5,6 +5,7 @@ import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
 import nl.tudelft.jpacman.points.PointCalculatorLoader;
+import nl.tudelft.jpacman.ui.PacManUI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,7 @@ public class TestLauncher extends Launcher {
 
     }
     private String Nameoftest = "";
+    PacManUI p;
 
     @Override
     public MultiLevelGame getGame() {
@@ -62,7 +64,7 @@ public class TestLauncher extends Launcher {
                 String _INDEX_MAP_ = String.valueOf(i)+Nameoftest;
                 levels.add(makeLevel(_INDEX_MAP_));
             }
-            multiGame = new MultiLevelGame(player, levels, loadPointCalculator());
+            multiGame = new MultiLevelGame(player, levels, loadPointCalculator(),p);
             
         } finally {
         }
