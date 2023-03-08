@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
+import nl.tudelft.jpacman.ui.GameEnd;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,7 @@ public class MultiLevelGame extends Game {
     private boolean inProgress;
     private int levelNumber = 0;
 
+
     public MultiLevelGame(Player player, List<Level> levels, PointCalculator pointCalculator) {
         super(pointCalculator);
 
@@ -56,14 +58,22 @@ public class MultiLevelGame extends Game {
     }
     @Override
     public void levelWon() {
+
         stop();
+
         System.out.println("Game WON");
-        start();
+
+        if(levelNumber>5){
+            new GameEnd("You Won !!",998);
+        }else{
+            start();
+        }
 //        getLevel().stop();
     }
     @Override
     public void restart() {
         player.setScore(0);
+        setTotalTime(0);
         player.setAlive(true);
         List<Level> levels_ = new ArrayList<>();
         for (int i = 1; i < 5+1; i++) {
@@ -123,8 +133,16 @@ public class MultiLevelGame extends Game {
         }
     }
     public void levelLost() {
+        System.out.println("you lostsss");
+        if (getTotalTime()>60.0){
+            int minutes = (int)getTotalTime()/60;
+            int remainingSec = (int)getTotalTime()%60;
+            System.out.format("Your time is: %d min %d second",minutes,remainingSec);
+        }else {
+            System.out.println(getTotalTime());
+        }
         stop();
-
+        new GameEnd("You Lose !!",998);
     }
     @Override
     public void stop() {
@@ -138,11 +156,19 @@ public class MultiLevelGame extends Game {
             stopWatch.stopWatch();
             long elapsedTime = stopWatch.getElapsedTime();
             double seconds = (double) elapsedTime / 1_000_000_000.0;
-            System.out.println("first Totaltime is: " + getTotalTime() + " seconds");
+            //System.out.println("first Totaltime is: " + getTotalTime() + " seconds");
             setTotalTime(getTotalTime()+seconds);
-            System.out.println("Totaltime is: " + getTotalTime() + " seconds");
-            System.out.println("Stop Pressed" + seconds);
-            System.out.println("Elapsed time: " + getTotalTime() + " seconds");
+            //System.out.println("Totaltime is: " + getTotalTime() + " seconds");
+            //System.out.println("Stop Pressed" + seconds);
+            //System.out.println("Elapsed time: " + getTotalTime() + " seconds");
+
+            if (getTotalTime()>60.0){
+                int minutes = (int)getTotalTime()/60;
+                int remainingSec = (int)getTotalTime()%60;
+                System.out.format("Your time is: %d min %d second",minutes,remainingSec);
+            }else {
+                System.out.println(getTotalTime());
+            }
             getLevel().stop();
         }
     }
