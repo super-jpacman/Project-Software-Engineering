@@ -62,13 +62,10 @@ public class GameEnd extends JFrame {
 
 
         Header.setText(Text_Header);
-<<<<<<< HEAD
+
         Header.setForeground(new Color(0xFFFFFF));
-        Header.setFont(new Font("MV Boli",Font.BOLD,50));
-=======
-        Header.setForeground(new Color(0x00FF00));
         Header.setFont(new Font("Emulogic",Font.BOLD,50));
->>>>>>> 9167f376ca8b1591f377645146162122a2dd571b
+
         Header.setIconTextGap(-60);
         Header.setBackground(new Color(1f,0f,0f,0f ));
         Header.setOpaque(true);
@@ -79,13 +76,10 @@ public class GameEnd extends JFrame {
         Score.setHorizontalTextPosition(JLabel.CENTER);
         Score.setVerticalTextPosition(JLabel.TOP);
         Score.setAlignmentX(JLabel.CENTER);
-<<<<<<< HEAD
+
         Score.setForeground(new Color(0xFFFFFF));
-        Score.setFont(new Font("MV Boli",Font.PLAIN,32));
-=======
-        Score.setForeground(new Color(0x00FF00));
         Score.setFont(new Font("Emulogic",Font.PLAIN,32));
->>>>>>> 9167f376ca8b1591f377645146162122a2dd571b
+
         Score.setIconTextGap(-60);
         Score.setBackground(new Color(1f,0f,0f,0f ));
         Score.setOpaque(true);
