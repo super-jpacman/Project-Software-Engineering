@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
+import java.io.File;
+import java.io.IOException;
 import java.util.Objects;
 
 public class GameEnd extends JFrame {
@@ -24,6 +26,26 @@ public class GameEnd extends JFrame {
     // default constructor
     public GameEnd(String Text_Header,int Text_Score)
     {
+        try {
+            GraphicsEnvironment ge =
+                GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/main/resources/font/Emulogic-zrEw.ttf")));
+            GraphicsEnvironment gf =
+                GraphicsEnvironment.getLocalGraphicsEnvironment();
+            gf.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/main/resources/font/LexendTera-Medium.ttf")));
+            GraphicsEnvironment gg =
+                GraphicsEnvironment.getLocalGraphicsEnvironment();
+            gg.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/main/resources/font/PacfontGood-yYye.ttf")));
+        } catch (FontFormatException | IOException e) {
+            //Handle exception
+        }
+
+        /*GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        String[] fontnames = e.getAvailableFontFamilyNames();
+        System.out.println("\nFonts available on this platform: ");
+        for (int i = 0; i < fontnames.length; i++)
+            System.out.println(fontnames[i]);*/
+
 
         this.Text_Header=Text_Header;
         this.Text_Score=Text_Score;
@@ -41,7 +63,7 @@ public class GameEnd extends JFrame {
 
         Header.setText(Text_Header);
         Header.setForeground(new Color(0x00FF00));
-        Header.setFont(new Font("MV Boli",Font.BOLD,50));
+        Header.setFont(new Font("Emulogic",Font.BOLD,50));
         Header.setIconTextGap(-60);
         Header.setBackground(new Color(1f,0f,0f,0f ));
         Header.setOpaque(true);
@@ -53,7 +75,7 @@ public class GameEnd extends JFrame {
         Score.setVerticalTextPosition(JLabel.TOP);
         Score.setAlignmentX(JLabel.CENTER);
         Score.setForeground(new Color(0x00FF00));
-        Score.setFont(new Font("MV Boli",Font.PLAIN,32));
+        Score.setFont(new Font("Emulogic",Font.PLAIN,32));
         Score.setIconTextGap(-60);
         Score.setBackground(new Color(1f,0f,0f,0f ));
         Score.setOpaque(true);
