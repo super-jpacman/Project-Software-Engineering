@@ -1,15 +1,12 @@
 package nl.tudelft.jpacman.ui;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
+import java.awt.*;
 import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.ui.ScorePanel.ScoreFormatter;
@@ -50,7 +47,6 @@ public class PacManUI extends JFrame {
      * The panel displaying the game.
      */
     private final BoardPanel boardPanel;
-
     /**
      * Creates a new UI for a JPacman game.
      *
@@ -86,16 +82,18 @@ public class PacManUI extends JFrame {
         }
 
         boardPanel = new BoardPanel(game);
-
         Container contentPanel = getContentPane();
         contentPanel.setLayout(new BorderLayout());
         contentPanel.add(buttonPanel, BorderLayout.SOUTH);
         contentPanel.add(scorePanel, BorderLayout.NORTH);
         contentPanel.add(boardPanel, BorderLayout.CENTER);
-
         pack();
     }
-
+//    public void reset(){
+//        getContentPane().invalidate();
+//        getContentPane().validate();
+//        getContentPane().repaint();
+//    }
     /**
      * Starts the "engine", the thread that redraws the interface at set
      * intervals.
@@ -113,4 +111,6 @@ public class PacManUI extends JFrame {
         boardPanel.repaint();
         scorePanel.refresh();
     }
+
+
 }

@@ -52,39 +52,44 @@ public class GameEnd extends JFrame {
 
         ImageIcon img = new ImageIcon(path);
         JLabel background = new JLabel(img);
-        background.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
+//        background.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
         add(background);
 
         Header=new JLabel("Header");
         BackBTN=new JButton();
         Score=new JLabel("Score");
-        name = new HintTextField(" Enter your name");
+        name = new HintTextField("                     Enter your name");
 
 
         Header.setText(Text_Header);
-        Header.setForeground(new Color(0x00FF00));
+
+        Header.setForeground(new Color(0xFFFFFF));
         Header.setFont(new Font("Emulogic",Font.BOLD,50));
+
         Header.setIconTextGap(-60);
         Header.setBackground(new Color(1f,0f,0f,0f ));
         Header.setOpaque(true);
-        Header.setBounds(155, 20, 300, 60);
+        Header.setBounds(0, 20, 600, 40);
 
         Score.setLayout(new FlowLayout());
-        Score.setText("Score "+String.valueOf(Text_Score)+" Point");
+        Score.setText("Score "+String.valueOf(Text_Score));
         Score.setHorizontalTextPosition(JLabel.CENTER);
         Score.setVerticalTextPosition(JLabel.TOP);
         Score.setAlignmentX(JLabel.CENTER);
-        Score.setForeground(new Color(0x00FF00));
+
+        Score.setForeground(new Color(0xFFFFFF));
         Score.setFont(new Font("Emulogic",Font.PLAIN,32));
+
         Score.setIconTextGap(-60);
         Score.setBackground(new Color(1f,0f,0f,0f ));
         Score.setOpaque(true);
-        Score.setBounds(168, 100, 300, 40);
+        Score.setBounds(140, 90, 420, 30);
 
         name.setLayout(new FlowLayout());
         name.setSize(100,50);
         name.setBounds(180,260,230,30);
         name.setBorder(null);
+        name.setHorizontalAlignment(JTextField.CENTER);
 
         BackBTN.setLayout(new FlowLayout());
         BackBTN.setText("BACK");
