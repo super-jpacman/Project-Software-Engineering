@@ -53,11 +53,6 @@ public class Launcher {
     protected String getLevelMap(String _INDEX_MAP_) {
         return levelMap = "/board" + _INDEX_MAP_ + ".txt";
     }
-
-    protected String getLevelMapTest(String _INDEX_MAP_) {
-        return levelMap = "/board" + _INDEX_MAP_ + "Test.txt";
-    }
-
     /**
      * Set the name of the file containing this level's map.
      *
@@ -94,15 +89,6 @@ public class Launcher {
         } catch (IOException e) {
             throw new PacmanConfigurationException(
                     "Unable to create level, name = " + getLevelMap("1"), e);
-        }
-    }
-
-    public Level makeLevelTest(String _INDEX_MAP_) {
-        try {
-            return getMapParser().parseMap(getLevelMapTest(_INDEX_MAP_));
-        } catch (IOException e) {
-            throw new PacmanConfigurationException(
-                "Unable to create level, name = " + getLevelMapTest("1"), e);
         }
     }
 
