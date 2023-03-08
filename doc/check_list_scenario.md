@@ -2,7 +2,7 @@ JPacman Scenarios Check List
 =================
 
 #### Story 1: Startup
-'''
+```
 As a player
  I want to start the game
 so that I can actually play
@@ -13,10 +13,10 @@ When  the user presses the "Start" button;
 Then  the game should start.
 
 Check S1.1 Done.
-'''
+```
 
 #### Story 2: Move the Player
-'''
+```
 As a player, 
  I want to move my Pacman around on the board;
 So that I can earn all points and win the game.
@@ -57,4 +57,4 @@ Scenario S2.5: Player wins, extends S2.1
 When  I have eaten the last pellet;
 Then  I win the game.
 Check S2.5 Done.
-'''
+```
