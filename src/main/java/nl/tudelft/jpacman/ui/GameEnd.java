@@ -1,5 +1,7 @@
 package nl.tudelft.jpacman.ui;
 
+import nl.tudelft.jpacman.points.SaveScore;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -24,7 +26,7 @@ public class GameEnd extends JFrame {
 
     public GameEnd(){}
     // default constructor
-    public GameEnd(String Text_Header,int Text_Score)
+    public GameEnd(String Text_Header,int Text_Score,double totalTime)
     {
         try {
             GraphicsEnvironment ge =
@@ -39,12 +41,6 @@ public class GameEnd extends JFrame {
         } catch (FontFormatException | IOException e) {
             //Handle exception
         }
-
-        /*GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        String[] fontnames = e.getAvailableFontFamilyNames();
-        System.out.println("\nFonts available on this platform: ");
-        for (int i = 0; i < fontnames.length; i++)
-            System.out.println(fontnames[i]);*/
 
 
         this.Text_Header=Text_Header;
@@ -97,13 +93,13 @@ public class GameEnd extends JFrame {
         BackBTN.setBounds(250, 310, 100, 30);
         BackBTN.setBorder(new RoundedButton(10));
 
-
         BackBTN.addActionListener(new ActionListener(){
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println(name.getText());
+                new SaveScore(name.getText(),totalTime,Text_Score);
             }
         });
         background.add(Header);
@@ -114,7 +110,6 @@ public class GameEnd extends JFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setResizable(false);
         pack();
-        setLocationRelativeTo(null);
         setVisible(true);
 
     }
@@ -180,6 +175,6 @@ public class GameEnd extends JFrame {
         private final String _hint;
     }
     public static void main(String[] args){
-        new GameEnd("You Lose !!",999);
+        new GameEnd("You Lose !!",999,222222);
     }
 }
