@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
+import nl.tudelft.jpacman.ui.GameEnd;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,7 @@ public class MultiLevelGame extends Game {
     private boolean inProgress;
     private int levelNumber = 0;
 
+
     public MultiLevelGame(Player player, List<Level> levels, PointCalculator pointCalculator) {
         super(pointCalculator);
 
@@ -58,7 +60,12 @@ public class MultiLevelGame extends Game {
     public void levelWon() {
         stop();
         System.out.println("Game WON");
-        start();
+
+        if(levelNumber>5){
+            new GameEnd("You Won !!",998);
+        }else{
+            start();
+        }
 //        getLevel().stop();
     }
     @Override
@@ -124,7 +131,7 @@ public class MultiLevelGame extends Game {
     }
     public void levelLost() {
         stop();
-
+        new GameEnd("You Lose !!",998);
     }
     @Override
     public void stop() {
