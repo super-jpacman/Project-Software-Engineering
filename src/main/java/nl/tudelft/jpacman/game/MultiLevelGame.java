@@ -63,7 +63,7 @@ public class MultiLevelGame extends Game {
 
         System.out.println("Game WON");
 
-        if(levelNumber>5){
+        if(levelNumber>=4){
             Player p = getPlayers().get(0);
             new GameEnd("You Won !!",p.getScore());
         }else{
@@ -144,6 +144,7 @@ public class MultiLevelGame extends Game {
         }
         stop();
         Player p = getPlayers().get(0);
+        System.out.println(p.getScore());
         new GameEnd("You Lose !!",p.getScore());
     }
     @Override
