@@ -26,7 +26,6 @@ public class TestLauncher extends Launcher {
         try{
             Player player = getPlayerFactory().createPacMan();
             List<Level> levels = new ArrayList<>();
-            List<Level> levels_test = new ArrayList<>();
             for (int i = 7; i < NUMBER_OF_LEVELS+1; i++) {
                 String _INDEX_MAP_ = String.valueOf(i);
                 levels.add(makeLevel(_INDEX_MAP_));

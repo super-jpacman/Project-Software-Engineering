@@ -40,6 +40,16 @@ public class MultiLevelGame extends Game {
     private boolean inProgress;
     private int levelNumber = 0;
 
+    public int getStartStage() {
+        return StartStage;
+    }
+
+    public void setStartStage(int startStage) {
+        StartStage = startStage;
+    }
+
+    private int StartStage = 0;
+
 
     public MultiLevelGame(Player player, List<Level> levels, PointCalculator pointCalculator) {
         super(pointCalculator);
@@ -51,7 +61,7 @@ public class MultiLevelGame extends Game {
         this.player = player;
         this.levels = levels;
 
-        this.level = levels.get(0);
+        this.level = levels.get(StartStage);
         this.level.registerPlayer(player);
         this.inProgress = false;
 

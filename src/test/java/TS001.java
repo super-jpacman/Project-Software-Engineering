@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 public class TS001 {
-
     @DisplayName("When pacman eat pellet player should get score")
     @Test
     public void TC08() throws InterruptedException {
@@ -33,13 +32,14 @@ public class TS001 {
     @Test
     public void TC09() throws InterruptedException{
         TestLauncher test = new TestLauncher();
-        test.makeLevel("7");
         test.launch();
-        MultiLevelGame game = test.makeGame();
+        MultiLevelGame game = test.getGame();
+        game.setStartStage(7);
         Player player = game.getPlayers().get(0);
         int Total_pellet = game.getLevel().remainingPellets();
         game.start();
-        while(game.getLevel().remainingPellets() != 0) {
+        int level = game.getLevelNumber();
+        while(game.getLevel().remainingPellets() != 0 && level == game.getLevelNumber()) {
             move(game,getRandomDirection(),1);
         }
         assertEquals(Total_pellet*10.,player.getScore());
