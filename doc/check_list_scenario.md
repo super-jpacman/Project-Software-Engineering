@@ -1,3 +1,6 @@
+JPacman Scenarios Check List
+=================
+
 #### Story 1: Startup
 '''
 As a player
