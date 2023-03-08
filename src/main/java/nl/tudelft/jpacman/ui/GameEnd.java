@@ -114,6 +114,7 @@ public class GameEnd extends JFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setResizable(false);
         pack();
+        setLocationRelativeTo(null);
         setVisible(true);
 
     }

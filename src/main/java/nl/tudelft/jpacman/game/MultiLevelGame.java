@@ -156,7 +156,6 @@ public class MultiLevelGame extends Game {
         Player p = getPlayers().get(0);
 
         System.out.println(p.getScore());
-
         new GameEnd("You Lose !!",p.getScore());
     }
     @Override
