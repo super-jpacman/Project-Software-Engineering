@@ -32,7 +32,9 @@ public class MultiLevelLauncher extends Launcher {
                 levels.add(makeLevel(_INDEX_MAP_));
 
             }
+
             Level level0 = makeLevel("1");
+
             multiGame = new MultiLevelGame(player, levels, loadPointCalculator());
 
 

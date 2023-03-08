@@ -58,7 +58,9 @@ public class MultiLevelGame extends Game {
     }
     @Override
     public void levelWon() {
+
         stop();
+
         System.out.println("Game WON");
 
         if(levelNumber>5){
@@ -71,6 +73,7 @@ public class MultiLevelGame extends Game {
     @Override
     public void restart() {
         player.setScore(0);
+        setTotalTime(0);
         player.setAlive(true);
         List<Level> levels_ = new ArrayList<>();
         for (int i = 1; i < 5+1; i++) {
@@ -130,6 +133,14 @@ public class MultiLevelGame extends Game {
         }
     }
     public void levelLost() {
+        System.out.println("you lostsss");
+        if (getTotalTime()>60.0){
+            int minutes = (int)getTotalTime()/60;
+            int remainingSec = (int)getTotalTime()%60;
+            System.out.format("Your time is: %d min %d second",minutes,remainingSec);
+        }else {
+            System.out.println(getTotalTime());
+        }
         stop();
         new GameEnd("You Lose !!",998);
     }
@@ -145,11 +156,19 @@ public class MultiLevelGame extends Game {
             stopWatch.stopWatch();
             long elapsedTime = stopWatch.getElapsedTime();
             double seconds = (double) elapsedTime / 1_000_000_000.0;
-            System.out.println("first Totaltime is: " + getTotalTime() + " seconds");
+            //System.out.println("first Totaltime is: " + getTotalTime() + " seconds");
             setTotalTime(getTotalTime()+seconds);
-            System.out.println("Totaltime is: " + getTotalTime() + " seconds");
-            System.out.println("Stop Pressed" + seconds);
-            System.out.println("Elapsed time: " + getTotalTime() + " seconds");
+            //System.out.println("Totaltime is: " + getTotalTime() + " seconds");
+            //System.out.println("Stop Pressed" + seconds);
+            //System.out.println("Elapsed time: " + getTotalTime() + " seconds");
+
+            if (getTotalTime()>60.0){
+                int minutes = (int)getTotalTime()/60;
+                int remainingSec = (int)getTotalTime()%60;
+                System.out.format("Your time is: %d min %d second",minutes,remainingSec);
+            }else {
+                System.out.println(getTotalTime());
+            }
             getLevel().stop();
         }
     }
