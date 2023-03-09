@@ -30,7 +30,7 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
 public class Launcher {
 
     private static final PacManSprites SPRITE_STORE = new PacManSprites();
-
+    public static int map = 1;
     public static final String DEFAULT_MAP = "/board.txt";
     private String levelMap = DEFAULT_MAP;
 

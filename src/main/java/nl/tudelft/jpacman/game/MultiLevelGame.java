@@ -136,6 +136,7 @@ public class MultiLevelGame extends Game {
                 && getLevel().isAnyPlayerAlive())
             {
                 levelNumber++;
+                player.setMap(2);
                 level = levels.get(levelNumber);
                 level.registerPlayer(player);
                 inProgress = false;
@@ -145,7 +146,7 @@ public class MultiLevelGame extends Game {
         }
     }
     public void levelLost() {
-        System.out.println("you lostsss");
+
         if (getTotalTime()>60.0){
             int minutes = (int)getTotalTime()/60;
             int remainingSec = (int)getTotalTime()%60;

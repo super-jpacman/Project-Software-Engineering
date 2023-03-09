@@ -23,6 +23,17 @@ public class Player extends Unit {
      */
     private int score;
 
+    public int getMap() {
+        System.out.println("getMap "+map);
+        return map;
+    }
+
+    public void setMap(int map) {
+        this.map = map;
+    }
+
+    private int map;
+
     /**
      * The animations for every direction.
      */
@@ -52,7 +63,9 @@ public class Player extends Unit {
      *            The sprite to be shown when this player dies.
      */
     protected Player(Map<Direction, Sprite> spriteMap, AnimatedSprite deathAnimation) {
+        System.out.println("this.score =" + score);
         this.score = 0;
+        this.map= 1;
         this.alive = true;
         this.sprites = spriteMap;
         this.deathSprite = deathAnimation;
