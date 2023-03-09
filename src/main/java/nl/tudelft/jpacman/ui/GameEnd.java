@@ -202,5 +202,7 @@ public class GameEnd extends JFrame {
     public static void main(String[] args){
         GameEnd GE = new GameEnd("You Lose !!",999,222222);
 //        GE.showData();
+        GE.SetOnClick();
+        GE.setVisible(false);
     }
 }

@@ -83,7 +83,6 @@ public class PacManSprites extends SpriteStore {
      */
     private Map<Direction, Sprite> directionSprite(String resource, int frames) {
         Map<Direction, Sprite> sprite = new HashMap<>();
-
         Sprite baseImage = loadSprite(resource);
         for (int i = 0; i < DIRECTIONS.length; i++) {
             Sprite directionSprite = baseImage.split(0, i * SPRITE_SIZE, frames

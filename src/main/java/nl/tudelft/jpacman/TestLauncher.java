@@ -5,7 +5,10 @@ import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
 import nl.tudelft.jpacman.points.PointCalculatorLoader;
+import nl.tudelft.jpacman.ui.GameEnd;
 import nl.tudelft.jpacman.ui.PacManUI;
+import nl.tudelft.jpacman.ui.PacManUiBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +56,9 @@ public class TestLauncher extends Launcher {
     public MultiLevelGame getGame() {
         return multiGame;
     }
+    public GameEnd gameEnd(String headtext,int score,double time){
+        return new GameEnd(headtext,score,time);
+    }
 
     @Override
     public MultiLevelGame makeGame() {
@@ -69,6 +75,15 @@ public class TestLauncher extends Launcher {
         }
         
         return multiGame;
+    }
+    @Override
+    public void launch() {
+        this.makeGame();
+        PacManUiBuilder builder = new PacManUiBuilder().withDefaultButtons();
+        addSinglePlayerKeys(builder);
+        setPacManUI(builder.build(getGame()));
+        System.out.println(getPacManUI());
+        getPacManUI().start();
     }
     private PointCalculator loadPointCalculator() {
         return new PointCalculatorLoader().load();

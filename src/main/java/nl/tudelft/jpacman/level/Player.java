@@ -24,7 +24,6 @@ public class Player extends Unit {
     private int score;
 
     public int getMap() {
-        System.out.println("getMap "+map);
         return map;
     }
 
