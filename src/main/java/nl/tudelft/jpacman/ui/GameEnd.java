@@ -192,7 +192,15 @@ public class GameEnd extends JFrame {
         assert BackBTN != null;
         BackBTN.doClick();
     }
+
+    public void showData(){
+        System.out.println("BackBTN : "+BackBTN);
+        System.out.println("Name : "+name);
+        System.out.println("Text_Header : "+Text_Header);
+        System.out.println("Text_Score : "+Text_Score);
+    }
     public static void main(String[] args){
-        new GameEnd("You Lose !!",999,222222);
+        GameEnd GE = new GameEnd("You Lose !!",999,222222);
+//        GE.showData();
     }
 }

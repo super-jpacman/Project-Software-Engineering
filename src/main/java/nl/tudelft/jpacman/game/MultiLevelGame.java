@@ -160,6 +160,7 @@ public class MultiLevelGame extends Game {
         System.out.println(player.isAlive());
 
         new GameEnd("You Lose !!",p.getScore(),getTotalTime());
+
     }
     @Override
     public void stop() {
