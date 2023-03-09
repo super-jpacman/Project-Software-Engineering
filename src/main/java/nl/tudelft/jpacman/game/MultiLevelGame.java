@@ -5,6 +5,7 @@ import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
 import nl.tudelft.jpacman.ui.GameEnd;
+import nl.tudelft.jpacman.ui.PacManUI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class MultiLevelGame extends Game {
     private final Player player;
     private List<Level> levels;
     private final Object progressLock = new Object();
-
+    private PacManUI PM;
     private Level level;
     private boolean inProgress;
     private int levelNumber = 0;
@@ -51,9 +52,9 @@ public class MultiLevelGame extends Game {
     private int StartStage = 0;
 
 
-    public MultiLevelGame(Player player, List<Level> levels, PointCalculator pointCalculator) {
+    public MultiLevelGame(Player player, List<Level> levels, PointCalculator pointCalculator, PacManUI PM) {
         super(pointCalculator);
-
+        this.PM = PM;
         assert player != null;
         assert levels != null;
         assert !levels.isEmpty();
@@ -111,7 +112,7 @@ public class MultiLevelGame extends Game {
             if (isInProgress()) {
                 return;
             }
-
+            System.out.println("2222"+this.PM);
             // First start and unpause
             if (getLevel().isAnyPlayerAlive() && getLevel().remainingPellets() > 0) {
                 inProgress = true;
@@ -125,7 +126,6 @@ public class MultiLevelGame extends Game {
 
             if (getLevel().isAnyPlayerAlive() == false) {
 
-
             }
 
 
@@ -135,6 +135,7 @@ public class MultiLevelGame extends Game {
                 && getLevel().isAnyPlayerAlive())
             {
                 levelNumber++;
+                player.setMap(levelNumber);
                 level = levels.get(levelNumber);
                 level.registerPlayer(player);
                 inProgress = false;
@@ -144,7 +145,7 @@ public class MultiLevelGame extends Game {
         }
     }
     public void levelLost() {
-        System.out.println("you lostsss");
+
         if (getTotalTime()>60.0){
             int minutes = (int)getTotalTime()/60;
             int remainingSec = (int)getTotalTime()%60;
@@ -159,6 +160,7 @@ public class MultiLevelGame extends Game {
         System.out.println(player.isAlive());
 
         new GameEnd("You Lose !!",p.getScore(),getTotalTime());
+
     }
     @Override
     public void stop() {

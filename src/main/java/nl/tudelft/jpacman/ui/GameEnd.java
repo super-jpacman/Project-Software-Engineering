@@ -7,6 +7,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
@@ -48,7 +49,7 @@ public class GameEnd extends JFrame {
 
         ImageIcon img = new ImageIcon(path);
         JLabel background = new JLabel(img);
-//        background.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
+        background.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
         add(background);
 
         Header=new JLabel("Header");
@@ -88,18 +89,23 @@ public class GameEnd extends JFrame {
         name.setHorizontalAlignment(JTextField.CENTER);
 
         BackBTN.setLayout(new FlowLayout());
-        BackBTN.setText("BACK");
+        BackBTN.setText("SAVE");
         BackBTN.setFocusPainted(false);
         BackBTN.setBounds(250, 310, 100, 30);
         BackBTN.setBorder(new RoundedButton(10));
-
         BackBTN.addActionListener(new ActionListener(){
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 // back to home
-                System.out.println(name.getText());
-                new SaveScore(name.getText(),totalTime,Text_Score);
+                if(!name.getText().isEmpty()){
+                    new SaveScore(name.getText(),totalTime,Text_Score);
+                    dispose();
+
+                }else{
+                    JOptionPane.showMessageDialog(new JFrame(), "Enter Your Name!");
+                }
+
             }
         });
         background.add(Header);
@@ -109,7 +115,12 @@ public class GameEnd extends JFrame {
 
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setResizable(false);
+        //Delete Bar
+        setUndecorated(true);
+
         pack();
+        setLocationRelativeTo(null);
+
         setVisible(true);
 
     }
@@ -174,7 +185,24 @@ public class GameEnd extends JFrame {
         }
         private final String _hint;
     }
+    public void SetName(String name){
+        this.name.replaceSelection(name);
+    }
+    public void SetOnClick(){
+        assert BackBTN != null;
+        BackBTN.doClick();
+    }
+
+    public void showData(){
+        System.out.println("BackBTN : "+BackBTN);
+        System.out.println("Name : "+name);
+        System.out.println("Text_Header : "+Text_Header);
+        System.out.println("Text_Score : "+Text_Score);
+    }
     public static void main(String[] args){
-        new GameEnd("You Lose !!",999,222222);
+        GameEnd GE = new GameEnd("You Lose !!",999,222222);
+//        GE.showData();
+        GE.SetOnClick();
+        GE.setVisible(false);
     }
 }
