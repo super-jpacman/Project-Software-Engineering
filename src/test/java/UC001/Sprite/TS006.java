@@ -1,4 +1,4 @@
-package UC001;
+package UC001.Sprite;
 
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -73,7 +73,11 @@ public class TS006 {
         Sprite split = sprite.split(10, 11, 12, 13);
         assertEquals(13,split.getHeight());
     }
-
+    @DisplayName("TC07: function split: getHeight")
+    @Test
+    public void TC07() throws InterruptedException {
+        Sprite split = sprite.split(10, 11, 12, 13);
+    }
     @DisplayName("TC08: function split instance of EmptySprite")
     @Test
     public void TC08() throws InterruptedException {
