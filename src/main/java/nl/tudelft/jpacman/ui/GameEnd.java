@@ -183,6 +183,10 @@ public class GameEnd extends JFrame {
     public void SetName(String name){
         this.name.replaceSelection(name);
     }
+    public void SetOnClick(){
+        assert BackBTN != null;
+        BackBTN.doClick();
+    }
     public static void main(String[] args){
         new GameEnd("You Lose !!",999,222222);
     }
