@@ -98,9 +98,14 @@ public class GameEnd extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // back to home
-                System.out.println(name.getText());
-                new SaveScore(name.getText(),totalTime,Text_Score);
-                dispose();
+                if(!name.getText().isEmpty()){
+                    new SaveScore(name.getText(),totalTime,Text_Score);
+                    dispose();
+
+                }else{
+                    JOptionPane.showMessageDialog(new JFrame(), "Enter Your Name!");
+                }
+
             }
         });
         background.add(Header);
