@@ -6,7 +6,6 @@ import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
 import nl.tudelft.jpacman.points.PointCalculatorLoader;
 import nl.tudelft.jpacman.ui.PacManUI;
-
 import java.util.ArrayList;
 import java.util.List;
 
