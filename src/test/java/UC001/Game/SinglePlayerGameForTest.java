@@ -1,4 +1,4 @@
-package UC001;
+package UC001.Game;
 
 import com.google.common.collect.ImmutableList;
 import nl.tudelft.jpacman.game.Game;

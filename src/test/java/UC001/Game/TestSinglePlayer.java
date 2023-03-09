@@ -1,17 +1,16 @@
-package UC001;
+package UC001.Game;
 
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class TestGame {
+public class TestSinglePlayer {
     @DisplayName("Single player:player alive and have 10 pellet")
     @Test
     public void TC01() throws InterruptedException {

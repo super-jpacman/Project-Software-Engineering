@@ -1,6 +1,5 @@
-package UC001;
+package UC001.Game;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

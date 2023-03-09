@@ -1,4 +1,4 @@
-package UC001;
+package UC001.Game;
 
 import nl.tudelft.jpacman.game.StopWatch;
 
