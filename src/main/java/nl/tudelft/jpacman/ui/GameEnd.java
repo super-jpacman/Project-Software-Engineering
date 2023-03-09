@@ -89,11 +89,10 @@ public class GameEnd extends JFrame {
         name.setHorizontalAlignment(JTextField.CENTER);
 
         BackBTN.setLayout(new FlowLayout());
-        BackBTN.setText("BACK");
+        BackBTN.setText("SAVE");
         BackBTN.setFocusPainted(false);
         BackBTN.setBounds(250, 310, 100, 30);
         BackBTN.setBorder(new RoundedButton(10));
-
         BackBTN.addActionListener(new ActionListener(){
 
             @Override
@@ -180,6 +179,9 @@ public class GameEnd extends JFrame {
             }
         }
         private final String _hint;
+    }
+    public void SetName(String name){
+        this.name.replaceSelection(name);
     }
     public static void main(String[] args){
         new GameEnd("You Lose !!",999,222222);
