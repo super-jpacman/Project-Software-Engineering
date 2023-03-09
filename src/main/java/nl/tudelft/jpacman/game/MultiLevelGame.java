@@ -5,6 +5,7 @@ import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
 import nl.tudelft.jpacman.ui.GameEnd;
+import nl.tudelft.jpacman.ui.PacManUI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class MultiLevelGame extends Game {
     private final Player player;
     private List<Level> levels;
     private final Object progressLock = new Object();
-
+    private PacManUI PM;
     private Level level;
     private boolean inProgress;
     private int levelNumber = 0;
@@ -51,9 +52,9 @@ public class MultiLevelGame extends Game {
     private int StartStage = 0;
 
 
-    public MultiLevelGame(Player player, List<Level> levels, PointCalculator pointCalculator) {
+    public MultiLevelGame(Player player, List<Level> levels, PointCalculator pointCalculator, PacManUI PM) {
         super(pointCalculator);
-
+        this.PM = PM;
         assert player != null;
         assert levels != null;
         assert !levels.isEmpty();
@@ -111,7 +112,7 @@ public class MultiLevelGame extends Game {
             if (isInProgress()) {
                 return;
             }
-
+            System.out.println("2222"+this.PM);
             // First start and unpause
             if (getLevel().isAnyPlayerAlive() && getLevel().remainingPellets() > 0) {
                 inProgress = true;

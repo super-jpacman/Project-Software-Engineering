@@ -188,6 +188,7 @@ public class Launcher {
         PacManUiBuilder builder = new PacManUiBuilder().withDefaultButtons();
         addSinglePlayerKeys(builder);
         pacManUI = builder.build(getGame());
+        System.out.println(getPacManUI());
         pacManUI.start();
     }
 
