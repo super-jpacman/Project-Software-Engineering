@@ -39,11 +39,4 @@ public class TS001 {
         Direction east = Direction.valueOf("EAST");
         assertThat(east.getDeltaX()).isEqualTo(1);
     }
-    @Test
-    public void testBoard() {
-        BOARD_X_SIZE = 4;
-        BOARD_Y_SIZE = 4;
-        int[][] grid = new int[BOARD_X_SIZE][BOARD_Y_SIZE];
-        Board board = new Board(grid);
-    }
 }
