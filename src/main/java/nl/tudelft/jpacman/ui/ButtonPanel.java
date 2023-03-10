@@ -25,16 +25,14 @@ public class ButtonPanel extends JPanel {
      */
     ButtonPanel(Map<String, Action> buttons, final JFrame parent) {
         super();
-        clicked.add(false);
-        clicked.add(false);
-        clicked.add(false);
+
         assert buttons != null;
         assert parent != null;
         count =0;
         for (final String caption : buttons.keySet()) {
             btn.add(new JButton(caption));
             btn.get(count).addActionListener(e -> {
-                clicked.set(count,true);
+
                 buttons.get(caption).doAction();
                 parent.requestFocusInWindow();
             });
@@ -42,24 +40,6 @@ public class ButtonPanel extends JPanel {
             add(btn.get(count));
             count++;
         }
-    }
-    public boolean isClicked(String s){
-        boolean b;
-        switch (s){
-            case "start":
-                b= clicked.get(0);
-                break;
-            case "stop":
-                b= clicked.get(1);
-                break;
-            case "restart":
-                b= clicked.get(2);
-                break;
-            default:
-                b= false;
-                break;
-        }
-        return b;
     }
     public void ClickStart(){
         assert btn.get(0) != null;
