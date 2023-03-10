@@ -32,7 +32,7 @@ public class MultiLevelGame extends Game {
         this.totalTime = totalTime;
     }
 
-
+    private GameEnd GE;
     private final Player player;
     private List<Level> levels;
     private final Object progressLock = new Object();
@@ -51,6 +51,9 @@ public class MultiLevelGame extends Game {
 
     private int StartStage = 0;
 
+    public void setPacManUI(PacManUI PM){
+        this.PM = PM;
+    }
 
     public MultiLevelGame(Player player, List<Level> levels, PointCalculator pointCalculator, PacManUI PM) {
         super(pointCalculator);
@@ -72,11 +75,9 @@ public class MultiLevelGame extends Game {
 
         stop();
 
-        System.out.println("Game WON");
-
         if(levelNumber>=4){
             Player p = getPlayers().get(0);
-            new GameEnd("You Won !!",p.getScore(),getTotalTime());
+            GE = new GameEnd("You Won !!",p.getScore(),getTotalTime());
         }else{
             start();
         }
@@ -84,6 +85,10 @@ public class MultiLevelGame extends Game {
     }
     @Override
     public void restart() {
+        if (GE!=null){
+            GE.setVisible(false);
+            GE=null;
+        }
         player.setScore(0);
         setTotalTime(0);
         player.setAlive(true);
@@ -94,6 +99,7 @@ public class MultiLevelGame extends Game {
 
         }
         levelNumber = 0;
+        player.setMap(1);
         levels.clear();
         levels.addAll(levels_);
         level = levels.get(0);
@@ -106,20 +112,18 @@ public class MultiLevelGame extends Game {
     }
     @Override
     public void start() {
-        System.out.println(isInProgress());
         synchronized (progressLock) {
             // Already running
             if (isInProgress()) {
                 return;
             }
-            System.out.println("2222"+this.PM);
+//            System.out.println("2222"+this.PM);
             // First start and unpause
             if (getLevel().isAnyPlayerAlive() && getLevel().remainingPellets() > 0) {
                 inProgress = true;
-                System.out.println(isInProgress());
                 getLevel().addObserver(this);
                 getLevel().start();
-                System.out.println("Start Pressed");
+//                System.out.println("Start Pressed");
                 stopWatch.startWatch();
                 System.out.println(getTotalTime());
                 return;
@@ -140,7 +144,6 @@ public class MultiLevelGame extends Game {
                 level = levels.get(levelNumber);
                 level.registerPlayer(player);
                 inProgress = false;
-                System.out.println(isInProgress());
                 getLevel().addObserver(this);
                 getLevel().stop();
             }
@@ -158,14 +161,15 @@ public class MultiLevelGame extends Game {
         stop();
         Player p = getPlayers().get(0);
 
-        System.out.println(p.getScore());
-        System.out.println(player.isAlive());
-
-        new GameEnd("You Lose !!",p.getScore(),getTotalTime());
-
+//        System.out.println(p.getScore());
+//        System.out.println(player.isAlive());
+        System.out.println(getPacManUI());
+        GE = new GameEnd("You Lose !!",p.getScore(),getTotalTime());
+        player.setMap(1);
     }
     @Override
     public void stop() {
+
         synchronized (progressLock) {
             // Already paused or ended
             if (!isInProgress()) {
