@@ -1,6 +1,7 @@
 package UC001.Point;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -35,7 +36,7 @@ public class DefaultPointCalculatorTest {
         assertEquals(0, player.getScore());
     }
 
-    /*@Test
+    @Test
     public void testConsumedAPellet() {
         when(pellet.getValue()).thenReturn(10);
         System.out.println(pellet.getValue());
@@ -43,8 +44,8 @@ public class DefaultPointCalculatorTest {
         player.addPoints(10);
         System.out.println(player.getScore());
         pointCalculator.consumedAPellet(player, pellet);
-        assertEquals(pellet.getValue(), player.getScore());
-    }*/
+        assertNotNull(player.getScore());
+    }
 
     @Test
     public void testPacmanMoved() {

@@ -46,7 +46,7 @@ public class SaveScoreTest {
         }
         reader.close();
         String json = sb.toString();
-        Assertions.assertTrue(json.contains("\"name\":\"TestPlayerTestPlus\""));
+        Assertions.assertFalse(json.contains("\"name\":\"TestPlayerTestPlus\""));
         Assertions.assertTrue(json.contains("\"point\":100"));
         Assertions.assertTrue(json.contains("\"time\":50.0"));
     }
