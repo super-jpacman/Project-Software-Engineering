@@ -127,7 +127,6 @@ public class MultiLevelGame extends Game {
 
             if (getLevel().isAnyPlayerAlive() == false) {
 
-
             }
 
 

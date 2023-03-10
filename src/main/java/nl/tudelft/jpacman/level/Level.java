@@ -143,6 +143,7 @@ public class Level {
         assert !startSquares.isEmpty();
 
         if (players.contains(player)) {
+            System.out.println("Containnnnnnnnnnnn");
             return;
         }
         players.add(player);
