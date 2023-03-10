@@ -77,7 +77,7 @@ public class MultiLevelGame extends Game {
 
         if(levelNumber>=4){
             Player p = getPlayers().get(0);
-            GE = new GameEnd("You Won !!",p.getScore(),getTotalTime());
+            GE = new GameEnd("You Won !!",p.getScore(),getTotalTime(),PM);
         }else{
             start();
         }
@@ -117,7 +117,7 @@ public class MultiLevelGame extends Game {
             if (isInProgress()) {
                 return;
             }
-//            System.out.println("2222"+this.PM);
+
             // First start and unpause
             if (getLevel().isAnyPlayerAlive() && getLevel().remainingPellets() > 0) {
                 inProgress = true;
@@ -164,7 +164,7 @@ public class MultiLevelGame extends Game {
 //        System.out.println(p.getScore());
 //        System.out.println(player.isAlive());
         System.out.println(getPacManUI());
-        GE = new GameEnd("You Lose !!",p.getScore(),getTotalTime());
+        GE = new GameEnd("You Lose !!",p.getScore(),getTotalTime(),PM);
         player.setMap(1);
     }
     @Override

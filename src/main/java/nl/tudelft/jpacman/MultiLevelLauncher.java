@@ -26,7 +26,7 @@ public class MultiLevelLauncher extends Launcher {
     }
     @Override
     public PacManUI getPacManUI() {
-        System.out.println(super.getPacManUI());
+//        System.out.println(super.getPacManUI());
         return super.getPacManUI();
     }
     @Override
@@ -49,6 +49,7 @@ public class MultiLevelLauncher extends Launcher {
         addSinglePlayerKeys(getBuilder());
         setPacManUI(getBuilder().build(getGame()));
 //        System.out.println("1111"+getPacManUI());
+        multiGame.setPacManUI(getPacManUI());
         getPacManUI().start();
 
     }

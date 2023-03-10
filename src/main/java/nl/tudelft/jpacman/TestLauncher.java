@@ -57,7 +57,7 @@ public class TestLauncher extends Launcher {
         return multiGame;
     }
     public GameEnd gameEnd(String headtext,int score,double time){
-        return new GameEnd(headtext,score,time);
+        return null;
     }
 
     @Override

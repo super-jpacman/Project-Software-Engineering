@@ -27,10 +27,10 @@ public class GameEnd extends JFrame {
     private JTextField name;
     private String Text_Header;
     private int Text_Score;
-
+    private boolean enable;
     public GameEnd(){}
     // default constructor
-    public GameEnd(String Text_Header,int Text_Score,double totalTime)
+    public GameEnd(String Text_Header,int Text_Score,double totalTime,PacManUI PM)
     {
         try {
             GraphicsEnvironment ge =
@@ -45,7 +45,7 @@ public class GameEnd extends JFrame {
         } catch (FontFormatException | IOException e) {
             //Handle exception
         }
-
+        PM.setEnabled(false);
 
         this.Text_Header=Text_Header;
         this.Text_Score=Text_Score;
@@ -91,7 +91,7 @@ public class GameEnd extends JFrame {
         name.setBorder(null);
         name.setHorizontalAlignment(JTextField.CENTER);
         name.setDocument(new LengthRestrictedDocument(16));
-        name.setCaretColor(Color.WHITE);
+//        name.setCaretColor(Color.WHITE);
 
         BackBTN.setLayout(new FlowLayout());
         BackBTN.setText("SAVE");
@@ -103,9 +103,11 @@ public class GameEnd extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // back to home
+
                 if(!name.getText().isEmpty()){
                     new SaveScore(name.getText(),totalTime,Text_Score);
                     dispose();
+                    PM.setEnabled(true);
                 }else if(name.getText().length()>16) {
                     JOptionPane.showMessageDialog(new JFrame(), "Length must less than 16");
 
@@ -225,10 +227,12 @@ public class GameEnd extends JFrame {
         System.out.println("Text_Header : "+Text_Header);
         System.out.println("Text_Score : "+Text_Score);
     }
-    public static void main(String[] args){
-        GameEnd GE = new GameEnd("You Lose !!",999,222222);
-//        GE.showData();
-//        GE.SetOnClick();
-//        GE.setVisible(false);
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
     }
 }
