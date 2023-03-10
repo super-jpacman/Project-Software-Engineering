@@ -1,8 +1,11 @@
 package UC001.board;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import nl.tudelft.jpacman.board.Direction;
+import org.assertj.core.api.AssertionsForClassTypes;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -12,40 +15,29 @@ import org.junit.jupiter.api.Test;
  * @author Arie van Deursen
  */
 public class DirectionTest {
-    /**
-     * Do we get the correct delta when moving north?
-     */
+    @DisplayName("TC01:Direction NORTH")
     @Test
-    void testNorth() {
+    public void TC01(){
         Direction north = Direction.valueOf("NORTH");
-        assertThat(north.getDeltaY()).isEqualTo(-1);
+        assertEquals(-1,north.getDeltaY());
     }
-
-    /**
-     * Do we get the correct delta when moving south?
-     */
+    @DisplayName("TC02:Direction SOUTH")
     @Test
-    void testSouth() {
+    public void TC02(){
         Direction south = Direction.valueOf("SOUTH");
-        assertThat(south.getDeltaY()).isEqualTo(1);
+        AssertionsForClassTypes.assertThat(south.getDeltaY()).isEqualTo(1);
     }
-
-    /**
-     * Do we get the correct delta when moving west?
-     */
+    @DisplayName("TC03:Direction WEST")
     @Test
-    void testWest() {
+    public void TC03(){
         Direction west = Direction.valueOf("WEST");
-        assertThat(west.getDeltaX()).isEqualTo(-1);
+        AssertionsForClassTypes.assertThat(west.getDeltaX()).isEqualTo(-1);
     }
-
-    /**
-     * Do we get the correct delta when moving east?
-     */
+    @DisplayName("TC04:Direction EAST")
     @Test
-    void testEast() {
+    public void TC04(){
         Direction east = Direction.valueOf("EAST");
-        assertThat(east.getDeltaX()).isEqualTo(1);
+        AssertionsForClassTypes.assertThat(east.getDeltaX()).isEqualTo(1);
     }
 
 }

@@ -106,7 +106,7 @@ public class MultiLevelGame extends Game {
     }
     @Override
     public void start() {
-
+        System.out.println(isInProgress());
         synchronized (progressLock) {
             // Already running
             if (isInProgress()) {
@@ -116,6 +116,7 @@ public class MultiLevelGame extends Game {
             // First start and unpause
             if (getLevel().isAnyPlayerAlive() && getLevel().remainingPellets() > 0) {
                 inProgress = true;
+                System.out.println(isInProgress());
                 getLevel().addObserver(this);
                 getLevel().start();
                 System.out.println("Start Pressed");
@@ -139,6 +140,7 @@ public class MultiLevelGame extends Game {
                 level = levels.get(levelNumber);
                 level.registerPlayer(player);
                 inProgress = false;
+                System.out.println(isInProgress());
                 getLevel().addObserver(this);
                 getLevel().stop();
             }
