@@ -1,4 +1,4 @@
-package UC001;
+package UC002;
 
 import nl.tudelft.jpacman.TestLauncher;
 import nl.tudelft.jpacman.game.Game;
@@ -14,7 +14,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TS007 {
+public class TS006 {
     @DisplayName("TC01: function Start")
     @Test
     public void TC01() throws InterruptedException {
@@ -85,10 +85,4 @@ public class TS007 {
         Assertions.assertTrue(json.contains("\"time\":50.0"));
     }
 
-    @DisplayName("TC06:Save name, score and time")
-    @Test
-    void TC06() throws IOException {
-        System.out.println("asdasdasd");
-        //assertEquals();
-    }
 }
