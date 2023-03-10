@@ -15,7 +15,7 @@ import java.io.IOException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class SpriteTest {
 
@@ -50,8 +50,9 @@ public class SpriteTest {
         int width = 10;
         int height = 10;
 
-        Sprite sprite = new MySprite();
-        sprite.draw(graphics, x, y, width, height);
+        Sprite sprite = mock(MySprite.class);
+        verify(sprite).draw(graphics, x, y, width, height);
+
     }
     @DisplayName("TC04: function split: getWidth")
     @Test
