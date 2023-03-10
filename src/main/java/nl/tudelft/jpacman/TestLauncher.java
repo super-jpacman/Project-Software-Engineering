@@ -1,5 +1,6 @@
 package nl.tudelft.jpacman;
 
+import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.game.MultiLevelGame;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
@@ -51,13 +52,41 @@ public class TestLauncher extends Launcher {
     }
     private String Nameoftest = "";
     PacManUI p;
+    @Override
+    public PacManUI getPacManUI() {
+//        System.out.println(super.getPacManUI());
+        return super.getPacManUI();
+    }
+    @Override
+    public void setPacManUI(PacManUI pacManUI) {
+        super.setPacManUI(pacManUI);
+    }
+    @Override
+    public PacManUiBuilder getBuilder() {
+        return super.getBuilder();
+    }
+    @Override
+    public void setBuilder(PacManUiBuilder builder) {
+        super.setBuilder(builder);
+    }
 
+    @Override
+    public void launch() {
+        makeGame();
+        setBuilder(new PacManUiBuilder().withDefaultButtons());
+        addSinglePlayerKeys(getBuilder());
+        setPacManUI(getBuilder().build(getGame()));
+//        System.out.println("1111"+getPacManUI());
+        multiGame.setPacManUI(getPacManUI());
+        getPacManUI().start();
+
+    }
     @Override
     public MultiLevelGame getGame() {
         return multiGame;
     }
-    public GameEnd gameEnd(String headtext,int score,double time){
-        return null;
+    public GameEnd gameEnd(String headtext,int score,double time,PacManUI p){
+        return new GameEnd(headtext,score,time,getPacManUI());
     }
 
     @Override
@@ -69,22 +98,22 @@ public class TestLauncher extends Launcher {
                 String _INDEX_MAP_ = String.valueOf(i)+Nameoftest;
                 levels.add(makeLevel(_INDEX_MAP_));
             }
-            multiGame = new MultiLevelGame(player, levels, loadPointCalculator(),p);
+            multiGame = new MultiLevelGame(player, levels, loadPointCalculator(),getPacManUI());
             
         } finally {
         }
         
         return multiGame;
     }
-    @Override
-    public void launch() {
-        this.makeGame();
-        PacManUiBuilder builder = new PacManUiBuilder().withDefaultButtons();
-        addSinglePlayerKeys(builder);
-        setPacManUI(builder.build(getGame()));
-        System.out.println(getPacManUI());
-        getPacManUI().start();
-    }
+//    @Override
+//    public void launch() {
+//        this.makeGame();
+//        PacManUiBuilder builder = new PacManUiBuilder().withDefaultButtons();
+//        addSinglePlayerKeys(builder);
+//        setPacManUI(builder.build(getGame()));
+//        System.out.println(getPacManUI());
+//        getPacManUI().start();
+//    }
     private PointCalculator loadPointCalculator() {
         return new PointCalculatorLoader().load();
     }
