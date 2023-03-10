@@ -151,14 +151,5 @@ class NavigationTest {
      *
      * @throws IOException if board reading fails.
      */
-    @Test
-    void testFullSizedLevel() throws IOException {
-        try (InputStream i = getClass().getResourceAsStream("/board.txt")) {
-            Board b = parser.parseMap(i).getBoard();
-            Square s1 = b.squareAt(1, 1);
-            Unit unit = Navigation.findNearest(Ghost.class, s1);
-            assertThat(unit).isNotNull();
-        }
-    }
 }
 

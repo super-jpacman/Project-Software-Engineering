@@ -34,7 +34,6 @@ public class TestMultiLevelGame {
     public void TC01() throws InterruptedException {
         multiLevelGame = new MultiLevelGame(player,levels,pointCalculator,pacManUI);
         MultiLevelGame game = multiLevelGame.makeGame();
-        multiLevelGame.launch();
         game = multiLevelGame.getGame();
         Player player = game.getPlayers().get(0);
         game.start();
@@ -79,7 +78,6 @@ public class TestMultiLevelGame {
     public void TC06() throws InterruptedException {
         multiLevelGame = new MultiLevelGame(player,levels,pointCalculator,pacManUI);
         MultiLevelGame game = multiLevelGame.makeGame();
-        multiLevelGame.launch();
         game = multiLevelGame.getGame();
         Player player = game.getPlayers().get(0);
         game.start();
