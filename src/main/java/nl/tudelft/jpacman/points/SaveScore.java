@@ -10,31 +10,30 @@ import java.io.*;
 public class SaveScore {
 
     public SaveScore(String Pname, double time, int point){
+        if(Pname.length()<=16 && time>=0 && point >=0) {
+            JSONParser jsonParser = new JSONParser();
 
-        JSONParser jsonParser = new JSONParser();
+            try {
 
-        try {
+                JSONArray jsonArray = (JSONArray) new JSONParser().parse(new FileReader("src/main/resources/score_board.json"));
 
-            JSONArray jsonArray = (JSONArray) new JSONParser().parse(new FileReader("src/main/resources/score_board.json"));
+                JSONObject save_ = new JSONObject();
+                save_.put("name", Pname);
+                save_.put("point", point);
+                save_.put("time", time);
 
-            JSONObject save_ = new JSONObject();
-            save_.put("name", Pname);
-            save_.put("point", point);
-            save_.put("time", time);
+                jsonArray.add(save_);
 
-            jsonArray.add(save_);
+                FileWriter file = new FileWriter("src/main/resources/score_board.json");
+                file.write(jsonArray.toJSONString());
+                System.out.println("Successfully to Save JSON");
+                file.flush();
+                file.close();
 
-            FileWriter file = new FileWriter("src/main/resources/score_board.json");
-            file.write(jsonArray.toJSONString());
-            System.out.println("Successfully to Save JSON");
-            file.flush();
-            file.close();
-
-        } catch (ParseException | IOException e) {
-            e.printStackTrace();
+            } catch (ParseException | IOException e) {
+                e.printStackTrace();
+            }
         }
-
-
     }
 
 }

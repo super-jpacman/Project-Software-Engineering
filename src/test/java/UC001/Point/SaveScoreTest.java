@@ -26,7 +26,7 @@ public class SaveScoreTest {
         }
         reader.close();
         String json = sb.toString();
-        Assertions.assertTrue(json.contains("\"name\":\"Test Player\""));
+        Assertions.assertTrue(json.contains("\"name\":\"TestPlayer\""));
     }
     @DisplayName("TC02:Save name more 16")
     @Test
