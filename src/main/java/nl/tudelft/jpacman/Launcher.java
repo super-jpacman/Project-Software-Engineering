@@ -34,6 +34,15 @@ public class Launcher {
     public static final String DEFAULT_MAP = "/board.txt";
     private String levelMap = DEFAULT_MAP;
 
+    public PacManUiBuilder getBuilder() {
+        return builder;
+    }
+
+    public void setBuilder(PacManUiBuilder builder) {
+        this.builder = builder;
+    }
+
+    private PacManUiBuilder builder;
     public PacManUI getPacManUI() {
         return pacManUI;
     }
@@ -185,11 +194,10 @@ public class Launcher {
      */
     public void launch() {
         makeGame();
-        PacManUiBuilder builder = new PacManUiBuilder().withDefaultButtons();
+        setBuilder(new PacManUiBuilder().withDefaultButtons());
         addSinglePlayerKeys(builder);
         pacManUI = builder.build(getGame());
-        System.out.println(getPacManUI());
-        pacManUI.start();
+
     }
 
     /**
@@ -218,7 +226,6 @@ public class Launcher {
             System.out.println("test");
         } else {
             new MultiLevelLauncher().launch();
-            System.out.println("sss");
         }
     }
 }

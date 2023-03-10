@@ -58,6 +58,7 @@ public class PacManUiBuilder {
      * Creates a new Pac-Man UI with the set keys and buttons.
      *
      * @param game
+     *
      *            The game to build the UI for.
      * @return A new Pac-Man UI with the set keys and buttons.
      */
@@ -149,6 +150,7 @@ public class PacManUiBuilder {
         defaultButtons = true;
         buttons.put(START_CAPTION, null);
         buttons.put(STOP_CAPTION, null);
+        buttons.put(RESTART_CAPTION, null);
         return this;
     }
 

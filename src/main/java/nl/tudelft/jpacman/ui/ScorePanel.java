@@ -54,7 +54,7 @@ public class ScorePanel extends JPanel {
     public ScorePanel(List<Player> players) {
         super();
         assert players != null;
-        System.out.println("==========+= "+players.get(0).getMap());
+//        System.out.println("==========+= "+players.get(0).getMap());
         setLayout(new GridLayout(2, players.size()));
 //        JMap = new JLabel("MAP " + String.valueOf(players.get(0).getMap()), JLabel.CENTER);
 //        add(JMap);

@@ -17,6 +17,7 @@ public class MultiLevelLauncher extends Launcher {
 
     private static final int NUMBER_OF_LEVELS = 5;
 
+
     private MultiLevelGame multiGame;
     
     @Override
@@ -25,6 +26,7 @@ public class MultiLevelLauncher extends Launcher {
     }
     @Override
     public PacManUI getPacManUI() {
+        System.out.println(super.getPacManUI());
         return super.getPacManUI();
     }
     @Override
@@ -32,12 +34,21 @@ public class MultiLevelLauncher extends Launcher {
         super.setPacManUI(pacManUI);
     }
     @Override
+    public PacManUiBuilder getBuilder() {
+        return super.getBuilder();
+    }
+    @Override
+    public void setBuilder(PacManUiBuilder builder) {
+        super.setBuilder(builder);
+    }
+
+    @Override
     public void launch() {
         makeGame();
-        PacManUiBuilder builder = new PacManUiBuilder().withDefaultButtons();
-        addSinglePlayerKeys(builder);
-        setPacManUI(builder.build(getGame()));
-        System.out.println("1111"+getPacManUI());
+        setBuilder(new PacManUiBuilder().withDefaultButtons());
+        addSinglePlayerKeys(getBuilder());
+        setPacManUI(getBuilder().build(getGame()));
+//        System.out.println("1111"+getPacManUI());
         getPacManUI().start();
     }
     
@@ -52,7 +63,7 @@ public class MultiLevelLauncher extends Launcher {
             }
 
             Level level0 = makeLevel("1");
-
+            System.out.println("sss:" +getPacManUI());
             multiGame = new MultiLevelGame(player, levels, loadPointCalculator(),getPacManUI());
 
 

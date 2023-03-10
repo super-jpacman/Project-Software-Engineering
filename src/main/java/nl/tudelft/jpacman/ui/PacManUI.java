@@ -47,6 +47,8 @@ public class PacManUI extends JFrame {
      * The panel displaying the game.
      */
     private final BoardPanel boardPanel;
+
+    private JPanel buttonPanel;
     /**
      * Creates a new UI for a JPacman game.
      *
@@ -74,7 +76,7 @@ public class PacManUI extends JFrame {
         PacKeyListener keys = new PacKeyListener(keyMappings);
         addKeyListener(keys);
 
-        JPanel buttonPanel = new ButtonPanel(buttons, this);
+        buttonPanel = new ButtonPanel(buttons, this);
 
         scorePanel = new ScorePanel(game.getPlayers());
         if (scoreFormatter != null) {
@@ -113,6 +115,9 @@ public class PacManUI extends JFrame {
         scorePanel.reMap();
     }
 
+    public void clickStart(){
 
+        System.out.println(buttonPanel);
+    }
 
 }
