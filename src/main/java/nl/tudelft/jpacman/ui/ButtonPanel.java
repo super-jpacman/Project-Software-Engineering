@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  *
  * @author Jeroen Roosen 
  */
-class ButtonPanel extends JPanel {
+public class ButtonPanel extends JPanel {
 
     /**
      * Default serialisation ID.

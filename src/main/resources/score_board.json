@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-[{"name":"","time":1.9449409,"point":130},{"name":"","time":222222.0,"point":999},{"name":"","time":2.110415,"point":120},{"name":"","time":2.110415,"point":120},{"name":"","time":2.1059062,"point":130},{"name":"","time":2.3159309,"point":120},{"name":"","time":1.8412502,"point":130},{"name":"","time":2.065917,"point":130},{"name":"","time":2.1678521,"point":120},{"name":"asd","time":2.2686811,"point":120},{"name":"gs","time":1.8422532,"point":130},{"name":"asdas","time":1.8422532,"point":130},{"name":"ssdf","time":2.1735001,"point":120},{"name":"jgklj","time":5.332083,"point":220}]
-=======
-[{"name":"","time":1.9449409,"point":130},{"name":"","time":222222.0,"point":999},{"name":"","time":2.110415,"point":120},{"name":"","time":2.110415,"point":120},{"name":"","time":2.1059062,"point":130},{"name":"","time":2.3159309,"point":120},{"name":"","time":1.8412502,"point":130},{"name":"","time":2.065917,"point":130},{"name":"","time":2.1678521,"point":120},{"name":"asd","time":2.2686811,"point":120},{"name":"gs","time":1.8422532,"point":130},{"name":"asdas","time":1.8422532,"point":130},{"name":"TestPlayer","time":10.0,"point":100},{"name":"TestPlayer","time":10.0,"point":100},{"name":"Test Player","time":50.0,"point":100}]
->>>>>>> c768e7d2d3a9251ec1d2a210f36b3e21553ea5ac
+[{"name":"Tae","time":10.0,"point":100}]
