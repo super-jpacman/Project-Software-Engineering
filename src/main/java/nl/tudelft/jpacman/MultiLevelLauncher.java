@@ -44,13 +44,11 @@ public class MultiLevelLauncher extends Launcher {
     @Override
     public MultiLevelGame makeGame() {
         try{
-
             Player player = getPlayerFactory().createPacMan();
             List<Level> levels = new ArrayList<>();
             for (int i = 1; i < NUMBER_OF_LEVELS+1; i++) {
                 String _INDEX_MAP_ = String.valueOf(i);
                 levels.add(makeLevel(_INDEX_MAP_));
-
             }
 
             Level level0 = makeLevel("1");

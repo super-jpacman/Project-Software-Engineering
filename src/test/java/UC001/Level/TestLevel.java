@@ -1,13 +1,15 @@
 package UC001.Level;
 
+import nl.tudelft.jpacman.TestLauncher;
 import nl.tudelft.jpacman.board.Board;
+import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
+import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.level.CollisionMap;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.npc.Ghost;
-import nl.tudelft.jpacman.npc.ghost.Inky;
-import nl.tudelft.jpacman.npc.ghost.Pinky;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,8 +19,8 @@ import java.util.List;
 import java.util.Observer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.mockito.Mockito.*;
 
 public class TestLevel {
     Board board = mock(Board.class);
@@ -51,27 +53,18 @@ public class TestLevel {
         assertEquals(false,level.isInProgress());
     }
 
-    /**
-     * Validates the state of the level when it is stopped without starting.
-     */
     @Test
     void stop() {
         level.stop();
         assertEquals(false,level.isInProgress());
     }
 
-    /**
-     * Validates the state of the level when it is started.
-     */
     @Test
     void start() {
         level.start();
         assertEquals(true,level.isInProgress());
     }
 
-    /**
-     * Validates the state of the level when it is started then stopped.
-     */
     @Test
     void startStop() {
         level.start();
@@ -79,5 +72,25 @@ public class TestLevel {
         level.stop();
         assertEquals(false,level.isInProgress());
     }
-
+    @Test
+    void addPlayer(){
+        level.registerPlayer(player);
+        verify(player).occupy(square);//มีการเรียกใช้ player.occupyหรือไม่
+    }
+    @Test
+    void add2Player(){
+        Player player1 = mock(Player.class);
+        level.registerPlayer(player);
+        level.registerPlayer(player1);
+        verify(player1).occupy(square1);//มีการเรียกใช้ player.occupyหรือไม่
+    }
+    @Test
+    void add3Player(){
+        Player player1 = mock(Player.class);
+        Player player2 = mock(Player.class);
+        level.registerPlayer(player);
+        level.registerPlayer(player1);
+        level.registerPlayer(player2);
+        verify(player2,never()).occupy(square1);//ไม่มีการเรียกใช้ occupy
+    }
 }
