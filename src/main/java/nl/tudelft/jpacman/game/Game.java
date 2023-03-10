@@ -11,6 +11,7 @@ import nl.tudelft.jpacman.level.Level.LevelObserver;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
 import nl.tudelft.jpacman.points.PointCalculatorLoader;
+import nl.tudelft.jpacman.ui.PacManUI;
 
 
 /**
@@ -120,5 +121,9 @@ public abstract class Game extends MultiLevelLauncher implements LevelObserver {
     public void levelLost() {
         stop();
 
+    }
+    @Override
+    public PacManUI getPacManUI() {
+        return super.getPacManUI();
     }
 }

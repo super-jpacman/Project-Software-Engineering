@@ -4,6 +4,9 @@ import nl.tudelft.jpacman.points.SaveScore;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -87,6 +90,7 @@ public class GameEnd extends JFrame {
         name.setBounds(180,260,230,30);
         name.setBorder(null);
         name.setHorizontalAlignment(JTextField.CENTER);
+        name.setDocument(new LengthRestrictedDocument(16));
 
         BackBTN.setLayout(new FlowLayout());
         BackBTN.setText("SAVE");
@@ -101,6 +105,8 @@ public class GameEnd extends JFrame {
                 if(!name.getText().isEmpty()){
                     new SaveScore(name.getText(),totalTime,Text_Score);
                     dispose();
+                }else if(name.getText().length()>16) {
+                    JOptionPane.showMessageDialog(new JFrame(), "Length must less than 16");
 
                 }else{
                     JOptionPane.showMessageDialog(new JFrame(), "Enter Your Name!");
@@ -157,6 +163,25 @@ public class GameEnd extends JFrame {
 
         public boolean isBorderOpaque() {
             return true;
+        }
+    }
+    public final class LengthRestrictedDocument extends PlainDocument {
+
+        private final int limit;
+
+        public LengthRestrictedDocument(int limit) {
+            this.limit = limit;
+        }
+
+        @Override
+        public void insertString(int offs, String str, AttributeSet a)
+            throws BadLocationException {
+            if (str == null)
+                return;
+
+            if ((getLength() + str.length()) <= limit) {
+                super.insertString(offs, str, a);
+            }
         }
     }
 

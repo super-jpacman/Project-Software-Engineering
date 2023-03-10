@@ -94,6 +94,7 @@ public class MultiLevelGame extends Game {
 
         }
         levelNumber = 0;
+        player.setMap(1);
         levels.clear();
         levels.addAll(levels_);
         level = levels.get(0);
@@ -136,7 +137,7 @@ public class MultiLevelGame extends Game {
                 && getLevel().isAnyPlayerAlive())
             {
                 levelNumber++;
-                player.setMap(2);
+                player.setMap(levelNumber+1);
                 level = levels.get(levelNumber);
                 level.registerPlayer(player);
                 inProgress = false;
@@ -161,7 +162,7 @@ public class MultiLevelGame extends Game {
         System.out.println(player.isAlive());
 
         new GameEnd("You Lose !!",p.getScore(),getTotalTime());
-
+        player.setMap(1);
     }
     @Override
     public void stop() {
