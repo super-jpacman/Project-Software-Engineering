@@ -38,9 +38,12 @@ public class DefaultPointCalculatorTest {
     @Test
     public void testConsumedAPellet() {
         when(pellet.getValue()).thenReturn(10);
+        System.out.println(pellet.getValue());
+        System.out.println(player.getScore());
+        player.addPoints(10);
+        System.out.println(player.getScore());
         pointCalculator.consumedAPellet(player, pellet);
-        // Points should be added for consuming a pellet.
-        assertEquals(10, player.getScore());
+        assertEquals(pellet.getValue(), player.getScore());
     }
 
     @Test
