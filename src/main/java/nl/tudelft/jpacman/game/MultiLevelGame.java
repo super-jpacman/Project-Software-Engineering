@@ -135,7 +135,7 @@ public class MultiLevelGame extends Game {
                 && getLevel().isAnyPlayerAlive())
             {
                 levelNumber++;
-                player.setMap(levelNumber);
+                player.setMap(levelNumber+1);
                 level = levels.get(levelNumber);
                 level.registerPlayer(player);
                 inProgress = false;
