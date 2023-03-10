@@ -50,7 +50,7 @@ public class SpriteTest {
         int width = 10;
         int height = 10;
 
-        Sprite sprite = mock(MySprite.class);
+        Sprite sprite = mock(Sprite.class);
         verify(sprite).draw(graphics, x, y, width, height);
 
     }
