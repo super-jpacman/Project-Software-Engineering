@@ -53,11 +53,6 @@ public class SpriteTest {
         Sprite split = sprite.split(10, 11, 12, 13);
         assertEquals(13,split.getHeight());
     }
-    @DisplayName("TC06: function split: getHeight")
-    @Test
-    public void TC06() throws InterruptedException {
-        Sprite split = sprite.split(10, 11, 12, 13);
-    }
 
 }
 

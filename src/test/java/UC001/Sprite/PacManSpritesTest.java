@@ -27,21 +27,23 @@ class PacManSpritesTest {
 
     @Test
     @DisplayName("TC01: function getPacmanSprites")
-    void testGetPacmanSprites() {
+    public void TC01() {
         Map<Direction, Sprite> pacmanSprites = sprites.getPacmanSprites();
         assertEquals(4, pacmanSprites.size());
     }
 
     @Test
     @DisplayName("TC02: function getPacManDeathAnimation")
-    void testGetPacManDeathAnimation() {
+    public void TC02() {
         AnimatedSprite deathAnimation = sprites.getPacManDeathAnimation();
         assertNotNull(deathAnimation);
+        assertEquals(16, deathAnimation.getWidth());
+
     }
 
     @Test
     @DisplayName("TC03: function getGhostSprite")
-    void testGetGhostSprite() {
+    public void TC03() {
         Map<Direction, Sprite> ghostSprites = sprites.getGhostSprite(GhostColor.RED);
         assertNotNull(ghostSprites);
         assertEquals(4, ghostSprites.size());
@@ -49,21 +51,20 @@ class PacManSpritesTest {
 
     @Test
     @DisplayName("TC04: function getWallSprite")
-    void testGetWallSprite() {
+    public void TC04() {
         Sprite wallSprite = sprites.getWallSprite();
         assertNotNull(wallSprite);
     }
 
     @Test
     @DisplayName("TC05: function getGroundSprite")
-    void testGetGroundSprite() {
+    public void TC05() {
         Sprite groundSprite = sprites.getGroundSprite();
         assertNotNull(groundSprite);
     }
-
     @Test
     @DisplayName("TC06: function getPelletSprite")
-    void testGetPelletSprite() {
+    public void TC06() {
         Sprite pelletSprite = sprites.getPelletSprite();
         assertNotNull(pelletSprite);
     }

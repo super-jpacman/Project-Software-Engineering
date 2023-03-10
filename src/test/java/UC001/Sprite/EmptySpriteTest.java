@@ -24,10 +24,8 @@ public class EmptySpriteTest {
         sprite = store.loadSprite("/TestSprite/64x64white.png");
     }
     @Test
+    @DisplayName("TC01: function getPelletSprite")
     void testDraw() {
-        // Create a graphics object and pass it to the empty sprite
-        // draw method. The test will pass as long as the method does
-        // not throw any exceptions.
         EmptySprite empty = new EmptySprite();
         assertDoesNotThrow(() -> {
             empty.draw(null, 0, 0, 0, 0);

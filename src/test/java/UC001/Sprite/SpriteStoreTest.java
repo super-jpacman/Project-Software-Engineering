@@ -22,15 +22,15 @@ public class SpriteStoreTest {
         sprite = spriteStore.loadSprite("/TestSprite/pacmantest.png");
 
     }
-
+    @DisplayName("TC01: function loadExistingSprite")
     @Test
-    public void loadExistingSprite() throws IOException {
+    public void TC01() throws IOException {
         // Load an existing sprite and verify that it is not null
         assertNotNull(sprite);
     }
-
+    @DisplayName("TC02: function loadNonExistingSprite")
     @Test
-    public void loadNonExistingSprite() {
+    public void TC02() {
         assertThrows(IOException.class, () -> spriteStore.loadSprite("/sprites/non-existing.png"));
     }
     @DisplayName("TC03: function createAnimatedSprite: animated sprite cut width 64/(frame=4) = 16")
@@ -40,10 +40,6 @@ public class SpriteStoreTest {
             false);
         assertEquals(16,animation.getWidth());
     }
-
-    /**
-     * Verifies that an animated sprite is correctly cut from its base image.
-     */
     @DisplayName("TC04: function createAnimatedSprite: height unchanged because animated sprite cut width ")
     @Test
     public void TC04() throws InterruptedException {
