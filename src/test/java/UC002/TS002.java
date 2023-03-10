@@ -16,7 +16,7 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 
-public class TS001 {
+public class TS002 {
 
     @DisplayName("TC01: Pacman move left")
     @Test
@@ -88,7 +88,7 @@ public class TS001 {
     public void TC05() throws InterruptedException {
         TestLauncher test = new TestLauncher();
         test.setNameoftest("_Without_Ghost");
-        test.LenghtOfMap(7,11);
+        test.LenghtOfMap(8,11);
         MultiLevelGame game = test.makeGame();
         test.launch();
         game = test.getGame();
@@ -106,7 +106,7 @@ public class TS001 {
     public void TC06() throws InterruptedException{
         TestLauncher test = new TestLauncher();
         test.setNameoftest("_Without_Ghost");
-        test.LenghtOfMap(7,11);
+        test.LenghtOfMap(8,11);
         MultiLevelGame game = test.makeGame();
         test.launch();
         game = test.getGame();
@@ -125,7 +125,7 @@ public class TS001 {
     public void TC07() throws InterruptedException{
         TestLauncher test = new TestLauncher();
         test.setNameoftest("_Hit_Ghost");
-        test.LenghtOfMap(16,16);
+        test.LenghtOfMap(20,20);
         MultiLevelGame game = test.makeGame();
         test.launch();
         game = test.getGame();
@@ -139,7 +139,7 @@ public class TS001 {
     public void TC08() throws InterruptedException{
         TestLauncher test = new TestLauncher();
         test.setNameoftest("_Hit_Ghost");
-        test.LenghtOfMap(17,17);
+        test.LenghtOfMap(21,21);
         MultiLevelGame game = test.makeGame();
         test.launch();
         game = test.getGame();
@@ -153,7 +153,7 @@ public class TS001 {
     public void TC09() throws InterruptedException{
         TestLauncher test = new TestLauncher();
         test.setNameoftest("_Hit_Ghost");
-        test.LenghtOfMap(18,18);
+        test.LenghtOfMap(22,22);
         MultiLevelGame game = test.makeGame();
         test.launch();
         game = test.getGame();
@@ -167,7 +167,7 @@ public class TS001 {
     public void TC10() throws InterruptedException{
         TestLauncher test = new TestLauncher();
         test.setNameoftest("_Hit_Ghost");
-        test.LenghtOfMap(19,19);
+        test.LenghtOfMap(23,23);
         MultiLevelGame game = test.makeGame();
         test.launch();
         game = test.getGame();
@@ -326,3 +326,4 @@ public class TS001 {
         }
     }
 }
+

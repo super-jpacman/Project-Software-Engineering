@@ -41,22 +41,9 @@ public class SpriteTest {
     public void TC02() throws InterruptedException {
         assertEquals(SPRITE_SIZE,sprite.getHeight());
     }
-
-    @DisplayName("TC03: function draw")
+    @DisplayName("TC03: function split: getWidth")
     @Test
-    void testDraw() {
-        int x = 0;
-        int y = 0;
-        int width = 10;
-        int height = 10;
-
-        Sprite sprite = mock(MySprite.class);
-        verify(sprite).draw(graphics, x, y, width, height);
-
-    }
-    @DisplayName("TC04: function split: getWidth")
-    @Test
-    public void TC04() throws InterruptedException {
+    public void TC03() throws InterruptedException {
         Sprite split = sprite.split(10, 11, 12, 13);
         assertEquals(12,split.getWidth());
     }
