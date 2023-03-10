@@ -5,6 +5,7 @@ import nl.tudelft.jpacman.points.PointCalculator;
 import nl.tudelft.jpacman.points.PointCalculatorLoader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -25,7 +26,8 @@ class PointCalculatorLoaderTest {
     }
 
     @Test
-    void loadDefaultCalculator() {
+    @DisplayName("TC01: loadDefaultCalculator")
+    public void TC01() {
         PointCalculator calculator = loader.load();
         Assertions.assertTrue(calculator instanceof DefaultPointCalculator);
     }

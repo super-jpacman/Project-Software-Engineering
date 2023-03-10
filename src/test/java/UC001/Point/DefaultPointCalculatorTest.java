@@ -12,6 +12,7 @@ import nl.tudelft.jpacman.npc.Ghost;
 
 import nl.tudelft.jpacman.points.DefaultPointCalculator;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -30,14 +31,16 @@ public class DefaultPointCalculatorTest {
     }
 
     @Test
-    public void testCollidedWithAGhost() {
+    @DisplayName("TC01: loadDefaultCalculator")
+    public void TC01() {
         pointCalculator.collidedWithAGhost(player, ghost);
         // No points should be added for colliding with a ghost.
         assertEquals(0, player.getScore());
     }
 
     @Test
-    public void testConsumedAPellet() {
+    @DisplayName("TC02: ConsumedAPellet")
+    public void TC02() {
         when(pellet.getValue()).thenReturn(10);
         System.out.println(pellet.getValue());
         System.out.println(player.getScore());
@@ -48,7 +51,8 @@ public class DefaultPointCalculatorTest {
     }
 
     @Test
-    public void testPacmanMoved() {
+    @DisplayName("TC03: PacmanMoved")
+    public void TC03() {
         Player player = mock(Player.class);
         Direction direction = Direction.NORTH;
         pointCalculator.pacmanMoved(player, direction);
