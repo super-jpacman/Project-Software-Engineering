@@ -91,6 +91,7 @@ public class GameEnd extends JFrame {
         name.setBorder(null);
         name.setHorizontalAlignment(JTextField.CENTER);
         name.setDocument(new LengthRestrictedDocument(16));
+        name.setCaretColor(Color.WHITE);
 
         BackBTN.setLayout(new FlowLayout());
         BackBTN.setText("SAVE");
@@ -227,7 +228,7 @@ public class GameEnd extends JFrame {
     public static void main(String[] args){
         GameEnd GE = new GameEnd("You Lose !!",999,222222);
 //        GE.showData();
-        GE.SetOnClick();
-        GE.setVisible(false);
+//        GE.SetOnClick();
+//        GE.setVisible(false);
     }
 }
