@@ -48,7 +48,7 @@ public class PacManUI extends JFrame {
      */
     private final BoardPanel boardPanel;
 
-    private JPanel buttonPanel;
+    private ButtonPanel buttonPanel;
     /**
      * Creates a new UI for a JPacman game.
      *
@@ -115,9 +115,14 @@ public class PacManUI extends JFrame {
         scorePanel.reMap();
     }
 
-    public void clickStart(){
-
-        System.out.println(buttonPanel);
+    public void ClickStart(){
+        buttonPanel.ClickStart();
+    }
+    public void ClickStop(){
+        buttonPanel.ClickStop();
+    }
+    public void ClickRestart(){
+        buttonPanel.ClickRestart();
     }
 
 }

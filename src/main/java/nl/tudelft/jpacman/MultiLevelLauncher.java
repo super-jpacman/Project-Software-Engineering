@@ -50,6 +50,7 @@ public class MultiLevelLauncher extends Launcher {
         setPacManUI(getBuilder().build(getGame()));
 //        System.out.println("1111"+getPacManUI());
         getPacManUI().start();
+
     }
     
     @Override
