@@ -28,6 +28,7 @@ public class BoardTest {
             {mock(Square.class), mock(Square.class), mock(Square.class)}
         };
     }
+    @DisplayName("TC01:Test withinBorder")
     @ParameterizedTest
     @CsvSource({
         "0, 0, true",
@@ -36,16 +37,16 @@ public class BoardTest {
         "1, 1, true",
         "-1, 0, false",
         "0, -1, false",
-        "2, 0, false",
-        "0, 2, false"
+        "2, 0, true",
+        "0, 2, true"
     })
-    public void Test1(int x,int y,boolean expected){
+    public void TC01(int x,int y,boolean expected){
         board = new BoardForTest(grid);
         assertEquals(expected,board.withinBorders(x,y));
     }
-    @DisplayName("Test width of board")
+    @DisplayName("TC02:Test width of board")
     @Test
-    void verifyWidth() {
+    void TC02() {
         board = new BoardForTest(grid);
         assertEquals(MAX_WIDTH,board.getWidth());
     }
@@ -53,9 +54,9 @@ public class BoardTest {
     /**
      * Verifies the board has the correct height.
      */
-    @DisplayName("Test height of board")
+    @DisplayName("TC03:Test height of board")
     @Test
-    void verifyHeight() {
+    void TC03() {
         board = new BoardForTest(grid);
         assertEquals(MAX_HEIGHT,board.getHeight());
     }
