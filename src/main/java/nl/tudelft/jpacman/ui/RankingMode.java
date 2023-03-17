@@ -1,27 +1,37 @@
 package nl.tudelft.jpacman.ui;
 
+import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.points.SaveScore;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Area;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
-public class RankingMode extends JFrame {
+public class RankingMode extends JPanel {
     private String path = "src/main/resources/Blackwall.jpg";
     private Image image = new ImageIcon(path).getImage();
-    private JButton BackBTN;
-    private JLabel Header;
-    private JLabel Score;
-    private JTextField name;
+    private JButton Start;
+    private JButton Leaderboard;
+    private JButton back;
+    private JLabel Ranking;
     private String Text_Header;
+    private Game game;
     private int Text_Score;
     private boolean enable;
-    private boolean btnIsClicked;
-    public RankingMode(){}
-    public RankingMode(String Text_Header,int Text_Score,double totalTime,PacManUI PM) {
+    private static final int SQUARE_SIZE = 16;
+
+    public RankingMode() {
         try {
             GraphicsEnvironment ge =
                 GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -35,89 +45,178 @@ public class RankingMode extends JFrame {
         } catch (FontFormatException | IOException e) {
             //Handle exception
         }
-        PM.setEnabled(false);
-        this.btnIsClicked = false;
-        this.Text_Header=Text_Header;
-        this.Text_Score=Text_Score;
+        Dimension size = new Dimension(368, 336);
+        setMinimumSize(size);
+        this.Text_Header = Text_Header;
+        this.Text_Score = Text_Score;
 
         ImageIcon img = new ImageIcon(path);
         JLabel background = new JLabel(img);
-        background.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
         add(background);
+        Ranking=new JLabel("Ranking Mode");
+        Ranking.setText(Text_Header);
+        Ranking.setHorizontalTextPosition(JLabel.CENTER);
+        Ranking.setVerticalTextPosition(JLabel.TOP);
+        Ranking.setAlignmentX(JLabel.CENTER);
+        Ranking.setFont(new Font("Emulogic",Font.PLAIN,32));
 
-        Header=new JLabel("Header");
-        BackBTN=new JButton();
-        Score=new JLabel("Score");
+        Start=new JButton();
 
-
-        Header.setText(Text_Header);
-
-        Header.setForeground(new Color(0xFFFFFF));
-        Header.setFont(new Font("Emulogic",Font.BOLD,50));
-
-        Header.setIconTextGap(-60);
-        Header.setBackground(new Color(1f,0f,0f,0f ));
-        Header.setOpaque(true);
-        Header.setBounds(0, 20, 600, 40);
-
-        Score.setLayout(new FlowLayout());
-        Score.setText("Score "+String.valueOf(Text_Score));
-        Score.setHorizontalTextPosition(JLabel.CENTER);
-        Score.setVerticalTextPosition(JLabel.TOP);
-        Score.setAlignmentX(JLabel.CENTER);
-
-        Score.setForeground(new Color(0xFFFFFF));
-        Score.setFont(new Font("Emulogic",Font.PLAIN,32));
-
-        Score.setIconTextGap(-60);
-        Score.setBackground(new Color(1f,0f,0f,0f ));
-        Score.setOpaque(true);
-        Score.setBounds(140, 90, 420, 30);
-
-        name.setLayout(new FlowLayout());
-        name.setSize(100,50);
-        name.setBounds(180,260,230,30);
-        name.setBorder(null);
-        name.setHorizontalAlignment(JTextField.CENTER);
-        //        name.setCaretColor(Color.WHITE);
-
-        BackBTN.setLayout(new FlowLayout());
-        BackBTN.setText("SAVE");
-        BackBTN.setFocusPainted(false);
-        BackBTN.setBounds(250, 310, 100, 30);
-        BackBTN.addActionListener(new ActionListener(){
+        Start.setLayout(new FlowLayout());
+        Start.setText("Start");
+        Start.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Start.setFocusPainted(false);
+        Start.setBackground(Color.black);
+        Start.setForeground(Color.white);
+        Start.setBorder(null);
+        Start.setBounds(135, 160, 100, 30);
+//        Play.setBorder(new RoundedButton(10));
+        Start.addActionListener(new ActionListener(){
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 // back to home
-                btnIsClicked = true;
-                if(!name.getText().isEmpty()){
-                    new SaveScore(name.getText(),totalTime,Text_Score);
-                    dispose();
-                    PM.setEnabled(true);
-
-                }else if(name.getText().length()>16) {
-                    JOptionPane.showMessageDialog(new JFrame(), "Length must less than 16");
-
-                }else{
-                    JOptionPane.showMessageDialog(new JFrame(), "Enter Your Name!");
-                }
+                System.out.println("PASS Start");
 
             }
         });
-        background.add(Header);
-        background.add(Score);
-        background.add(name);
-        background.add(BackBTN);
+        Leaderboard=new JButton();
 
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setResizable(false);
-        //Delete Bar
-        setUndecorated(true);
+        Leaderboard.setLayout(new FlowLayout());
+        Leaderboard.setText("Leaderboard");
+        Leaderboard.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Leaderboard.setFocusPainted(false);
+        Leaderboard.setBackground(Color.black);
+        Leaderboard.setForeground(Color.white);
+        Leaderboard.setBorder(null);
+        Leaderboard.setBounds(112, 190, 150, 30);
+//        Play.setBorder(new RoundedButton(10));
+        Leaderboard.addActionListener(new ActionListener(){
 
-        pack();
-        setLocationRelativeTo(null);
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // back to home
+                System.out.println("PASS Leaderboard");
+
+            }
+        });
+        back=new JButton();
+
+        back.setLayout(new FlowLayout());
+        back.setText("Back");
+        back.setFont(new Font("Emulogic",Font.PLAIN,12));
+        back.setFocusPainted(false);
+        back.setBackground(Color.black);
+        back.setForeground(Color.white);
+        back.setBorder(null);
+        back.setBounds(2, 300, 100, 30);
+//        Play.setBorder(new RoundedButton(10));
+        back.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // back to home
+                System.out.println("PASS Start");
+
+            }
+        });
+        background.add(Ranking);
+        background.add(Start);
+        background.add(Leaderboard);
+        background.add(back);
         setVisible(true);
 
+    }
+    class RoundedButton implements Border {
+        private int roundRadius;
+
+        RoundedButton(int roundRadius) {
+            this.roundRadius = roundRadius;
+        }
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            int r = roundRadius;
+            int w = width - 1;
+            int h = height - 1;
+
+            Area round = new Area(new RoundRectangle2D.Float(x, y, w, h, r, r));
+            Container parent = c.getParent();
+            if (Objects.nonNull(parent)) {
+                g2.setPaint(parent.getBackground());
+                Area corner = new Area(new Rectangle2D.Float(x, y, width, height));
+                corner.subtract(round);
+                g2.setColor(Color.black);
+                g2.fill(corner);
+            }
+            g2.draw(round);
+            g2.dispose();
+        }
+
+        public Insets getBorderInsets(Component c) {
+            return new Insets(this.roundRadius + 1, this.roundRadius + 1, this.roundRadius + 2, this.roundRadius + 2);
+        }
+
+
+        public boolean isBorderOpaque() {
+            return true;
+        }
+    }
+    public final class LengthRestrictedDocument extends PlainDocument {
+
+        private final int limit;
+
+        public LengthRestrictedDocument(int limit) {
+            this.limit = limit;
+        }
+
+        @Override
+        public void insertString(int offs, String str, AttributeSet a)
+            throws BadLocationException {
+            if (str == null)
+                return;
+
+            if ((getLength() + str.length()) <= limit) {
+                super.insertString(offs, str, a);
+            }
+        }
+    }
+
+    public class HintTextField extends JTextField {
+        public HintTextField(String hint) {
+            _hint = hint;
+        }
+        @Override public void setBorder(Border border) {
+            // No!
+        }
+        @Override
+        public void paint(Graphics g) {
+            super.paint(g);
+            if (getText().length() == 0) {
+                int h = getHeight();
+                ((Graphics2D)g).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+                Insets ins = getInsets();
+                FontMetrics fm = g.getFontMetrics();
+                int c0 = getBackground().getRGB();
+                int c1 = getForeground().getRGB();
+                int m = 0xfefefefe;
+                int c2 = ((c0 & m) >>> 1) + ((c1 & m) >>> 1);
+                g.setColor(new Color(c2, true));
+                g.drawString(_hint, ins.left, h / 2 + fm.getAscent() / 2 - 2);
+            }
+        }
+        private final String _hint;
+    }
+
+
+
+    public static void main(String[] args) throws IOException {
+        JFrame j = new JFrame();
+        Container contentPanel = j.getContentPane();
+        contentPanel.setLayout(new BorderLayout());
+
+        contentPanel.add(new RankingMode());
+        j.setSize(368,336);
+        j.setVisible(true);
     }
 }

@@ -123,7 +123,7 @@ public class PacManUI extends JFrame {
 //        contentPanel.add(buttonPanel, BorderLayout.SOUTH);
 //        contentPanel.add(scorePanel, BorderLayout.NORTH);
 //        contentPanel.add(new CasualEnding(Text_Header,Text_Score,totalTime), BorderLayout.CENTER);
-        contentPanel.add(new GameMode(), BorderLayout.CENTER);
+        contentPanel.add(new RankingMode(), BorderLayout.CENTER);
 
         pack();
     }
