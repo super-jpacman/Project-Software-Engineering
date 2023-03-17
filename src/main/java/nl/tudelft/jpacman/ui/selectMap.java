@@ -1,4 +1,3 @@
-
 package nl.tudelft.jpacman.ui;
 
     import nl.tudelft.jpacman.game.Game;
@@ -18,23 +17,32 @@ package nl.tudelft.jpacman.ui;
     import java.io.IOException;
     import java.util.Objects;
 
-public class GameMode extends JPanel {
+public class selectMap extends JPanel {
     private String path = "src/main/resources/main.jpg";
     private Image image = new ImageIcon(path).getImage();
-    private JButton CasualMode;
-    private JButton RankingMode;
+    private JButton Map1;
+    private JButton Map2;
+
+    private JButton Map3;
+    private JButton Map4;
+
+    private JButton Map5;
 
     private JButton BACK;
     private JButton NEXT;
-
     private String Text_Header;
     private Game game;
     private int Text_Score;
     private boolean enable;
+    private JLabel Header;
+
+    private JLabel img_map;
+    private JLabel Title;
+    private JLabel Detail;
     private static final int SQUARE_SIZE = 16;
 
     // default constructor
-    public GameMode()
+    public selectMap()
     {
         try {
             GraphicsEnvironment ge =
@@ -52,13 +60,165 @@ public class GameMode extends JPanel {
         Dimension size = new Dimension(368, 336);
         setMinimumSize(size);
 
-        this.Text_Header=Text_Header;
-        this.Text_Score=Text_Score;
 
         ImageIcon img = new ImageIcon(path);
         JLabel background = new JLabel(img);
+        img_map = new JLabel();
+        Header=new JLabel("Header");
+        Detail=new JLabel("Detail");
+        Title=new JLabel("Title");
 //        background.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
         add(background);
+
+        // SETTING IMAGE SELECT
+        img_map.setBounds(125, 62, 200, 120);
+        img_map.setBackground(Color.white);
+        img_map.setOpaque(true);
+        img_map.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
+
+        // END SETTING
+
+        Header.setText("Select Map");
+        Header.setForeground(new Color(0xFFFFFF));
+        Header.setFont(new Font("Emulogic",Font.BOLD,20));
+        Header.setIconTextGap(-60);
+        Header.setBackground(new Color(1f,0f,0f,0f ));
+        Header.setOpaque(true);
+        Header.setBounds(86, 10, 600, 40);
+
+        //Title
+        Title.setText("Map Story");
+        Title.setForeground(new Color(0xFFFFFF));
+        Title.setFont(new Font("Emulogic",Font.BOLD,14));
+        Title.setIconTextGap(-60);
+        Title.setBackground(new Color(1f,0f,0f,0f ));
+        Title.setOpaque(true);
+        Title.setBounds(155, 190, 600, 40);
+        //Theme
+        String theme = "Christmas";
+        Detail.setText("Theme : "+ theme);
+        Detail.setForeground(new Color(0xFFFFFF));
+        Detail.setFont(new Font("Emulogic",Font.BOLD,10));
+        Detail.setIconTextGap(-60);
+        Detail.setBackground(new Color(1f,0f,0f,0f ));
+        Detail.setOpaque(true);
+        Detail.setBounds(135, 220, 600, 40);
+
+        Map5=new JButton();
+        Map5.setLayout(new FlowLayout());
+        Map5.setText("Map5");
+        Map5.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Map5.setFocusPainted(false);
+        Map5.setBackground(Color.black);
+        Map5.setForeground(Color.white);
+        Map5.setBorder(null);
+//        Map5.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+        Map5.setBounds(20, 200, 70, 30);
+//        NEXT.setBorder(new RoundedButton(10));
+        Map5.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // back to home
+                closeAllBTN();
+                img_map.setBackground(Color.GREEN);
+                Map5.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+                System.out.println("PASS Map5");
+            }
+        });
+
+        Map4=new JButton();
+        Map4.setLayout(new FlowLayout());
+        Map4.setText("Map4");
+        Map4.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Map4.setFocusPainted(false);
+        Map4.setBackground(Color.black);
+        Map4.setForeground(Color.white);
+        Map4.setBorder(null);
+//        Map4.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+        Map4.setBounds(20, 165, 70, 30);
+//        NEXT.setBorder(new RoundedButton(10));
+        Map4.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // back to home
+                closeAllBTN();
+                img_map.setBackground(Color.BLUE);
+                Map4.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+
+                System.out.println("PASS Map4");
+            }
+        });
+
+        Map3=new JButton();
+        Map3.setLayout(new FlowLayout());
+        Map3.setText("Map3");
+        Map3.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Map3.setFocusPainted(false);
+        Map3.setBackground(Color.black);
+        Map3.setForeground(Color.white);
+        Map3.setBorder(null);
+//        Map3.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+        Map3.setBounds(20, 130, 70, 30);
+//        BACK.setBorder(new RoundedButton(10));
+        Map3.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // back to home
+                closeAllBTN();
+                Map3.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+
+                img_map.setBackground(Color.CYAN);
+                System.out.println("PASS Map3");
+            }
+        });
+
+        Map1=new JButton();
+        Map1.setLayout(new FlowLayout());
+        Map1.setText("Map1");
+        Map1.setFont(new Font("Emulogic",Font.PLAIN,10));
+        Map1.setFocusPainted(false);
+        Map1.setBackground(Color.black);
+        Map1.setForeground(Color.white);
+        Map1.setBorder(null);
+//        Map1.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+        Map1.setBounds(20, 60, 70, 30);
+//        Play.setBorder(new RoundedButton(10));
+        Map1.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // back to home
+                closeAllBTN();
+                Map1.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+
+                img_map.setBackground(Color.white);
+                System.out.println("PASS Map1");
+            }
+        });
+
+        Map2=new JButton();
+
+        Map2.setLayout(new FlowLayout());
+        Map2.setText("Map2");
+        Map2.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Map2.setFocusPainted(false);
+        Map2.setBackground(Color.black);
+        Map2.setForeground(Color.white);
+        Map2.setBorder(null);
+        Map2.setBounds(20, 95, 70, 30);
+//        Play.setBorder(new RoundedButton(10));
+        Map2.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // back to home
+                closeAllBTN();
+                Map2.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+
+                img_map.setBackground(Color.PINK);
+                System.out.println("PASS Map2");
+
+            }
+        });
 
         NEXT=new JButton();
         NEXT.setLayout(new FlowLayout());
@@ -105,50 +265,17 @@ public class GameMode extends JPanel {
             }
         });
 
-        CasualMode=new JButton();
-        CasualMode.setLayout(new FlowLayout());
-        CasualMode.setText("Casual!");
-        CasualMode.setFont(new Font("Emulogic",Font.PLAIN,12));
-        CasualMode.setFocusPainted(false);
-        CasualMode.setBackground(Color.black);
-        CasualMode.setForeground(Color.white);
-        CasualMode.setBorder(null);
-        CasualMode.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
-        CasualMode.setBounds(130, 190, 100, 30);
-//        Play.setBorder(new RoundedButton(10));
-        CasualMode.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // back to home
-                System.out.println("PASS CasualMode");
-            }
-        });
-
-        RankingMode=new JButton();
-
-        RankingMode.setLayout(new FlowLayout());
-        RankingMode.setText("Ranking");
-        RankingMode.setFont(new Font("Emulogic",Font.PLAIN,12));
-        RankingMode.setFocusPainted(false);
-        RankingMode.setBackground(Color.black);
-        RankingMode.setForeground(Color.white);
-        RankingMode.setBorder(null);
-        RankingMode.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
-        RankingMode.setBounds(130, 160, 100, 30);
-//        Play.setBorder(new RoundedButton(10));
-        RankingMode.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // back to home
-                System.out.println("PASS RankingMode");
-
-            }
-        });
         background.add(NEXT);
         background.add(BACK);
-        background.add(RankingMode);
-        background.add(CasualMode);
+        background.add(img_map);
+        background.add(Title);
+        background.add(Detail);
+        background.add(Header);
+        background.add(Map5);
+        background.add(Map4);
+        background.add(Map3);
+        background.add(Map2);
+        background.add(Map1);
         setVisible(true);
 
     }
@@ -233,7 +360,13 @@ public class GameMode extends JPanel {
         private final String _hint;
     }
 
-
+    public void closeAllBTN(){
+        Map1.setBorder(null);
+        Map2.setBorder(null);
+        Map3.setBorder(null);
+        Map4.setBorder(null);
+        Map5.setBorder(null);
+    }
 
     public static void main(String[] args) throws IOException {
         JFrame j = new JFrame();
