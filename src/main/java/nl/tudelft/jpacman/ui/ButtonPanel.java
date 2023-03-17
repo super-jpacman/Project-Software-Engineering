@@ -12,12 +12,14 @@ import javax.swing.JPanel;
  *
  * @author Jeroen Roosen 
  */
-public class ButtonPanel extends JPanel {
+class ButtonPanel extends JPanel {
 
-    private ArrayList<Boolean> clicked = new ArrayList<Boolean>();
+    /**
+     * Default serialisation ID.
+     */
     private static final long serialVersionUID = 1L;
     private ArrayList<JButton> btn = new ArrayList<JButton>();
-    private int count;
+
     /**
      * Create a new button panel with a button for every action.
      * @param buttons The map of caption - action for each button.
@@ -25,14 +27,12 @@ public class ButtonPanel extends JPanel {
      */
     ButtonPanel(Map<String, Action> buttons, final JFrame parent) {
         super();
-
         assert buttons != null;
         assert parent != null;
-        count =0;
+        int count =0;
         for (final String caption : buttons.keySet()) {
             btn.add(new JButton(caption));
             btn.get(count).addActionListener(e -> {
-
                 buttons.get(caption).doAction();
                 parent.requestFocusInWindow();
             });
@@ -41,6 +41,7 @@ public class ButtonPanel extends JPanel {
             count++;
         }
     }
+
     public void ClickStart(){
         assert btn.get(0) != null;
         btn.get(0).doClick();

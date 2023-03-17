@@ -41,14 +41,35 @@ public class PacManUI extends JFrame {
     /**
      * The panel displaying the player scores.
      */
-    private final ScorePanel scorePanel;
+    private ScorePanel scorePanel;
+
+    public void setBoardPanel(JPanel boardPanel) {
+        this.boardPanel = boardPanel;
+    }
 
     /**
      * The panel displaying the game.
      */
-    private final BoardPanel boardPanel;
+    private JPanel boardPanel;
 
     private ButtonPanel buttonPanel;
+
+    public ScorePanel getScorePanel() {
+        return scorePanel;
+    }
+
+    public JPanel getBoardPanel() {
+        return boardPanel;
+    }
+
+    public ButtonPanel getButtonPanel() {
+        return buttonPanel;
+    }
+
+    public void setButtonPanel(ButtonPanel buttonPanel) {
+        this.buttonPanel = buttonPanel;
+    }
+    private Container contentPanel = getContentPane();
     /**
      * Creates a new UI for a JPacman game.
      *
@@ -67,6 +88,8 @@ public class PacManUI extends JFrame {
                     final Map<Integer, Action> keyMappings,
                     ScoreFormatter scoreFormatter) {
         super("JPacman 2019");
+
+
         assert game != null;
         assert buttons != null;
         assert keyMappings != null;
@@ -83,12 +106,25 @@ public class PacManUI extends JFrame {
             scorePanel.setScoreFormatter(scoreFormatter);
         }
 
+//        setUndecorated(true);
+
         boardPanel = new BoardPanel(game);
-        Container contentPanel = getContentPane();
         contentPanel.setLayout(new BorderLayout());
         contentPanel.add(buttonPanel, BorderLayout.SOUTH);
         contentPanel.add(scorePanel, BorderLayout.NORTH);
         contentPanel.add(boardPanel, BorderLayout.CENTER);
+        pack();
+
+        setLocationRelativeTo(null);
+    }
+
+    public void PacManUI_LOST(String Text_Header, int Text_Score, double totalTime) {
+        contentPanel.removeAll();
+//        contentPanel.add(buttonPanel, BorderLayout.SOUTH);
+//        contentPanel.add(scorePanel, BorderLayout.NORTH);
+//        contentPanel.add(new CasualEnding(Text_Header,Text_Score,totalTime), BorderLayout.CENTER);
+        contentPanel.add(new GameMode(), BorderLayout.CENTER);
+
         pack();
     }
 //    public void reset(){
@@ -109,7 +145,7 @@ public class PacManUI extends JFrame {
     /**
      * Draws the next frame, i.e. refreshes the scores and game.
      */
-    private void nextFrame() {
+    public void nextFrame() {
         boardPanel.repaint();
         scorePanel.refresh();
         scorePanel.reMap();
