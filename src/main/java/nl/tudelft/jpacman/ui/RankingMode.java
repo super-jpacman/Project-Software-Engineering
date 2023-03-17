@@ -54,11 +54,19 @@ public class RankingMode extends JPanel {
         JLabel background = new JLabel(img);
         add(background);
         Ranking=new JLabel("Ranking Mode");
-        Ranking.setText(Text_Header);
-        Ranking.setHorizontalTextPosition(JLabel.CENTER);
-        Ranking.setVerticalTextPosition(JLabel.TOP);
-        Ranking.setAlignmentX(JLabel.CENTER);
-        Ranking.setFont(new Font("Emulogic",Font.PLAIN,32));
+        Ranking.setText("Ranking Mode");
+        Ranking.setForeground(new Color(0xFFFFFF));
+//        Ranking.setHorizontalTextPosition(JLabel.CENTER);
+//        Ranking.setVerticalTextPosition(JLabel.TOP);
+//        Ranking.setAlignmentX(JLabel.CENTER);
+        Ranking.setFont(new Font("Emulogic",Font.BOLD,20));
+        Ranking.setIconTextGap(-60);
+        Ranking.setBackground(new Color(1f,0f,0f,0f ));
+        Ranking.setOpaque(true);
+//        Ranking.setBackground(Color.black);
+//        Ranking.setForeground(Color.white);
+//        Ranking.setBounds(75, 0, 300, 30);
+        Ranking.setBounds(65, 10, 600, 40);
 
         Start=new JButton();
 
