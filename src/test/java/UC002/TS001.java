@@ -30,7 +30,9 @@ public class TS001 {
         // start the game.
         game.start();
         Square Location1 = player.getSquare();
-        game.move(player, Direction.WEST);
+        Thread.sleep(2000);
+        move(game, Direction.WEST,2);
+        Thread.sleep(2000);
         Square Location2 = player.getSquare();
         assertNotSame(Location1,Location2);
     }

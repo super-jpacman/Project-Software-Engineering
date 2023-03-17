@@ -150,13 +150,20 @@ public class PacManUI extends JFrame {
 
     public void PacManUI_LOST(String Text_Header, int Text_Score, double totalTime) {
         contentPanel.removeAll();
+<<<<<<< HEAD
 
+=======
+>>>>>>> fe3143db46bd0c239d9216df30fd69ad5be2f101
 //        contentPanel.add(buttonPanel, BorderLayout.SOUTH);
 //        contentPanel.add(scorePanel, BorderLayout.NORTH);
 //        contentPanel.add(new CasualEnding(Text_Header,Text_Score,totalTime), BorderLayout.CENTER);
 
         //TEST GAME GUI
+<<<<<<< HEAD
         contentPanel.add(new RankingBoard(), BorderLayout.CENTER);
+=======
+        contentPanel.add(new RankingMode(), BorderLayout.CENTER);
+>>>>>>> fe3143db46bd0c239d9216df30fd69ad5be2f101
 
         pack();
     }
