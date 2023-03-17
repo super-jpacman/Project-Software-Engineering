@@ -1,6 +1,7 @@
 package nl.tudelft.jpacman.ui;
 
     import nl.tudelft.jpacman.game.Game;
+    import nl.tudelft.jpacman.points.SaveScore;
 
     import javax.swing.*;
     import javax.swing.border.Border;
@@ -18,15 +19,16 @@ package nl.tudelft.jpacman.ui;
     import java.util.Objects;
 
 public class RankingBoard extends JPanel {
-    private String path = "src/main/resources/main.jpg";
+    private String path = "src/main/resources/ranking.jpg";
     private Image image = new ImageIcon(path).getImage();
     private JButton Play;
-    private JLabel board;
+    private JLabel headTable;
     private String Text_Header;
     private Game game;
     private int Text_Score;
     private boolean enable;
     private static final int SQUARE_SIZE = 16;
+    private JButton BackBTN;
 
     // default constructor
     public RankingBoard()
@@ -50,13 +52,34 @@ public class RankingBoard extends JPanel {
 
         ImageIcon img = new ImageIcon(path);
         JLabel background = new JLabel(img);
-        board = new JLabel();
+        headTable = new JLabel();
+        BackBTN=new JButton();
 //        background.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
         add(background);
 
-        board.setBounds(80, 20, 200, 200);
-        board.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
 
+        //head table
+        String format = "%1$-5s %2$-10s %3$-10s %4$-10s\n";
+        headTable.setText(String.format(format,"No.","Name","Score","Time"));
+        headTable.setFont(new Font("Emulogic",Font.ITALIC,8));
+        headTable.setBounds(45, 70, 323, 30);
+//        headTable.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.red));
+
+        //SCORE DISPLAY LIST
+        String format2 = "%1$-7s %2$-16s %3$-12s %4$-10s\n";
+        for (int i = 0;i<10;i++){
+            JLabel list = new JLabel();
+            int num = i+1;
+            String name = "name "+String.valueOf(i+1);
+            int point = (i+1)*10;
+            String time = String.format("%d:%d",i*10,i*10);
+            list.setText(String.format(format2,num,name,point,time));
+            list.setFont(new Font("Emulogic",Font.ITALIC,6));
+            list.setBounds(45, 90+(i*20), 323, 20);
+            background.add(list);
+        }
+
+        //END DISPLAY
         Play=new JButton();
         Play.setLayout(new FlowLayout());
         Play.setText("Ranking Board");
@@ -65,7 +88,7 @@ public class RankingBoard extends JPanel {
         Play.setBackground(Color.black);
         Play.setForeground(Color.white);
         Play.setBorder(null);
-        Play.setBounds(80, 20, 220, 30);
+        Play.setBounds(70, 20, 220, 30);
 //        Play.setBorder(new RoundedButton(10));
         Play.addActionListener(new ActionListener(){
 
@@ -76,8 +99,24 @@ public class RankingBoard extends JPanel {
 
             }
         });
+
+        BackBTN.setLayout(new FlowLayout());
+        BackBTN.setText("BACK");
+        BackBTN.setFocusPainted(false);
+        BackBTN.setBounds(140, 295, 100, 30);
+        BackBTN.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // back to home
+                System.out.println("PRESS BACK");
+
+
+            }
+        });
+        background.add(BackBTN);
         background.add(Play);
-        background.add(board);
+        background.add(headTable);
         setVisible(true);
 
     }
