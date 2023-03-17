@@ -6,7 +6,9 @@ import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
 import nl.tudelft.jpacman.ui.GameEnd;
 import nl.tudelft.jpacman.ui.PacManUI;
+import nl.tudelft.jpacman.ui.CasualEnding;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +42,7 @@ public class MultiLevelGame extends Game {
     private Level level;
     private boolean inProgress;
     private int levelNumber = 0;
-
+    private JPanel temp;
     public int getStartStage() {
         return StartStage;
     }
@@ -163,8 +165,14 @@ public class MultiLevelGame extends Game {
 
 //        System.out.println(p.getScore());
 //        System.out.println(player.isAlive());
-        System.out.println(getPacManUI());
-        GE = new GameEnd("You Lose !!",p.getScore(),getTotalTime(),PM);
+        temp = PM.getBoardPanel();
+        PM.setBoardPanel(new CasualEnding("TEST",999,60));
+        System.out.println(temp);
+        PM.PacManUI_LOST("YOU LOSE",999,60);
+        PM.getBoardPanel().revalidate();
+        PM.getBoardPanel().repaint();
+        System.out.println(PM.getBoardPanel());
+//        GE = new GameEnd("You Lose !!",p.getScore(),getTotalTime(),PM);
         player.setMap(1);
     }
     @Override

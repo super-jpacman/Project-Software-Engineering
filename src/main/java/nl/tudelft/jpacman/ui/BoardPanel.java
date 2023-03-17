@@ -67,6 +67,8 @@ class BoardPanel extends JPanel {
         render(game.getLevel().getBoard(), g, getSize());
     }
 
+
+
     /**
      * Renders the board on the given graphics context to the given dimensions.
      *

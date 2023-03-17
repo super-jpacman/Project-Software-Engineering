@@ -1,6 +1,6 @@
 package nl.tudelft.jpacman.ui;
 
-import java.awt.GridLayout;
+import java.awt.*;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +15,7 @@ import nl.tudelft.jpacman.level.Player;
  * A panel consisting of a column for each player, with the numbered players on
  * top and their respective scores underneath.
  *
- * @author Jeroen Roosen 
+ * @author Jeroen Roosen
  *
  */
 public class ScorePanel extends JPanel {
@@ -35,9 +35,9 @@ public class ScorePanel extends JPanel {
      * The default way in which the score is shown.
      */
     public static final ScoreFormatter DEFAULT_SCORE_FORMATTER =
-        (Player player) -> String.format("Score: %3d", player.getScore());
+        (Player player) -> String.format("Score: %3d     ", player.getScore());
     public static final ScoreFormatter DEFAULT_MAP_FORMATTER =
-        (Player player) -> String.format("Map : %d", player.getMap());
+        (Player player) -> String.format("   Map : %d", player.getMap());
     /**
      * The way to format the score information.
      */
@@ -55,7 +55,7 @@ public class ScorePanel extends JPanel {
         super();
         assert players != null;
 //        System.out.println("==========+= "+players.get(0).getMap());
-        setLayout(new GridLayout(2, players.size()));
+        setLayout(new BorderLayout());
 //        JMap = new JLabel("MAP " + String.valueOf(players.get(0).getMap()), JLabel.CENTER);
 //        add(JMap);
 //        for (int i = 1; i <= players.size(); i++) {
@@ -66,13 +66,16 @@ public class ScorePanel extends JPanel {
         for (Player player : players) {
             JLabel mapLabel = new JLabel(mapFormatter.format(player), JLabel.CENTER);
             mapLabels.put(player, mapLabel);
-            add(mapLabel);
+            mapLabel.setFont(new Font("Serif", Font.BOLD, 18));
+
+            add(mapLabel,BorderLayout.LINE_START);
         }
         scoreLabels = new LinkedHashMap<>();
         for (Player player : players) {
             JLabel scoreLabel = new JLabel("0", JLabel.CENTER);
+
             scoreLabels.put(player, scoreLabel);
-            add(scoreLabel);
+            add(scoreLabel,BorderLayout.LINE_END);
         }
     }
 
