@@ -1,7 +1,7 @@
-
 package nl.tudelft.jpacman.ui;
 
     import nl.tudelft.jpacman.game.Game;
+    import nl.tudelft.jpacman.points.SaveScore;
 
     import javax.swing.*;
     import javax.swing.border.Border;
@@ -18,24 +18,20 @@ package nl.tudelft.jpacman.ui;
     import java.io.IOException;
     import java.util.Objects;
 
-public class GameMode extends JPanel {
-    private String path = "src/main/resources/main.jpg";
+public class RankingBoard extends JPanel {
+    private String path = "src/main/resources/ranking.jpg";
     private Image image = new ImageIcon(path).getImage();
-    private JButton CasualMode;
-    private JButton RankingMode;
-
-    private JButton BACK;
-    private JButton NEXT;
-
+    private JButton Play;
+    private JLabel headTable;
     private String Text_Header;
     private Game game;
-    private JLabel Header;
     private int Text_Score;
     private boolean enable;
     private static final int SQUARE_SIZE = 16;
+    private JButton BackBTN;
 
     // default constructor
-    public GameMode()
+    public RankingBoard()
     {
         try {
             GraphicsEnvironment ge =
@@ -53,113 +49,74 @@ public class GameMode extends JPanel {
         Dimension size = new Dimension(368, 336);
         setMinimumSize(size);
 
-        this.Text_Header=Text_Header;
-        this.Text_Score=Text_Score;
 
         ImageIcon img = new ImageIcon(path);
         JLabel background = new JLabel(img);
-        Header=new JLabel("Header");
+        headTable = new JLabel();
+        BackBTN=new JButton();
 //        background.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
         add(background);
 
-        Header.setText("Game Mode");
-        Header.setForeground(new Color(0xFFFFFF));
-        Header.setFont(new Font("Emulogic",Font.BOLD,20));
-        Header.setIconTextGap(-60);
-        Header.setBackground(new Color(1f,0f,0f,0f ));
-        Header.setOpaque(true);
-        Header.setBounds(90, 10, 600, 40);
 
-        NEXT=new JButton();
-        NEXT.setLayout(new FlowLayout());
-        NEXT.setText("NEXT");
-        NEXT.setFont(new Font("Emulogic",Font.PLAIN,12));
-        NEXT.setFocusPainted(false);
-        NEXT.setBackground(Color.black);
-        NEXT.setForeground(Color.white);
-        NEXT.setBorder(null);
-        NEXT.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
-        NEXT.setBounds(260, 290, 100, 30);
-//        NEXT.setBorder(new RoundedButton(10));
-        NEXT.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // back to home
-                NEXT.setBackground(Color.white);
-                NEXT.setForeground(Color.BLACK);
-                NEXT.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
+        //head table
+        String format = "%1$-5s %2$-10s %3$-10s %4$-10s\n";
+        headTable.setText(String.format(format,"No.","Name","Score","Time"));
+        headTable.setFont(new Font("Emulogic",Font.ITALIC,8));
+        headTable.setBounds(45, 70, 323, 30);
+//        headTable.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.red));
 
-                System.out.println("PASS NEXT");
-            }
-        });
+        //SCORE DISPLAY LIST
+        String format2 = "%1$-7s %2$-16s %3$-12s %4$-10s\n";
+        for (int i = 0;i<10;i++){
+            JLabel list = new JLabel();
+            int num = i+1;
+            String name = "name "+String.valueOf(i+1);
+            int point = (i+1)*10;
+            String time = String.format("%d:%d",i*10,i*10);
+            list.setText(String.format(format2,num,name,point,time));
+            list.setFont(new Font("Emulogic",Font.ITALIC,6));
+            list.setBounds(45, 90+(i*20), 323, 20);
+            background.add(list);
+        }
 
-        BACK=new JButton();
-        BACK.setLayout(new FlowLayout());
-        BACK.setText("BACK");
-        BACK.setFont(new Font("Emulogic",Font.PLAIN,12));
-        BACK.setFocusPainted(false);
-        BACK.setBackground(Color.black);
-        BACK.setForeground(Color.white);
-        BACK.setBorder(null);
-        BACK.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
-        BACK.setBounds(10, 290, 100, 30);
-//        BACK.setBorder(new RoundedButton(10));
-        BACK.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // back to home
-                NEXT.setBackground(Color.white);
-                NEXT.setForeground(Color.BLACK);
-                NEXT.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
-                System.out.println("PASS BACK");
-            }
-        });
-
-        CasualMode=new JButton();
-        CasualMode.setLayout(new FlowLayout());
-        CasualMode.setText("Casual!");
-        CasualMode.setFont(new Font("Emulogic",Font.PLAIN,12));
-        CasualMode.setFocusPainted(false);
-        CasualMode.setBackground(Color.black);
-        CasualMode.setForeground(Color.white);
-        CasualMode.setBorder(null);
-        CasualMode.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
-        CasualMode.setBounds(130, 190, 100, 30);
+        //END DISPLAY
+        Play=new JButton();
+        Play.setLayout(new FlowLayout());
+        Play.setText("Ranking Board");
+        Play.setFont(new Font("Emulogic",Font.PLAIN,16));
+        Play.setFocusPainted(false);
+        Play.setBackground(Color.black);
+        Play.setForeground(Color.white);
+        Play.setBorder(null);
+        Play.setBounds(70, 20, 220, 30);
 //        Play.setBorder(new RoundedButton(10));
-        CasualMode.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // back to home
-                System.out.println("PASS CasualMode");
-            }
-        });
-
-        RankingMode=new JButton();
-
-        RankingMode.setLayout(new FlowLayout());
-        RankingMode.setText("Ranking");
-        RankingMode.setFont(new Font("Emulogic",Font.PLAIN,12));
-        RankingMode.setFocusPainted(false);
-        RankingMode.setBackground(Color.black);
-        RankingMode.setForeground(Color.white);
-        RankingMode.setBorder(null);
-        RankingMode.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
-        RankingMode.setBounds(130, 160, 100, 30);
-//        Play.setBorder(new RoundedButton(10));
-        RankingMode.addActionListener(new ActionListener(){
+        Play.addActionListener(new ActionListener(){
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 // back to home
-                System.out.println("PASS RankingMode");
+                System.out.println("PASS PLAY");
 
             }
         });
-        background.add(NEXT);
-        background.add(BACK);
-        background.add(Header);
-        background.add(RankingMode);
-        background.add(CasualMode);
+
+        BackBTN.setLayout(new FlowLayout());
+        BackBTN.setText("BACK");
+        BackBTN.setFocusPainted(false);
+        BackBTN.setBounds(140, 295, 100, 30);
+        BackBTN.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // back to home
+                System.out.println("PRESS BACK");
+
+
+            }
+        });
+        background.add(BackBTN);
+        background.add(Play);
+        background.add(headTable);
         setVisible(true);
 
     }

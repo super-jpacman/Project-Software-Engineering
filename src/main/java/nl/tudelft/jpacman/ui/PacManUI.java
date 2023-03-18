@@ -117,15 +117,47 @@ public class PacManUI extends JFrame {
 
         setLocationRelativeTo(null);
     }
+    public void PacManUI_with_map(final Game game, final Map<String, Action> buttons,
+                                  final Map<Integer, Action> keyMappings,
+                                  ScoreFormatter scoreFormatter) {
+        assert game != null;
+        assert buttons != null;
+        assert keyMappings != null;
+
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        PacKeyListener keys = new PacKeyListener(keyMappings);
+        addKeyListener(keys);
+
+        buttonPanel = new ButtonPanel(buttons, this);
+
+        scorePanel = new ScorePanel(game.getPlayers());
+        if (scoreFormatter != null) {
+            scorePanel.setScoreFormatter(scoreFormatter);
+        }
+
+//        setUndecorated(true);
+
+        boardPanel = new BoardPanel(game);
+        contentPanel.setLayout(new BorderLayout());
+        contentPanel.add(buttonPanel, BorderLayout.SOUTH);
+        contentPanel.add(scorePanel, BorderLayout.NORTH);
+        contentPanel.add(boardPanel, BorderLayout.CENTER);
+        pack();
+
+        setLocationRelativeTo(null);
+    }
 
     public void PacManUI_LOST(String Text_Header, int Text_Score, double totalTime) {
         contentPanel.removeAll();
-//        contentPanel.add(buttonPanel, BorderLayout.SOUTH);
-//        contentPanel.add(scorePanel, BorderLayout.NORTH);
-//        contentPanel.add(new CasualEnding(Text_Header,Text_Score,totalTime), BorderLayout.CENTER);
-
+        contentPanel.add(buttonPanel, BorderLayout.SOUTH);
+        contentPanel.add(scorePanel, BorderLayout.NORTH);
+        contentPanel.add(new CasualEnding(Text_Header,Text_Score,totalTime), BorderLayout.CENTER);
+    
         //TEST GAME GUI
-        contentPanel.add(new RankingMode(), BorderLayout.CENTER);
+//
+//        contentPanel.add(new RankingBoard(), BorderLayout.CENTER);
+
 
         pack();
     }
