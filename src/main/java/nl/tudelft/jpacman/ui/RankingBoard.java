@@ -31,7 +31,7 @@ public class RankingBoard extends JPanel {
     private JButton BackBTN;
 
     // default constructor
-    public RankingBoard()
+    public RankingBoard(PacManUI PM)
     {
         try {
             GraphicsEnvironment ge =
@@ -90,15 +90,7 @@ public class RankingBoard extends JPanel {
         Play.setBorder(null);
         Play.setBounds(70, 20, 220, 30);
 //        Play.setBorder(new RoundedButton(10));
-        Play.addActionListener(new ActionListener(){
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // back to home
-                System.out.println("PASS PLAY");
-
-            }
-        });
 
         BackBTN.setLayout(new FlowLayout());
         BackBTN.setText("BACK");
@@ -110,7 +102,7 @@ public class RankingBoard extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PRESS BACK");
-
+                PM.GAMAE_RANKING();
 
             }
         });
@@ -203,14 +195,14 @@ public class RankingBoard extends JPanel {
 
 
 
-    public static void main(String[] args) throws IOException {
-        JFrame j = new JFrame();
-        Container contentPanel = j.getContentPane();
-        contentPanel.setLayout(new BorderLayout());
-
-        contentPanel.add(new FirstMenu());
-        j.setSize(368,336);
-        j.setVisible(true);
-    }
+//    public static void main(String[] args) throws IOException {
+//        JFrame j = new JFrame();
+//        Container contentPanel = j.getContentPane();
+//        contentPanel.setLayout(new BorderLayout());
+//
+//        contentPanel.add(new FirstMenu());
+//        j.setSize(368,336);
+//        j.setVisible(true);
+//    }
 }
 

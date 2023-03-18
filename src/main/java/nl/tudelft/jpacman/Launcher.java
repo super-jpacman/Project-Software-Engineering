@@ -90,6 +90,13 @@ public class Launcher {
         return game;
     }
 
+//    public Game makeGame_LV(String map) {
+//        GameFactory gf = getGameFactory();
+//        Level level = makeLevel(map);
+//        game = gf.createSinglePlayerGame(level, loadPointCalculator());
+//        return game;
+//    }
+
     private PointCalculator loadPointCalculator() {
         return new PointCalculatorLoader().load();
     }
@@ -193,10 +200,12 @@ public class Launcher {
      * Creates and starts a JPac-Man game.
      */
     public void launch() {
+        pacManUI.MainMenuUI();
         makeGame();
         setBuilder(new PacManUiBuilder().withDefaultButtons());
         addSinglePlayerKeys(builder);
         pacManUI = builder.build(getGame());
+        pacManUI.start();
     }
 
     /**

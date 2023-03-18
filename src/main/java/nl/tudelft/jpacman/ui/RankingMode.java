@@ -1,5 +1,6 @@
 package nl.tudelft.jpacman.ui;
 
+import nl.tudelft.jpacman.MultiLevelLauncher;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.points.SaveScore;
 
@@ -31,7 +32,7 @@ public class RankingMode extends JPanel {
     private boolean enable;
     private static final int SQUARE_SIZE = 16;
 
-    public RankingMode() {
+    public RankingMode(PacManUI PM) {
         try {
             GraphicsEnvironment ge =
                 GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -85,6 +86,7 @@ public class RankingMode extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS Start");
+                PM.PacManUI_PLAY_RANK(PM.getGame());
 
             }
         });
@@ -105,7 +107,7 @@ public class RankingMode extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS Leaderboard");
-
+                PM.RANKING_BOARD();
             }
         });
         back=new JButton();
@@ -125,7 +127,7 @@ public class RankingMode extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS Start");
-
+                PM.GAMAE_MODE();
             }
         });
         background.add(Ranking);
@@ -218,13 +220,13 @@ public class RankingMode extends JPanel {
 
 
 
-    public static void main(String[] args) throws IOException {
-        JFrame j = new JFrame();
-        Container contentPanel = j.getContentPane();
-        contentPanel.setLayout(new BorderLayout());
-
-        contentPanel.add(new RankingMode());
-        j.setSize(368,336);
-        j.setVisible(true);
-    }
+//    public static void main(String[] args) throws IOException {
+//        JFrame j = new JFrame();
+//        Container contentPanel = j.getContentPane();
+//        contentPanel.setLayout(new BorderLayout());
+//
+//        contentPanel.add(new RankingMode());
+//        j.setSize(368,336);
+//        j.setVisible(true);
+//    }
 }

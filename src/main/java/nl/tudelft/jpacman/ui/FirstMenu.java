@@ -29,7 +29,7 @@ public class FirstMenu extends JPanel {
     private static final int SQUARE_SIZE = 16;
 
     // default constructor
-    public FirstMenu()
+    public FirstMenu(PacManUI PM)
     {
         try {
             GraphicsEnvironment ge =
@@ -72,7 +72,8 @@ public class FirstMenu extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS PLAY");
-
+                PM.GAMAE_MODE();
+                System.out.println(PM);
             }
         });
         background.add(Play);
@@ -162,14 +163,14 @@ public class FirstMenu extends JPanel {
 
 
 
-    public static void main(String[] args) throws IOException {
-        JFrame j = new JFrame();
-        Container contentPanel = j.getContentPane();
-        contentPanel.setLayout(new BorderLayout());
-
-        contentPanel.add(new FirstMenu());
-        j.setSize(368,336);
-        j.setVisible(true);
-    }
+//    public static void main(String[] args) throws IOException {
+//        JFrame j = new JFrame();
+//        Container contentPanel = j.getContentPane();
+//        contentPanel.setLayout(new BorderLayout());
+//
+//        contentPanel.add(new FirstMenu());
+//        j.setSize(368,336);
+//        j.setVisible(true);
+//    }
 }
 
