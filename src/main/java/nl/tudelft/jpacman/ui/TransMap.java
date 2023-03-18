@@ -161,14 +161,14 @@ public class TransMap extends JPanel {
 
 
 
-    public static void main(String[] args) throws IOException {
-        JFrame j = new JFrame();
-        Container contentPanel = j.getContentPane();
-        contentPanel.setLayout(new BorderLayout());
-
-        contentPanel.add(new FirstMenu());
-        j.setSize(368,336);
-        j.setVisible(true);
-    }
+//    public static void main(String[] args) throws IOException {
+//        JFrame j = new JFrame();
+//        Container contentPanel = j.getContentPane();
+//        contentPanel.setLayout(new BorderLayout());
+//
+//        contentPanel.add(new FirstMenu());
+//        j.setSize(368,336);
+//        j.setVisible(true);
+//    }
 }
 

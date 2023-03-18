@@ -22,7 +22,7 @@ public class selectMap extends JPanel {
     private Image image = new ImageIcon(path).getImage();
     private JButton Map1;
     private JButton Map2;
-
+    private PacManUI PM;
     private JButton Map3;
     private JButton Map4;
 
@@ -35,14 +35,14 @@ public class selectMap extends JPanel {
     private int Text_Score;
     private boolean enable;
     private JLabel Header;
-
+    private int Map_lv=1;
     private JLabel img_map;
     private JLabel Title;
     private JLabel Detail;
     private static final int SQUARE_SIZE = 16;
 
     // default constructor
-    public selectMap()
+    public selectMap(PacManUI PM)
     {
         try {
             GraphicsEnvironment ge =
@@ -59,7 +59,7 @@ public class selectMap extends JPanel {
         }
         Dimension size = new Dimension(368, 336);
         setMinimumSize(size);
-
+        this.PM = PM;
 
         ImageIcon img = new ImageIcon(path);
         JLabel background = new JLabel(img);
@@ -123,6 +123,8 @@ public class selectMap extends JPanel {
                 img_map.setBackground(Color.GREEN);
                 Map5.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
                 System.out.println("PASS Map5");
+                Map_lv=1;
+
             }
         });
 
@@ -146,6 +148,7 @@ public class selectMap extends JPanel {
                 Map4.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
 
                 System.out.println("PASS Map4");
+                Map_lv=4;
             }
         });
 
@@ -169,6 +172,7 @@ public class selectMap extends JPanel {
 
                 img_map.setBackground(Color.CYAN);
                 System.out.println("PASS Map3");
+                Map_lv=3;
             }
         });
 
@@ -180,7 +184,7 @@ public class selectMap extends JPanel {
         Map1.setBackground(Color.black);
         Map1.setForeground(Color.white);
         Map1.setBorder(null);
-//        Map1.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+        Map1.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
         Map1.setBounds(20, 60, 70, 30);
 //        Play.setBorder(new RoundedButton(10));
         Map1.addActionListener(new ActionListener(){
@@ -192,6 +196,7 @@ public class selectMap extends JPanel {
 
                 img_map.setBackground(Color.white);
                 System.out.println("PASS Map1");
+                Map_lv=1;
             }
         });
 
@@ -216,6 +221,7 @@ public class selectMap extends JPanel {
 
                 img_map.setBackground(Color.PINK);
                 System.out.println("PASS Map2");
+                Map_lv=2;
 
             }
         });
@@ -240,6 +246,7 @@ public class selectMap extends JPanel {
                 NEXT.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
 
                 System.out.println("PASS NEXT");
+                Move_Map(Map_lv,PM);
             }
         });
 
@@ -258,10 +265,12 @@ public class selectMap extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // back to home
-                NEXT.setBackground(Color.white);
-                NEXT.setForeground(Color.BLACK);
-                NEXT.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
+                BACK.setBackground(Color.white);
+                BACK.setForeground(Color.BLACK);
+                BACK.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
                 System.out.println("PASS BACK");
+                PM.GAMAE_MODE();
+
             }
         });
 
@@ -360,6 +369,14 @@ public class selectMap extends JPanel {
         private final String _hint;
     }
 
+    public void Move_Map(int map,PacManUI PM){
+        this.PM=PM;
+        try {
+            this.PM.PLAY_AT_MAP(map);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
     public void closeAllBTN(){
         Map1.setBorder(null);
         Map2.setBorder(null);
@@ -368,14 +385,14 @@ public class selectMap extends JPanel {
         Map5.setBorder(null);
     }
 
-    public static void main(String[] args) throws IOException {
-        JFrame j = new JFrame();
-        Container contentPanel = j.getContentPane();
-        contentPanel.setLayout(new BorderLayout());
-
-        contentPanel.add(new FirstMenu());
-        j.setSize(368,336);
-        j.setVisible(true);
-    }
+//    public static void main(String[] args) throws IOException {
+//        JFrame j = new JFrame();
+//        Container contentPanel = j.getContentPane();
+//        contentPanel.setLayout(new BorderLayout());
+//
+//        contentPanel.add(new FirstMenu());
+//        j.setSize(368,336);
+//        j.setVisible(true);
+//    }
 }
 

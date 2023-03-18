@@ -109,7 +109,7 @@ public class MultiLevelGame extends Game {
         inProgress = false;
         getLevel().addObserver(this);
         getLevel().stop();
-
+        PM.PacManUI_PLAY_RANK(this);
 
     }
     @Override
