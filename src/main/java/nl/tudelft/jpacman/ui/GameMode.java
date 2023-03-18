@@ -1,37 +1,33 @@
 
 package nl.tudelft.jpacman.ui;
 
-    import nl.tudelft.jpacman.game.Game;
+import nl.tudelft.jpacman.game.Game;
 
-    import javax.swing.*;
-    import javax.swing.border.Border;
-    import javax.swing.text.AttributeSet;
-    import javax.swing.text.BadLocationException;
-    import javax.swing.text.PlainDocument;
-    import java.awt.*;
-    import java.awt.event.ActionEvent;
-    import java.awt.event.ActionListener;
-    import java.awt.geom.Area;
-    import java.awt.geom.Rectangle2D;
-    import java.awt.geom.RoundRectangle2D;
-    import java.io.File;
-    import java.io.IOException;
-    import java.util.Objects;
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.geom.Area;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
+import java.io.File;
+import java.io.IOException;
+import java.util.Objects;
 
 public class GameMode extends JPanel {
-    private String path = "src/main/resources/main.jpg";
+    private String path = "src/main/resources/main2.jpg";
     private Image image = new ImageIcon(path).getImage();
     private JButton CasualMode;
     private JButton RankingMode;
-
+    String[] Desc_Text = {"This is Ranking Mode","This is Casual Mode"};
     private JButton BACK;
-
-    private String Text_Header;
-    private Game game;
     private JLabel Header;
-    private int Text_Score;
-    private boolean enable;
-    private static final int SQUARE_SIZE = 16;
+    private JLabel Desc;
+
 
     // default constructor
     public GameMode(PacManUI PM)
@@ -52,14 +48,13 @@ public class GameMode extends JPanel {
         Dimension size = new Dimension(368, 336);
         setMinimumSize(size);
 
-        this.Text_Header=Text_Header;
-        this.Text_Score=Text_Score;
-
         ImageIcon img = new ImageIcon(path);
         JLabel background = new JLabel(img);
         Header=new JLabel("Header");
 //        background.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
         add(background);
+
+        Desc = new JLabel("Description");
 
         Header.setText("Game Mode");
         Header.setForeground(new Color(0xFFFFFF));
@@ -68,6 +63,14 @@ public class GameMode extends JPanel {
         Header.setBackground(new Color(1f,0f,0f,0f ));
         Header.setOpaque(true);
         Header.setBounds(90, 10, 600, 40);
+
+        Desc.setText("");
+        Desc.setForeground(new Color(0xFFFFFF));
+        Desc.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Desc.setIconTextGap(-60);
+        Desc.setBackground(new Color(1f,0f,0f,0f ));
+        Desc.setOpaque(false);
+        Desc.setBounds(70, 70, 600, 40);
 
         BACK=new JButton();
         BACK.setLayout(new FlowLayout());
@@ -102,7 +105,7 @@ public class GameMode extends JPanel {
         CasualMode.setForeground(Color.white);
         CasualMode.setBorder(null);
         CasualMode.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
-        CasualMode.setBounds(130, 190, 100, 30);
+        CasualMode.setBounds(130, 200, 100, 30);
 //        Play.setBorder(new RoundedButton(10));
         CasualMode.addActionListener(new ActionListener(){
             @Override
@@ -110,6 +113,14 @@ public class GameMode extends JPanel {
                 // back to home
                 System.out.println("PASS CasualMode");
                 PM.GAMAE_CASUAL();
+            }
+        });
+        CasualMode.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Desc.setText(Desc_Text[1]);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Desc.setText("");
             }
         });
 
@@ -134,11 +145,20 @@ public class GameMode extends JPanel {
                 PM.GAMAE_RANKING();
             }
         });
+        RankingMode.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Desc.setText(Desc_Text[0]);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Desc.setText("");
+            }
+        });
 
         background.add(BACK);
         background.add(Header);
         background.add(RankingMode);
         background.add(CasualMode);
+        background.add(Desc);
         setVisible(true);
 
     }
