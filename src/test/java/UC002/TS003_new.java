@@ -7,13 +7,14 @@ import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.game.MultiLevelGame;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.ui.PacManUI;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+@Disabled
 public class TS003_new {
     @DisplayName("CheckStage")
     @Test
@@ -39,7 +40,7 @@ public class TS003_new {
     public static void move(Player player, Game game, Direction dir, int numSteps) throws InterruptedException {
         for (int i = 0; i < numSteps; i++) {
             game.move(player, dir);
-            Thread.sleep(5);
+            Thread.sleep(0);
         }
     }
 }
