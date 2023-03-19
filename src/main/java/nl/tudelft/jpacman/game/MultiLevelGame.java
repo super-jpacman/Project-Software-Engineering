@@ -230,6 +230,7 @@ public class MultiLevelGame extends Game {
             System.out.println(getTotalTime());
         }
         stop();
+
         Player p = getPlayers().get(0);
 
 //        System.out.println(p.getScore());
@@ -240,12 +241,14 @@ public class MultiLevelGame extends Game {
             PM.setBoardPanel(new CasualEnding("TEST",999,60,PM));
             System.out.println(temp);
             System.out.println(temp);
+            PM.getGame().restart();
+            PM.getGame().stop();
             PM.PacManUI_LOST("YOU LOSE",999,60);
             PM.getBoardPanel().revalidate();
             PM.getBoardPanel().repaint();
             System.out.println(PM.getBoardPanel());
 //        GE = new GameEnd("You Lose !!",p.getScore(),getTotalTime(),PM);
-            player.setMap(player.getMap());
+//            player.setMap(player.getMap());
         }
         else{
             temp = PM.getBoardPanel();

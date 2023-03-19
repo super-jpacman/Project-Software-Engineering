@@ -150,6 +150,7 @@ public class selectMap extends JPanel {
                 img_map.setBackground(Color.GREEN);
                 Map5.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
                 System.out.println("PASS Map5");
+                PM.setResizable(false);
                 Map_lv=5;
 
             }
@@ -175,6 +176,7 @@ public class selectMap extends JPanel {
                 Map4.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
 
                 System.out.println("PASS Map4");
+                PM.setResizable(false);
                 Map_lv=4;
             }
         });
@@ -200,6 +202,7 @@ public class selectMap extends JPanel {
 
                 img_map.setBackground(Color.CYAN);
                 System.out.println("PASS Map3");
+                PM.setResizable(false);
                 Map_lv=3;
             }
         });
@@ -224,6 +227,7 @@ public class selectMap extends JPanel {
 
                 img_map.setBackground(Color.white);
                 System.out.println("PASS Map1");
+                PM.setResizable(false);
                 Map_lv=1;
             }
         });
@@ -248,6 +252,7 @@ public class selectMap extends JPanel {
 
                 img_map.setBackground(Color.PINK);
                 System.out.println("PASS Map2");
+                PM.setResizable(false);
                 Map_lv=2;
 
             }
@@ -273,6 +278,7 @@ public class selectMap extends JPanel {
                 NEXT.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
 
                 System.out.println("PASS NEXT");
+                PM.setResizable(false);
                 Move_Map(Map_lv,PM);
             }
         });
@@ -296,6 +302,7 @@ public class selectMap extends JPanel {
                 BACK.setForeground(Color.BLACK);
                 BACK.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
                 System.out.println("PASS BACK");
+                PM.setResizable(false);
                 PM.GAME_MODE();
 
             }
@@ -313,7 +320,6 @@ public class selectMap extends JPanel {
         background.add(Map2);
         background.add(Map1);
         setVisible(true);
-
     }
     class RoundedButton implements Border {
         private int roundRadius;

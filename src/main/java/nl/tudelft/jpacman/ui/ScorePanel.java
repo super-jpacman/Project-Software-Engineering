@@ -102,7 +102,7 @@ public class ScorePanel extends JPanel {
             JLabel scoreLabel = new JLabel("0", JLabel.CENTER);
             scoreLabel.setForeground(Color.black);
             scoreLabels.put(player, scoreLabel);
-            scoreLabel.setFont(new Font("Serif", Font.BOLD, 18));
+            scoreLabel.setFont(new Font("Serif", Font.BOLD, 14));
             scoreLabel.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.white));
             add(scoreLabel,BorderLayout.LINE_END);
         }

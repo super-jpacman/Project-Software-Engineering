@@ -164,6 +164,7 @@ public class PacManUI extends JFrame {
 //        setSize(368,336);
         contentPanel.add(new FirstMenu(this), BorderLayout.CENTER);
         pack();
+        setResizable(false);
         return this;
     }
 
@@ -171,7 +172,9 @@ public class PacManUI extends JFrame {
         contentPanel.removeAll();
 //        setSize(368,336);
         contentPanel.add(new GameMode(this), BorderLayout.CENTER);
+
         pack();
+        setResizable(false);
     }
 
     public void PLAY_AT_MAP(int lv_map) {
@@ -212,7 +215,7 @@ public class PacManUI extends JFrame {
         contentPanel.add(scorePanel, BorderLayout.NORTH);
         contentPanel.add(boardPanel, BorderLayout.CENTER);
         pack();
-
+        setResizable(false);
 
     }
 
@@ -221,6 +224,7 @@ public class PacManUI extends JFrame {
 //        setSize(368,336);
         contentPanel.add(new RankingBoard(this), BorderLayout.CENTER);
         pack();
+        setResizable(false);
     }
 
     public void GAMAE_RANKING(){
@@ -230,6 +234,7 @@ public class PacManUI extends JFrame {
 //        setSize(368,336);
         contentPanel.add(new RankingMode(this), BorderLayout.CENTER);
         pack();
+        setResizable(false);
     }
 
     public void GAMAE_CASUAL(){
@@ -239,6 +244,7 @@ public class PacManUI extends JFrame {
 //        setSize(368,336);
         contentPanel.add(new selectMap(this), BorderLayout.CENTER);
         pack();
+        setResizable(false);
     }
 
     public void PacManUI_with_map(final Game game, final Map<String, Action> buttons,
@@ -268,7 +274,7 @@ public class PacManUI extends JFrame {
         contentPanel.add(scorePanel, BorderLayout.NORTH);
         contentPanel.add(boardPanel, BorderLayout.CENTER);
         pack();
-
+        setResizable(false);
         setLocationRelativeTo(null);
     }
 
@@ -281,6 +287,7 @@ public class PacManUI extends JFrame {
 //
 //        contentPanel.add(new RankingBoard(), BorderLayout.CENTER);
         pack();
+        setResizable(false);
     }
 //    public void reset(){
 //        getContentPane().invalidate();
@@ -299,6 +306,7 @@ public class PacManUI extends JFrame {
         boardPanel = new BoardPanel(game);
         contentPanel.add(boardPanel, BorderLayout.CENTER);
         pack();
+        setResizable(false);
     }
     public void start() {
         setVisible(true);

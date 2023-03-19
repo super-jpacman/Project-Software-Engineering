@@ -34,8 +34,6 @@ public class CasualEnding extends JPanel {
     // default constructor
     public CasualEnding(String Text_Header, int Text_Score, double totalTime,PacManUI PM)
     {
-        Dimension size = new Dimension(368, 336);
-        setMinimumSize(size);
 
         this.Text_Header=Text_Header;
         this.Text_Score=Text_Score;
@@ -52,12 +50,12 @@ public class CasualEnding extends JPanel {
         Header.setText(Text_Header);
 
         Header.setForeground(new Color(0xFFFFFF));
-        Header.setFont(new Font("Emulogic",Font.BOLD,50));
+        Header.setFont(new Font("Emulogic",Font.BOLD,35));
 
 //        Header.setIconTextGap(-60);
         Header.setBackground(new Color(1f,0f,0f,0f ));
         Header.setOpaque(true);
-        Header.setBounds(20, 20, 600, 40);
+        Header.setBounds(20, 20, 300, 35);
 
         Score.setLayout(new FlowLayout());
         Score.setText("Score "+String.valueOf(Text_Score));
@@ -66,12 +64,12 @@ public class CasualEnding extends JPanel {
         Score.setAlignmentX(JLabel.CENTER);
 
         Score.setForeground(new Color(0xFFFFFF));
-        Score.setFont(new Font("Emulogic",Font.PLAIN,32));
+        Score.setFont(new Font("Emulogic",Font.PLAIN,25));
 
-        Score.setIconTextGap(-60);
+//        Score.setIconTextGap(-60);
         Score.setBackground(new Color(1f,0f,0f,0f ));
         Score.setOpaque(true);
-        Score.setBounds(50, 90, 420, 30);
+        Score.setBounds(50, 90, 300, 30);
         this.setBackground(Color.black);
         background.add(Header);
         background.add(Score);
