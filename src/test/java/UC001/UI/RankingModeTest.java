@@ -50,6 +50,6 @@ public class RankingModeTest {
         frame.pack();
         frame.setVisible(true);
         rankingMode.ClickBack();
-        verify(pacManUI).GAMAE_MODE();
+        verify(pacManUI).GAME_MODE();
     }
 }

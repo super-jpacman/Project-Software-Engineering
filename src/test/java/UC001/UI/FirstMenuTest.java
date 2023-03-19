@@ -30,6 +30,6 @@ public class FirstMenuTest{
         frame.pack();
         frame.setVisible(true);
         firstMenu.ClickPlay();
-        verify(pacManUI).GAMAE_MODE();
+        verify(pacManUI).GAME_MODE();
     }
 }

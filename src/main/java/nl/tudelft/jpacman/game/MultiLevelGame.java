@@ -179,7 +179,10 @@ public class MultiLevelGame extends Game {
                 && getLevel().isAnyPlayerAlive())
             {
                 levelNumber++;
-                selectMap(2);
+                System.out.println("#######################");
+                System.out.println(levelNumber);
+                selectMap(levelNumber);
+                System.out.println("#######################");
 //                player.setMap(levelNumber+1);
 //                level = levels.get(levelNumber);
 //                level.registerPlayer(player);
@@ -233,7 +236,7 @@ public class MultiLevelGame extends Game {
 //        System.out.println(p.getScore());
 //        System.out.println(player.isAlive());
         temp = PM.getBoardPanel();
-        PM.setBoardPanel(new CasualEnding("TEST",999,60));
+        PM.setBoardPanel(new CasualEnding("TEST",999,60,PM));
         System.out.println(temp);
         PM.PacManUI_LOST("YOU LOSE",999,60);
         PM.getBoardPanel().revalidate();

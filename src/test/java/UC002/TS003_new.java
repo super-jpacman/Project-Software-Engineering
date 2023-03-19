@@ -28,10 +28,11 @@ public class TS003_new {
         pacManUI.PacManUI_PLAY_RANK(game);
         Player player = game.getPlayers().get(0);
         game.start();
-        while(game.getLevelNumber()!=5){
+        while(game.getLevelNumber()!=4){
             move(player,game, getRandomDirection(),1);
             game.start();
         }
+        assertEquals(4,game.getLevelNumber());
 
     }
     private Direction getRandomDirection() {

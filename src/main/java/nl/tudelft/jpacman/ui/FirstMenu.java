@@ -72,7 +72,7 @@ public class FirstMenu extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS PLAY");
-                PM.GAMAE_MODE();
+                PM.GAME_MODE();
                 System.out.println(PM);
             }
         });
