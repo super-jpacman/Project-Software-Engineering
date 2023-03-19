@@ -9,7 +9,10 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
 
+<<<<<<< HEAD
 import nl.tudelft.jpacman.Launcher;
+=======
+>>>>>>> c6e94b4a1dedfd9dc76ca36e1be81e67f58a1d3b
 import nl.tudelft.jpacman.board.BoardFactory;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.game.GameFactory;
@@ -116,6 +119,7 @@ public class PacManUI extends JFrame {
         assert buttons != null;
         assert keyMappings != null;
         this.game=game;
+<<<<<<< HEAD
         this.buttons=buttons;
         this.keyMappings=keyMappings;
         this.scoreFormatter=scoreFormatter;
@@ -127,6 +131,8 @@ public class PacManUI extends JFrame {
         System.out.println("FOTMAT: "+this.scoreFormatter);
         System.out.println("=================================\n");
 
+=======
+>>>>>>> c6e94b4a1dedfd9dc76ca36e1be81e67f58a1d3b
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         PacKeyListener keys = new PacKeyListener(keyMappings);
@@ -165,6 +171,7 @@ public class PacManUI extends JFrame {
         pack();
     }
 
+<<<<<<< HEAD
     public void PLAY_AT_MAP(int lv_map) {
         contentPanel.removeAll();
         System.out.println("================PLAY_AT_MAP=================");
@@ -204,6 +211,27 @@ public class PacManUI extends JFrame {
         contentPanel.add(boardPanel, BorderLayout.CENTER);
         pack();
 
+=======
+    public void PLAY_AT_MAP(int lv_map) throws IOException {
+        contentPanel.removeAll();
+        contentPanel.add(buttonPanel, BorderLayout.SOUTH);
+        contentPanel.add(scorePanel, BorderLayout.NORTH);
+
+        // SELECT MAP
+        PacManSprites SPRITE_STORE = new PacManSprites();
+        GameFactory gf = new GameFactory(new PlayerFactory(SPRITE_STORE));
+        MapParser m = new MapParser(new LevelFactory(SPRITE_STORE, new GhostFactory(SPRITE_STORE), new PointCalculatorLoader().load()),new BoardFactory(SPRITE_STORE));
+        Level level = m.parseMap("/board" + lv_map + ".txt");
+        Player player = new PlayerFactory(SPRITE_STORE).createPacMan();
+        player.setMap(lv_map);
+        System.out.println();
+        game = gf.createSinglePlayerGame(level,new PointCalculatorLoader().load());
+        level.registerPlayer(player);
+
+        boardPanel = new BoardPanel(game);
+        contentPanel.add(boardPanel, BorderLayout.CENTER);
+        pack();
+>>>>>>> c6e94b4a1dedfd9dc76ca36e1be81e67f58a1d3b
     }
 
     public void RANKING_BOARD(){
@@ -214,8 +242,11 @@ public class PacManUI extends JFrame {
     }
 
     public void GAMAE_RANKING(){
+<<<<<<< HEAD
         Launcher.GAME_MODE_NOW="RANK";
         System.out.println("Launcher GAME MODE : "+Launcher.GAME_MODE_NOW);
+=======
+>>>>>>> c6e94b4a1dedfd9dc76ca36e1be81e67f58a1d3b
         contentPanel.removeAll();
 //        setSize(368,336);
         contentPanel.add(new RankingMode(this), BorderLayout.CENTER);
@@ -223,8 +254,11 @@ public class PacManUI extends JFrame {
     }
 
     public void GAMAE_CASUAL(){
+<<<<<<< HEAD
         Launcher.GAME_MODE_NOW="CASUAL";
         System.out.println("Launcher GAME MODE : "+Launcher.GAME_MODE_NOW);
+=======
+>>>>>>> c6e94b4a1dedfd9dc76ca36e1be81e67f58a1d3b
         contentPanel.removeAll();
 //        setSize(368,336);
         contentPanel.add(new selectMap(this), BorderLayout.CENTER);

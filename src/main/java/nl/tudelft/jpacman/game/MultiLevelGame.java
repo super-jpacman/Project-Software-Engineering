@@ -135,8 +135,21 @@ public class MultiLevelGame extends Game {
             getLevel().stop();
             PM.PLAY_AT_MAP(player.getMap());
         }
+<<<<<<< HEAD
 
 
+=======
+        levelNumber = 0;
+        player.setMap(1);
+        levels.clear();
+        levels.addAll(levels_);
+        level = levels.get(0);
+        level.registerPlayer(player);
+        inProgress = false;
+        getLevel().addObserver(this);
+        getLevel().stop();
+        PM.PacManUI_PLAY_RANK(this);
+>>>>>>> c6e94b4a1dedfd9dc76ca36e1be81e67f58a1d3b
 
     }
     @Override

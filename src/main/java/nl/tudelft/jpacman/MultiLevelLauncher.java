@@ -65,7 +65,11 @@ public class MultiLevelLauncher extends Launcher {
         getPacManUI().start();
 
     }
+<<<<<<< HEAD
     public void selectMap(int i){}
+=======
+
+>>>>>>> c6e94b4a1dedfd9dc76ca36e1be81e67f58a1d3b
     
     @Override
     public MultiLevelGame makeGame() {

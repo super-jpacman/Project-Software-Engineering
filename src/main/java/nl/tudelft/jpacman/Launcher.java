@@ -91,12 +91,21 @@ public class Launcher {
         return game;
     }
 
+<<<<<<< HEAD
     public Game makeGame_LV(String map) {
         GameFactory gf = getGameFactory();
         Level level = makeLevel(map);
         game = gf.createSinglePlayerGame(level, loadPointCalculator());
         return game;
     }
+=======
+//    public Game makeGame_LV(String map) {
+//        GameFactory gf = getGameFactory();
+//        Level level = makeLevel(map);
+//        game = gf.createSinglePlayerGame(level, loadPointCalculator());
+//        return game;
+//    }
+>>>>>>> c6e94b4a1dedfd9dc76ca36e1be81e67f58a1d3b
 
     private PointCalculator loadPointCalculator() {
         return new PointCalculatorLoader().load();
