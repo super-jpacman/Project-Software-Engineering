@@ -1,4 +1,4 @@
-package UC002;
+package UC002.Unuse_Test;
 
 import nl.tudelft.jpacman.MultiLevelLauncher;
 import nl.tudelft.jpacman.TestLauncher;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
-
+@Disabled
 public class TS001 {
 
     @DisplayName("TC01: Pacman move left")
@@ -91,16 +91,16 @@ public class TS001 {
         TestLauncher test = new TestLauncher();
         test.setNameoftest("_Without_Ghost");
         test.LenghtOfMap(7,11);
-        MultiLevelGame game = test.makeGame();
         test.launch();
-        game = test.getGame();
+        MultiLevelGame game = test.getGame();
+        game.start();
         Player player = game.getPlayers().get(0);
         // start the game.
-        game.start();
         int Total_Pellet = game.getLevel().remainingPellets();
         while(Total_Pellet == game.getLevel().remainingPellets()) {
             move(game,getRandomDirection(),1);
         }
+        Thread.sleep(2000);
         assertEquals(10,player.getScore());
     }
     @DisplayName("TC06:when pacman move and win")

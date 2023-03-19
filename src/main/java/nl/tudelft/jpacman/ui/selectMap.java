@@ -35,6 +35,33 @@ public class selectMap extends JPanel {
     private int Text_Score;
     private boolean enable;
     private JLabel Header;
+
+    public int getMap_lv() {
+        return Map_lv;
+    }
+    public void ClickMap1(){
+        Map1.doClick();
+    }
+    public void ClickMap2(){
+        Map2.doClick();
+    }
+    public void ClickMap3(){
+        Map3.doClick();
+    }
+    public void ClickMap4(){
+        Map4.doClick();
+    }
+    public void ClickMap5(){
+        Map5.doClick();
+    }
+    public void ClickBack(){
+        BACK.doClick();
+    }
+    public void ClickNext(){
+        NEXT.doClick();
+    }
+
+
     private int Map_lv=1;
     private JLabel img_map;
     private JLabel Title;

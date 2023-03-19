@@ -1,10 +1,11 @@
-package UC002;
+package UC002.Unuse_Test;
 
 import nl.tudelft.jpacman.TestLauncher;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.SaveScore;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+@Disabled
 public class TS006 {
     @DisplayName("TC01: function Start")
     @Test

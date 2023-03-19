@@ -32,6 +32,15 @@ public class GameMode extends JPanel {
     private int Text_Score;
     private boolean enable;
     private static final int SQUARE_SIZE = 16;
+    public void ClickBack(){
+        BACK.doClick();
+    }
+    public void ClickCasual(){
+        CasualMode.doClick();
+    }
+    public void ClickRanking(){
+        RankingMode.doClick();
+    }
 
     // default constructor
     public GameMode(PacManUI PM)

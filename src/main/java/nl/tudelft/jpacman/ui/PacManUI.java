@@ -174,7 +174,7 @@ public class PacManUI extends JFrame {
         System.out.println("FOTMAT: "+this.scoreFormatter);
         System.out.println("=================================\n");
 
-        buttonPanel = new ButtonPanel(buttons, this);
+        buttonPanel = new ButtonPanel(buttons, this); 
         game.selectMap(lv_map-1);
         game.getLevel().setInProgress(false);
 

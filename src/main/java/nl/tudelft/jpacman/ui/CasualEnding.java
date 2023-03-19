@@ -27,6 +27,9 @@ public class CasualEnding extends JPanel {
     private int Text_Score;
     private boolean enable;
     private static final int SQUARE_SIZE = 16;
+    public void ClickBackBTN(){
+        BackBTN.doClick();
+    }
     public CasualEnding(){}
     // default constructor
     public CasualEnding(String Text_Header, int Text_Score, double totalTime)

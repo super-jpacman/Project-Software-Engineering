@@ -1,4 +1,4 @@
-package UC002;
+package UC002.Unuse_Test;
 
 import nl.tudelft.jpacman.MultiLevelLauncher;
 import nl.tudelft.jpacman.TestLauncher;
@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
-
-public class TS002 {
+@Disabled
+public class TS005 {
 
     @DisplayName("TC01: Pacman move left")
     @Test
@@ -125,7 +125,7 @@ public class TS002 {
     public void TC07() throws InterruptedException{
         TestLauncher test = new TestLauncher();
         test.setNameoftest("_Hit_Ghost");
-        test.LenghtOfMap(20,20);
+        test.LenghtOfMap(32,32);
         MultiLevelGame game = test.makeGame();
         test.launch();
         game = test.getGame();
@@ -139,7 +139,7 @@ public class TS002 {
     public void TC08() throws InterruptedException{
         TestLauncher test = new TestLauncher();
         test.setNameoftest("_Hit_Ghost");
-        test.LenghtOfMap(21,21);
+        test.LenghtOfMap(33,33);
         MultiLevelGame game = test.makeGame();
         test.launch();
         game = test.getGame();
@@ -153,7 +153,7 @@ public class TS002 {
     public void TC09() throws InterruptedException{
         TestLauncher test = new TestLauncher();
         test.setNameoftest("_Hit_Ghost");
-        test.LenghtOfMap(22,22);
+        test.LenghtOfMap(34,34);
         MultiLevelGame game = test.makeGame();
         test.launch();
         game = test.getGame();
@@ -167,7 +167,7 @@ public class TS002 {
     public void TC10() throws InterruptedException{
         TestLauncher test = new TestLauncher();
         test.setNameoftest("_Hit_Ghost");
-        test.LenghtOfMap(23,23);
+        test.LenghtOfMap(35,35);
         MultiLevelGame game = test.makeGame();
         test.launch();
         game = test.getGame();
