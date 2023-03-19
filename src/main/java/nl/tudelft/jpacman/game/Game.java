@@ -48,12 +48,17 @@ public abstract class Game extends MultiLevelLauncher implements LevelObserver {
         inProgress = false;
     }
 
+    public void selectMap(int i){
+        System.out.println("Select Map "+i);
+    }
     /**
      * Starts or resumes the game.
      */
     public void start() {
+        System.out.println("2💤💤💤💤💤💤💤");
         synchronized (progressLock) {
             if (isInProgress()) {
+                System.out.println("2💤💤💤💤💤💤💤");
                 return;
             }
             if (getLevel().isAnyPlayerAlive() && getLevel().remainingPellets() > 0) {

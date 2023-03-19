@@ -48,6 +48,10 @@ public class Level {
      */
     private final Map<Ghost, ScheduledExecutorService> npcs;
 
+    public void setInProgress(boolean inProgress) {
+        this.inProgress = inProgress;
+    }
+
     /**
      * <code>true</code> iff this level is currently in progress, i.e. players
      * and NPCs can move.
@@ -201,8 +205,10 @@ public class Level {
      * NPCs.
      */
     public void start() {
+        System.out.println("3😂😂😂😂😂😂😂");
         synchronized (startStopLock) {
             if (isInProgress()) {
+                System.out.println("💥💥💥💥💥💥💥💥");
                 return;
             }
             startNPCs();
@@ -229,7 +235,7 @@ public class Level {
     /**
      * Starts all NPC movement scheduling.
      */
-    private void startNPCs() {
+    public void startNPCs() {
         for (final Ghost npc : npcs.keySet()) {
             ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
 
@@ -244,7 +250,7 @@ public class Level {
      * Stops all NPC movement scheduling and interrupts any movements being
      * executed.
      */
-    private void stopNPCs() {
+    public void stopNPCs() {
         for (Entry<Ghost, ScheduledExecutorService> entry : npcs.entrySet()) {
             ScheduledExecutorService schedule = entry.getValue();
             assert schedule != null;
@@ -265,7 +271,7 @@ public class Level {
     /**
      * Updates the observers about the state of this level.
      */
-    private void updateObservers() {
+    public void updateObservers() {
         if (!isAnyPlayerAlive()) {
             for (LevelObserver observer : observers) {
                 observer.levelLost();

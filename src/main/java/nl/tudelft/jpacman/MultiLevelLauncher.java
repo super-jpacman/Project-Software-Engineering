@@ -49,10 +49,23 @@ public class MultiLevelLauncher extends Launcher {
         addSinglePlayerKeys(getBuilder());
         setPacManUI(getBuilder().build(getGame()));
 //        System.out.println("1111"+getPacManUI());
+        multiGame.setPacManUI(getPacManUI().MainMenuUI());
+        getPacManUI().start();
+
+    }
+
+    public void Ranking_lunch() {
+        makeGame();
+        setBuilder(new PacManUiBuilder().withDefaultButtons());
+        addSinglePlayerKeys(getBuilder());
+        setPacManUI(getBuilder().build(getGame()));
+        System.out.println("💥💥💥💥💥💥Ranking_lunch💥💥💥💥💥💥");
+        getPacManUI().setGame(getGame());
         multiGame.setPacManUI(getPacManUI());
         getPacManUI().start();
 
     }
+    public void selectMap(int i){}
     
     @Override
     public MultiLevelGame makeGame() {

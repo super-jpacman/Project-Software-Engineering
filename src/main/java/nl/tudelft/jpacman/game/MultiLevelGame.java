@@ -1,6 +1,7 @@
 package nl.tudelft.jpacman.game;
 
 import com.google.common.collect.ImmutableList;
+import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
@@ -91,24 +92,50 @@ public class MultiLevelGame extends Game {
             GE.setVisible(false);
             GE=null;
         }
-        player.setScore(0);
-        setTotalTime(0);
-        player.setAlive(true);
-        List<Level> levels_ = new ArrayList<>();
-        for (int i = 1; i < 5+1; i++) {
-            String _INDEX_MAP_ = String.valueOf(i);
-            levels_.add(makeLevel(_INDEX_MAP_));
+        if(Launcher.GAME_MODE_NOW=="RANK"){
+            System.out.println("RANKING RESTART");
+            player.setScore(0);
+            setTotalTime(0);
+            player.setAlive(true);
+            List<Level> levels_ = new ArrayList<>();
+            for (int i = 1; i < 5+1; i++) {
+                String _INDEX_MAP_ = String.valueOf(i);
+                levels_.add(makeLevel(_INDEX_MAP_));
 
+            }
+            levelNumber = 0;
+            player.setMap(1);
+            levels.clear();
+            levels.addAll(levels_);
+            level = levels.get(0);
+            level.registerPlayer(player);
+            inProgress = false;
+            getLevel().addObserver(this);
+            getLevel().stop();
+            PM.PacManUI_PLAY_RANK(this);
+        }else if(Launcher.GAME_MODE_NOW=="CASUAL"){
+            System.out.println("RANKING RESTART");
+            player.setScore(0);
+            setTotalTime(0);
+            player.setAlive(true);
+            List<Level> levels_ = new ArrayList<>();
+            for (int i = 1; i < 5+1; i++) {
+                String _INDEX_MAP_ = String.valueOf(i);
+                levels_.add(makeLevel(_INDEX_MAP_));
+
+            }
+            levelNumber = player.getMap();
+            player.setMap(levelNumber);
+            levels.clear();
+            levels.addAll(levels_);
+            level = levels.get(0);
+            level.registerPlayer(player);
+            inProgress = false;
+            getLevel().addObserver(this);
+            getLevel().stop();
+            PM.PLAY_AT_MAP(player.getMap());
         }
-        levelNumber = 0;
-        player.setMap(1);
-        levels.clear();
-        levels.addAll(levels_);
-        level = levels.get(0);
-        level.registerPlayer(player);
-        inProgress = false;
-        getLevel().addObserver(this);
-        getLevel().stop();
+
 
 
     }
@@ -116,14 +143,24 @@ public class MultiLevelGame extends Game {
     public void start() {
         synchronized (progressLock) {
             // Already running
+            System.out.println("🖤🖤🖤🖤🖤🖤🖤");
             if (isInProgress()) {
+                System.out.println("🖤🖤🖤🖤🖤🖤🖤");
                 return;
             }
-
             // First start and unpause
             if (getLevel().isAnyPlayerAlive() && getLevel().remainingPellets() > 0) {
                 inProgress = true;
                 getLevel().addObserver(this);
+                System.out.println("==============start=================");
+                System.out.println("GAME: "+this);
+                System.out.println("isInProgress: "+isInProgress());
+                System.out.println("getPlayers: "+getPlayers());
+                System.out.println("isAlive: "+getPlayers().get(0).isAlive());
+                System.out.println("getMap: "+getPlayers().get(0).getMap());
+                System.out.println("isAnyPlayerAlive: "+getLevel().isAnyPlayerAlive());
+                System.out.println("isInProgress: "+getLevel().isInProgress());
+                System.out.println("=================================\n");
                 getLevel().start();
 //                System.out.println("Start Pressed");
                 stopWatch.startWatch();
@@ -142,14 +179,44 @@ public class MultiLevelGame extends Game {
                 && getLevel().isAnyPlayerAlive())
             {
                 levelNumber++;
-                player.setMap(levelNumber+1);
-                level = levels.get(levelNumber);
-                level.registerPlayer(player);
-                inProgress = false;
-                getLevel().addObserver(this);
-                getLevel().stop();
+                selectMap(2);
+//                player.setMap(levelNumber+1);
+//                level = levels.get(levelNumber);
+//                level.registerPlayer(player);
+//                inProgress = false;
+//                getLevel().addObserver(this);
+//                getLevel().stop();
             }
         }
+    }
+    @Override
+    public void selectMap(int i){
+        if (isInProgress()) {
+            return;
+        }
+        // First start and unpause
+
+
+        player.setMap(i+1);
+        level = levels.get(i);
+        level.registerPlayer(player);
+        System.out.println(level);
+        inProgress = false;
+        getLevel().setInProgress(false);
+        System.out.println("🎀🎀isInProgress: "+getLevel().isInProgress());
+        getLevel().addObserver(this);
+        getLevel().updateObservers();
+        System.out.println("🎀🎀isInProgress: "+getLevel().isInProgress());
+        System.out.println("==============selectMap=================");
+        System.out.println("GAME: "+this);
+        System.out.println("MAP: "+player.getMap());
+        System.out.println("isInProgress: "+isInProgress());
+        System.out.println("getPlayers: "+getPlayers());
+        System.out.println("isAlive: "+getPlayers().get(0).isAlive());
+        System.out.println("getMap: "+getPlayers().get(0).getMap());
+        System.out.println("isAnyPlayerAlive: "+getLevel().isAnyPlayerAlive());
+        System.out.println("isInProgress: "+getLevel().isInProgress());
+        System.out.println("=================================\n");
     }
     public void levelLost() {
 

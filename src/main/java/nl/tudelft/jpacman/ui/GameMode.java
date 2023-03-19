@@ -25,7 +25,6 @@ public class GameMode extends JPanel {
     private JButton RankingMode;
 
     private JButton BACK;
-    private JButton NEXT;
 
     private String Text_Header;
     private Game game;
@@ -35,7 +34,7 @@ public class GameMode extends JPanel {
     private static final int SQUARE_SIZE = 16;
 
     // default constructor
-    public GameMode()
+    public GameMode(PacManUI PM)
     {
         try {
             GraphicsEnvironment ge =
@@ -70,29 +69,6 @@ public class GameMode extends JPanel {
         Header.setOpaque(true);
         Header.setBounds(90, 10, 600, 40);
 
-        NEXT=new JButton();
-        NEXT.setLayout(new FlowLayout());
-        NEXT.setText("NEXT");
-        NEXT.setFont(new Font("Emulogic",Font.PLAIN,12));
-        NEXT.setFocusPainted(false);
-        NEXT.setBackground(Color.black);
-        NEXT.setForeground(Color.white);
-        NEXT.setBorder(null);
-        NEXT.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
-        NEXT.setBounds(260, 290, 100, 30);
-//        NEXT.setBorder(new RoundedButton(10));
-        NEXT.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // back to home
-                NEXT.setBackground(Color.white);
-                NEXT.setForeground(Color.BLACK);
-                NEXT.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
-
-                System.out.println("PASS NEXT");
-            }
-        });
-
         BACK=new JButton();
         BACK.setLayout(new FlowLayout());
         BACK.setText("BACK");
@@ -108,10 +84,12 @@ public class GameMode extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // back to home
-                NEXT.setBackground(Color.white);
-                NEXT.setForeground(Color.BLACK);
-                NEXT.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
+                BACK.setBackground(Color.white);
+                BACK.setForeground(Color.BLACK);
+                BACK.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
+
                 System.out.println("PASS BACK");
+                PM.MainMenuUI();
             }
         });
 
@@ -131,6 +109,7 @@ public class GameMode extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS CasualMode");
+                PM.GAMAE_CASUAL();
             }
         });
 
@@ -152,10 +131,10 @@ public class GameMode extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS RankingMode");
-
+                PM.GAMAE_RANKING();
             }
         });
-        background.add(NEXT);
+
         background.add(BACK);
         background.add(Header);
         background.add(RankingMode);
@@ -246,14 +225,14 @@ public class GameMode extends JPanel {
 
 
 
-    public static void main(String[] args) throws IOException {
-        JFrame j = new JFrame();
-        Container contentPanel = j.getContentPane();
-        contentPanel.setLayout(new BorderLayout());
-
-        contentPanel.add(new FirstMenu());
-        j.setSize(368,336);
-        j.setVisible(true);
-    }
+//    public static void main(String[] args) throws IOException {
+//        JFrame j = new JFrame();
+//        Container contentPanel = j.getContentPane();
+//        contentPanel.setLayout(new BorderLayout());
+//
+//        contentPanel.add(new FirstMenu());
+//        j.setSize(368,336);
+//        j.setVisible(true);
+//    }
 }
 
