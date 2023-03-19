@@ -32,7 +32,7 @@ public class CasualEnding extends JPanel {
     }
     public CasualEnding(){}
     // default constructor
-    public CasualEnding(String Text_Header, int Text_Score, double totalTime)
+    public CasualEnding(String Text_Header, int Text_Score, double totalTime,PacManUI PM)
     {
         Dimension size = new Dimension(368, 336);
         setMinimumSize(size);
@@ -85,7 +85,7 @@ public class CasualEnding extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS BACK");
-
+                PM.GAMAE_CASUAL();
             }
         });
         background.add(Header);

@@ -158,7 +158,7 @@ public class PacManUI extends JFrame {
         return this;
     }
 
-    public void GAMAE_MODE(){
+    public void GAME_MODE(){
         contentPanel.removeAll();
 //        setSize(368,336);
         contentPanel.add(new GameMode(this), BorderLayout.CENTER);
@@ -266,7 +266,7 @@ public class PacManUI extends JFrame {
         contentPanel.removeAll();
         contentPanel.add(buttonPanel, BorderLayout.SOUTH);
         contentPanel.add(scorePanel, BorderLayout.NORTH);
-        contentPanel.add(new CasualEnding(Text_Header,Text_Score,totalTime), BorderLayout.CENTER);
+        contentPanel.add(new CasualEnding(Text_Header,Text_Score,totalTime,this), BorderLayout.CENTER);
         //TEST GAME GUI
 //
 //        contentPanel.add(new RankingBoard(), BorderLayout.CENTER);

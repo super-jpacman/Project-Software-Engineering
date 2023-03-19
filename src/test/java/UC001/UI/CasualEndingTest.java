@@ -11,21 +11,21 @@ import javax.swing.*;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-
+@Disabled
 public class CasualEndingTest {
     PacManUI pacManUI = mock(PacManUI.class);
-    @Disabled
     @Test
-    public void TC01(){
+    public void TC01() throws InterruptedException {
         JFrame frame = new JFrame();
         String Text_header = "Test";
         int Text_score = 450;
         double time = 50.0;
-        CasualEnding casualEnding = new CasualEnding(Text_header,Text_score,time);
+        CasualEnding casualEnding = new CasualEnding(Text_header,Text_score,time,pacManUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(casualEnding);
         frame.pack();
         frame.setVisible(true);
         casualEnding.ClickBackBTN();
+        verify(pacManUI).GAMAE_CASUAL();
     }
 }

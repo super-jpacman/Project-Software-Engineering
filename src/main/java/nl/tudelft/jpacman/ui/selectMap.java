@@ -296,7 +296,7 @@ public class selectMap extends JPanel {
                 BACK.setForeground(Color.BLACK);
                 BACK.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
                 System.out.println("PASS BACK");
-                PM.GAMAE_MODE();
+                PM.GAME_MODE();
 
             }
         });

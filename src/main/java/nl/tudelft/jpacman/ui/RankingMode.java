@@ -135,7 +135,7 @@ public class RankingMode extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS Start");
-                PM.GAMAE_MODE();
+                PM.GAME_MODE();
             }
         });
         background.add(Ranking);
