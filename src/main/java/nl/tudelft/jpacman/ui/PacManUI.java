@@ -1,13 +1,18 @@
 package nl.tudelft.jpacman.ui;
 
 import java.awt.*;
+import java.awt.geom.Area;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.board.BoardFactory;
@@ -134,7 +139,7 @@ public class PacManUI extends JFrame {
 
         buttonPanel = new ButtonPanel(buttons, this);
 
-        scorePanel = new ScorePanel(game.getPlayers());
+        scorePanel = new ScorePanel(game.getPlayers(),this);
         if (scoreFormatter != null) {
             scorePanel.setScoreFormatter(scoreFormatter);
         }
@@ -146,9 +151,11 @@ public class PacManUI extends JFrame {
         contentPanel.add(buttonPanel, BorderLayout.SOUTH);
         contentPanel.add(scorePanel, BorderLayout.NORTH);
         contentPanel.add(boardPanel, BorderLayout.CENTER);
-        pack();
 
+
+        pack();
         setLocationRelativeTo(null);
+
     }
     public PacManUI MainMenuUI(){
         contentPanel.removeAll();
@@ -245,7 +252,7 @@ public class PacManUI extends JFrame {
 
         buttonPanel = new ButtonPanel(buttons, this);
 
-        scorePanel = new ScorePanel(game.getPlayers());
+        scorePanel = new ScorePanel(game.getPlayers(),this);
         if (scoreFormatter != null) {
             scorePanel.setScoreFormatter(scoreFormatter);
         }

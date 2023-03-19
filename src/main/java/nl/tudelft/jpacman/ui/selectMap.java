@@ -134,7 +134,7 @@ public class selectMap extends JPanel {
         Map5=new JButton();
         Map5.setLayout(new FlowLayout());
         Map5.setText("Map5");
-        Map5.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Map5.setFont(new Font("Emulogic",Font.PLAIN,10));
         Map5.setFocusPainted(false);
         Map5.setBackground(Color.black);
         Map5.setForeground(Color.white);
@@ -158,7 +158,7 @@ public class selectMap extends JPanel {
         Map4=new JButton();
         Map4.setLayout(new FlowLayout());
         Map4.setText("Map4");
-        Map4.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Map4.setFont(new Font("Emulogic",Font.PLAIN,10));
         Map4.setFocusPainted(false);
         Map4.setBackground(Color.black);
         Map4.setForeground(Color.white);
@@ -182,11 +182,12 @@ public class selectMap extends JPanel {
         Map3=new JButton();
         Map3.setLayout(new FlowLayout());
         Map3.setText("Map3");
-        Map3.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Map3.setFont(new Font("Emulogic",Font.PLAIN,10));
         Map3.setFocusPainted(false);
         Map3.setBackground(Color.black);
         Map3.setForeground(Color.white);
         Map3.setBorder(null);
+
 //        Map3.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
         Map3.setBounds(20, 130, 70, 30);
 //        BACK.setBorder(new RoundedButton(10));
@@ -228,10 +229,9 @@ public class selectMap extends JPanel {
         });
 
         Map2=new JButton();
-
         Map2.setLayout(new FlowLayout());
         Map2.setText("Map2");
-        Map2.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Map2.setFont(new Font("Emulogic",Font.PLAIN,10));
         Map2.setFocusPainted(false);
         Map2.setBackground(Color.black);
         Map2.setForeground(Color.white);
@@ -256,7 +256,7 @@ public class selectMap extends JPanel {
         NEXT=new JButton();
         NEXT.setLayout(new FlowLayout());
         NEXT.setText("NEXT");
-        NEXT.setFont(new Font("Emulogic",Font.PLAIN,12));
+        NEXT.setFont(new Font("Emulogic",Font.PLAIN,10));
         NEXT.setFocusPainted(false);
         NEXT.setBackground(Color.black);
         NEXT.setForeground(Color.white);
@@ -280,7 +280,7 @@ public class selectMap extends JPanel {
         BACK=new JButton();
         BACK.setLayout(new FlowLayout());
         BACK.setText("BACK");
-        BACK.setFont(new Font("Emulogic",Font.PLAIN,12));
+        BACK.setFont(new Font("Emulogic",Font.PLAIN,10));
         BACK.setFocusPainted(false);
         BACK.setBackground(Color.black);
         BACK.setForeground(Color.white);

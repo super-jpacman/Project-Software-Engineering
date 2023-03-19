@@ -1,11 +1,10 @@
 package nl.tudelft.jpacman.ui;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Map;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  * A panel containing a button for every registered action.
@@ -30,16 +29,22 @@ class ButtonPanel extends JPanel {
         assert buttons != null;
         assert parent != null;
         int count =0;
+        setLayout(new GridLayout(1,4,50,50));
         for (final String caption : buttons.keySet()) {
-            btn.add(new JButton(caption));
+            JButton JB = new JButton(caption);
+            JB.setBackground(Color.black);
+            JB.setForeground(Color.white);
+            JB.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.white));
+            btn.add(JB);
+
             btn.get(count).addActionListener(e -> {
                 buttons.get(caption).doAction();
                 parent.requestFocusInWindow();
             });
-
             add(btn.get(count));
             count++;
         }
+        this.setBackground(Color.black);
     }
 
     public void ClickStart(){
