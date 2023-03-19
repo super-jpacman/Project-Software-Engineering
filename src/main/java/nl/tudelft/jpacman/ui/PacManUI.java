@@ -1,6 +1,8 @@
 package nl.tudelft.jpacman.ui;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
@@ -301,10 +303,30 @@ public class PacManUI extends JFrame {
 
     public void PacManUI_PLAY_RANK(Game game) {
         contentPanel.removeAll();
-        contentPanel.add(buttonPanel, BorderLayout.SOUTH);
-        contentPanel.add(scorePanel, BorderLayout.NORTH);
+
+
         boardPanel = new BoardPanel(game);
         contentPanel.add(boardPanel, BorderLayout.CENTER);
+        WaitMap waitmap = new WaitMap(game.getPlayers().get(0).getMap());
+        Timer timer = new Timer(2000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Container contentPane = getContentPane();
+                contentPane.remove(waitmap);
+
+                contentPane.add(boardPanel);
+                contentPanel.add(buttonPanel, BorderLayout.SOUTH);
+                contentPanel.add(scorePanel, BorderLayout.NORTH);
+
+                contentPane.revalidate();
+                contentPane.repaint();
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
+
+        Container contentPane = getContentPane();
+        contentPane.add(waitmap);
         pack();
         setResizable(false);
     }

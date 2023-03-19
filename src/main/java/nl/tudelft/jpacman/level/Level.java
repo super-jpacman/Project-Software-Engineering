@@ -18,83 +18,34 @@ import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.board.Unit;
 import nl.tudelft.jpacman.npc.Ghost;
 
-/**
- * A level of Pac-Man. A level consists of the board with the players and the
- * AIs on it.
- *
- * @author Jeroen Roosen 
- */
 @SuppressWarnings("PMD.TooManyMethods")
 public class Level {
 
-    /**
-     * The board of this level.
-     */
+
     private final Board board;
 
-    /**
-     * The lock that ensures moves are executed sequential.
-     */
     private final Object moveLock = new Object();
 
-    /**
-     * The lock that ensures starting and stopping can't interfere with each
-     * other.
-     */
     private final Object startStopLock = new Object();
 
-    /**
-     * The NPCs of this level and, if they are running, their schedules.
-     */
     private final Map<Ghost, ScheduledExecutorService> npcs;
 
     public void setInProgress(boolean inProgress) {
         this.inProgress = inProgress;
     }
 
-    /**
-     * <code>true</code> iff this level is currently in progress, i.e. players
-     * and NPCs can move.
-     */
     private boolean inProgress;
 
-    /**
-     * The squares from which players can start this game.
-     */
     private final List<Square> startSquares;
 
-    /**
-     * The start current selected starting square.
-     */
     private int startSquareIndex;
 
-    /**
-     * The players on this level.
-     */
     private final List<Player> players;
 
-    /**
-     * The table of possible collisions between units.
-     */
     private final CollisionMap collisions;
 
-    /**
-     * The objects observing this level.
-     */
     private final Set<LevelObserver> observers;
 
-    /**
-     * Creates a new level for the board.
-     *
-     * @param board
-     *            The board for the level.
-     * @param ghosts
-     *            The ghosts on the board.
-     * @param startPositions
-     *            The squares on which players start on this board.
-     * @param collisionMap
-     *            The collection of collisions that should be handled.
-     */
     public Level(Board board, List<Ghost> ghosts, List<Square> startPositions,
                  CollisionMap collisionMap) {
         assert board != null;
@@ -114,34 +65,15 @@ public class Level {
         this.observers = new HashSet<>();
     }
 
-    /**
-     * Adds an observer that will be notified when the level is won or lost.
-     *
-     * @param observer
-     *            The observer that will be notified.
-     */
+
     public void addObserver(LevelObserver observer) {
         observers.add(observer);
     }
 
-    /**
-     * Removes an observer if it was listed.
-     *
-     * @param observer
-     *            The observer to be removed.
-     */
     public void removeObserver(LevelObserver observer) {
         observers.remove(observer);
     }
 
-    /**
-     * Registers a player on this level, assigning him to a starting position. A
-     * player can only be registered once, registering a player again will have
-     * no effect.
-     *
-     * @param player
-     *            The player to register.
-     */
     public void registerPlayer(Player player) {
         assert player != null;
         assert !startSquares.isEmpty();
@@ -156,25 +88,10 @@ public class Level {
         startSquareIndex++;
         startSquareIndex %= startSquares.size();
     }
-
-    /**
-     * Returns the board of this level.
-     *
-     * @return The board of this level.
-     */
     public Board getBoard() {
         return board;
     }
 
-    /**
-     * Moves the unit into the given direction if possible and handles all
-     * collisions.
-     *
-     * @param unit
-     *            The unit to move.
-     * @param direction
-     *            The direction to move the unit in.
-     */
     public void move(Unit unit, Direction direction) {
         assert unit != null;
         assert direction != null;
@@ -200,10 +117,6 @@ public class Level {
         }
     }
 
-    /**
-     * Starts or resumes this level, allowing movement and (re)starting the
-     * NPCs.
-     */
     public void start() {
         System.out.println("3😂😂😂😂😂😂😂");
         synchronized (startStopLock) {

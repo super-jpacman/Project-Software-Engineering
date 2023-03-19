@@ -18,6 +18,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class RankingMode extends JPanel {
     private String path = "src/main/resources/Blackwall.jpg";
@@ -87,6 +88,8 @@ public class RankingMode extends JPanel {
         Start.setForeground(Color.white);
         Start.setBorder(null);
         Start.setBounds(135, 160, 100, 30);
+
+
 //        Play.setBorder(new RoundedButton(10));
         Start.addActionListener(new ActionListener(){
 
@@ -94,6 +97,12 @@ public class RankingMode extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS Start");
+                //PM.WaitMapUI();
+                /*try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }*/
                 PM.PacManUI_PLAY_RANK(PM.getGame());
 
             }
