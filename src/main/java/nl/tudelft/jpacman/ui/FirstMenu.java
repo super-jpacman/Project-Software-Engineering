@@ -80,6 +80,9 @@ public class FirstMenu extends JPanel {
         setVisible(true);
 
     }
+    public void ClickPlay(){
+        Play.doClick();
+    }
     class RoundedButton implements Border {
         private int roundRadius;
 

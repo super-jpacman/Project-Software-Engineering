@@ -29,6 +29,9 @@ public class RankingBoard extends JPanel {
     private boolean enable;
     private static final int SQUARE_SIZE = 16;
     private JButton BackBTN;
+    public void ClickBackBTN(){
+        BackBTN.doClick();
+    }
 
     // default constructor
     public RankingBoard(PacManUI PM)

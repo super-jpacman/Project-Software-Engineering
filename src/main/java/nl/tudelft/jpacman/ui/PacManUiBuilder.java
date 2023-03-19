@@ -95,7 +95,7 @@ public class PacManUiBuilder {
      */
     private void addStartButton(final Game game) {
         assert game != null;
-
+        System.out.println("1💢💢💢💢💢💢💢💢");
         buttons.put(START_CAPTION, game::start);
     }
 

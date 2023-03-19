@@ -31,7 +31,15 @@ public class RankingMode extends JPanel {
     private int Text_Score;
     private boolean enable;
     private static final int SQUARE_SIZE = 16;
-
+    public void ClickStart(){
+        Start.doClick();
+    }
+    public void ClickLeaderboard(){
+        Leaderboard.doClick();
+    }
+    public void ClickBack(){
+        back.doClick();
+    }
     public RankingMode(PacManUI PM) {
         try {
             GraphicsEnvironment ge =

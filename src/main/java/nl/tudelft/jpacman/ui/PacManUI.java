@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
 
+import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.board.BoardFactory;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.game.GameFactory;
@@ -30,7 +31,7 @@ import nl.tudelft.jpacman.ui.ScorePanel.ScoreFormatter;
  * <li>A button panel, containing all buttons provided upon creation.
  * </ul>
  *
- * @author Jeroen Roosen 
+ * @author Jeroen Roosen
  *
  */
 public class PacManUI extends JFrame {
@@ -88,6 +89,9 @@ public class PacManUI extends JFrame {
     }
 
     private Container contentPanel = getContentPane();
+    private Map<String, Action> buttons;
+    private Map<Integer, Action> keyMappings;
+    private ScoreFormatter scoreFormatter;
     /**
      * Creates a new UI for a JPacman game.
      *
@@ -112,6 +116,17 @@ public class PacManUI extends JFrame {
         assert buttons != null;
         assert keyMappings != null;
         this.game=game;
+        this.buttons=buttons;
+        this.keyMappings=keyMappings;
+        this.scoreFormatter=scoreFormatter;
+
+        System.out.println("=================================");
+        System.out.println("GAME: "+this.game);
+        System.out.println("BTN: "+this.buttons);
+        System.out.println("KEY: "+this.keyMappings);
+        System.out.println("FOTMAT: "+this.scoreFormatter);
+        System.out.println("=================================\n");
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         PacKeyListener keys = new PacKeyListener(keyMappings);
@@ -150,25 +165,45 @@ public class PacManUI extends JFrame {
         pack();
     }
 
-    public void PLAY_AT_MAP(int lv_map) throws IOException {
+    public void PLAY_AT_MAP(int lv_map) {
         contentPanel.removeAll();
-        contentPanel.add(buttonPanel, BorderLayout.SOUTH);
-        contentPanel.add(scorePanel, BorderLayout.NORTH);
+        System.out.println("================PLAY_AT_MAP=================");
+        System.out.println("GAME: "+this.game);
+        System.out.println("BTN: "+this.buttons);
+        System.out.println("KEY: "+this.keyMappings);
+        System.out.println("FOTMAT: "+this.scoreFormatter);
+        System.out.println("=================================\n");
 
-        // SELECT MAP
-        PacManSprites SPRITE_STORE = new PacManSprites();
-        GameFactory gf = new GameFactory(new PlayerFactory(SPRITE_STORE));
-        MapParser m = new MapParser(new LevelFactory(SPRITE_STORE, new GhostFactory(SPRITE_STORE), new PointCalculatorLoader().load()),new BoardFactory(SPRITE_STORE));
-        Level level = m.parseMap("/board" + lv_map + ".txt");
-        Player player = new PlayerFactory(SPRITE_STORE).createPacMan();
-        player.setMap(lv_map);
-        System.out.println();
-        game = gf.createSinglePlayerGame(level,new PointCalculatorLoader().load());
-        level.registerPlayer(player);
+        buttonPanel = new ButtonPanel(buttons, this); 
+        game.selectMap(lv_map-1);
+        game.getLevel().setInProgress(false);
+
+        game.getLevel().updateObservers();
+        game.getLevel().start();
+        game.getLevel().stop();
+        System.out.println("==============PLAY_AT_MAP===================");
+        System.out.println("game: "+game);
+        System.out.println("isInProgress: "+game.isInProgress());
+        System.out.println("getPlayers: "+game.getPlayers());
+        System.out.println("isAlive: "+game.getPlayers().get(0).isAlive());
+        System.out.println("getMap: "+game.getPlayers().get(0).getMap());
+        System.out.println("isAnyPlayerAlive: "+game.getLevel().isAnyPlayerAlive());
+        System.out.println("isInProgress: "+game.getLevel().isInProgress());
+        System.out.println("=================================\n");
+
+        if (scoreFormatter != null) {
+            scorePanel.setScoreFormatter(scoreFormatter);
+        }
+
+//        setUndecorated(true);
 
         boardPanel = new BoardPanel(game);
+        contentPanel.setLayout(new BorderLayout());
+        contentPanel.add(buttonPanel, BorderLayout.SOUTH);
+        contentPanel.add(scorePanel, BorderLayout.NORTH);
         contentPanel.add(boardPanel, BorderLayout.CENTER);
         pack();
+
     }
 
     public void RANKING_BOARD(){
@@ -179,6 +214,8 @@ public class PacManUI extends JFrame {
     }
 
     public void GAMAE_RANKING(){
+        Launcher.GAME_MODE_NOW="RANK";
+        System.out.println("Launcher GAME MODE : "+Launcher.GAME_MODE_NOW);
         contentPanel.removeAll();
 //        setSize(368,336);
         contentPanel.add(new RankingMode(this), BorderLayout.CENTER);
@@ -186,6 +223,8 @@ public class PacManUI extends JFrame {
     }
 
     public void GAMAE_CASUAL(){
+        Launcher.GAME_MODE_NOW="CASUAL";
+        System.out.println("Launcher GAME MODE : "+Launcher.GAME_MODE_NOW);
         contentPanel.removeAll();
 //        setSize(368,336);
         contentPanel.add(new selectMap(this), BorderLayout.CENTER);

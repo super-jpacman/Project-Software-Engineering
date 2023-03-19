@@ -19,7 +19,7 @@ public class MultiLevelLauncher extends Launcher {
 
 
     private MultiLevelGame multiGame;
-    
+
     @Override
     public MultiLevelGame getGame() {
         return multiGame;
@@ -65,8 +65,8 @@ public class MultiLevelLauncher extends Launcher {
         getPacManUI().start();
 
     }
+    public void selectMap(int i){}
 
-    
     @Override
     public MultiLevelGame makeGame() {
         try{
@@ -87,7 +87,7 @@ public class MultiLevelLauncher extends Launcher {
 
         return multiGame;
     }
-    
+
     private PointCalculator loadPointCalculator() {
         return new PointCalculatorLoader().load();
     }

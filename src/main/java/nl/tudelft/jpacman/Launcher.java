@@ -23,13 +23,14 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
 
 /**
  * Creates and launches the JPacMan UI.
- * 
+ *
  * @author Jeroen Roosen
  */
 @SuppressWarnings("PMD.TooManyMethods")
 public class Launcher {
 
     private static final PacManSprites SPRITE_STORE = new PacManSprites();
+    public static String GAME_MODE_NOW = "";
     public static int map = 1;
     public static final String DEFAULT_MAP = "/board.txt";
     private String levelMap = DEFAULT_MAP;
@@ -90,12 +91,12 @@ public class Launcher {
         return game;
     }
 
-//    public Game makeGame_LV(String map) {
-//        GameFactory gf = getGameFactory();
-//        Level level = makeLevel(map);
-//        game = gf.createSinglePlayerGame(level, loadPointCalculator());
-//        return game;
-//    }
+    public Game makeGame_LV(String map) {
+        GameFactory gf = getGameFactory();
+        Level level = makeLevel(map);
+        game = gf.createSinglePlayerGame(level, loadPointCalculator());
+        return game;
+    }
 
     private PointCalculator loadPointCalculator() {
         return new PointCalculatorLoader().load();
@@ -112,7 +113,7 @@ public class Launcher {
             return getMapParser().parseMap(getLevelMap(_INDEX_MAP_));
         } catch (IOException e) {
             throw new PacmanConfigurationException(
-                    "Unable to create level, name = " + getLevelMap("1"), e);
+                "Unable to create level, name = " + getLevelMap("1"), e);
         }
     }
 
@@ -176,9 +177,9 @@ public class Launcher {
      */
     protected void addSinglePlayerKeys(final PacManUiBuilder builder) {
         builder.addKey(KeyEvent.VK_UP, moveTowardsDirection(Direction.NORTH))
-                .addKey(KeyEvent.VK_DOWN, moveTowardsDirection(Direction.SOUTH))
-                .addKey(KeyEvent.VK_LEFT, moveTowardsDirection(Direction.WEST))
-                .addKey(KeyEvent.VK_RIGHT, moveTowardsDirection(Direction.EAST));
+            .addKey(KeyEvent.VK_DOWN, moveTowardsDirection(Direction.SOUTH))
+            .addKey(KeyEvent.VK_LEFT, moveTowardsDirection(Direction.WEST))
+            .addKey(KeyEvent.VK_RIGHT, moveTowardsDirection(Direction.EAST));
     }
 
     private Action moveTowardsDirection(Direction direction) {
