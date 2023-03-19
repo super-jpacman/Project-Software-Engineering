@@ -143,7 +143,7 @@ public class RankingMode extends JPanel {
         background.add(Leaderboard);
         background.add(back);
         setVisible(true);
-
+        PM.setResizable(false);
     }
     class RoundedButton implements Border {
         private int roundRadius;

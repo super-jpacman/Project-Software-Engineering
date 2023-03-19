@@ -76,8 +76,15 @@ public class ScorePanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS BACK");
-                PM.getGame().stop();
-                PM.MainMenuUI();
+                if(Launcher.GAME_MODE_NOW=="RANK"){
+                    PM.getGame().stop();
+                    PM.getGame().restart();
+                    PM.MainMenuUI();
+                }else if(Launcher.GAME_MODE_NOW=="CASUAL"){
+                    PM.getGame().stop();
+                    PM.MainMenuUI();
+                }
+
             }
         });
         mapLabels = new LinkedHashMap<>();

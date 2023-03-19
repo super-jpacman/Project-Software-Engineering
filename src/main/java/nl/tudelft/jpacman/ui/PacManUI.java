@@ -154,6 +154,8 @@ public class PacManUI extends JFrame {
 
 
         pack();
+        setSize(368,336);
+        setResizable(false);
         setLocationRelativeTo(null);
 
     }
@@ -210,6 +212,7 @@ public class PacManUI extends JFrame {
         contentPanel.add(scorePanel, BorderLayout.NORTH);
         contentPanel.add(boardPanel, BorderLayout.CENTER);
         pack();
+
 
     }
 

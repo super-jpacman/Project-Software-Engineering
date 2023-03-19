@@ -39,7 +39,6 @@ public class CasualEnding extends JPanel {
 
         this.Text_Header=Text_Header;
         this.Text_Score=Text_Score;
-
         ImageIcon img = new ImageIcon(path);
         JLabel background = new JLabel(img);
 //        background.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
@@ -55,10 +54,10 @@ public class CasualEnding extends JPanel {
         Header.setForeground(new Color(0xFFFFFF));
         Header.setFont(new Font("Emulogic",Font.BOLD,50));
 
-        Header.setIconTextGap(-60);
+//        Header.setIconTextGap(-60);
         Header.setBackground(new Color(1f,0f,0f,0f ));
         Header.setOpaque(true);
-        Header.setBounds(60, 20, 600, 40);
+        Header.setBounds(20, 20, 600, 40);
 
         Score.setLayout(new FlowLayout());
         Score.setText("Score "+String.valueOf(Text_Score));
@@ -72,27 +71,13 @@ public class CasualEnding extends JPanel {
         Score.setIconTextGap(-60);
         Score.setBackground(new Color(1f,0f,0f,0f ));
         Score.setOpaque(true);
-        Score.setBounds(110, 90, 420, 30);
-
-        BackBTN.setLayout(new FlowLayout());
-        BackBTN.setText("BACK");
-        BackBTN.setFocusPainted(false);
-        BackBTN.setBounds(130, 280, 100, 30);
-        BackBTN.setBorder(new RoundedButton(10));
-        BackBTN.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // back to home
-                System.out.println("PASS BACK");
-                PM.GAMAE_CASUAL();
-            }
-        });
+        Score.setBounds(50, 90, 420, 30);
+        this.setBackground(Color.black);
         background.add(Header);
         background.add(Score);
         background.add(BackBTN);
         setVisible(true);
-
+        PM.setResizable(false);
     }
     class RoundedButton implements Border {
         private int roundRadius;

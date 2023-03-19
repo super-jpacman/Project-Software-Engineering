@@ -149,7 +149,7 @@ public class GameMode extends JPanel {
         background.add(RankingMode);
         background.add(CasualMode);
         setVisible(true);
-
+        PM.setResizable(false);
     }
     public final class LengthRestrictedDocument extends PlainDocument {
 
