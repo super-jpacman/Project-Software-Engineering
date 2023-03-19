@@ -23,7 +23,7 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
 
 /**
  * Creates and launches the JPacMan UI.
- * 
+ *
  * @author Jeroen Roosen
  */
 @SuppressWarnings("PMD.TooManyMethods")
@@ -91,21 +91,12 @@ public class Launcher {
         return game;
     }
 
-<<<<<<< HEAD
     public Game makeGame_LV(String map) {
         GameFactory gf = getGameFactory();
         Level level = makeLevel(map);
         game = gf.createSinglePlayerGame(level, loadPointCalculator());
         return game;
     }
-=======
-//    public Game makeGame_LV(String map) {
-//        GameFactory gf = getGameFactory();
-//        Level level = makeLevel(map);
-//        game = gf.createSinglePlayerGame(level, loadPointCalculator());
-//        return game;
-//    }
->>>>>>> c6e94b4a1dedfd9dc76ca36e1be81e67f58a1d3b
 
     private PointCalculator loadPointCalculator() {
         return new PointCalculatorLoader().load();
@@ -122,7 +113,7 @@ public class Launcher {
             return getMapParser().parseMap(getLevelMap(_INDEX_MAP_));
         } catch (IOException e) {
             throw new PacmanConfigurationException(
-                    "Unable to create level, name = " + getLevelMap("1"), e);
+                "Unable to create level, name = " + getLevelMap("1"), e);
         }
     }
 
@@ -186,9 +177,9 @@ public class Launcher {
      */
     protected void addSinglePlayerKeys(final PacManUiBuilder builder) {
         builder.addKey(KeyEvent.VK_UP, moveTowardsDirection(Direction.NORTH))
-                .addKey(KeyEvent.VK_DOWN, moveTowardsDirection(Direction.SOUTH))
-                .addKey(KeyEvent.VK_LEFT, moveTowardsDirection(Direction.WEST))
-                .addKey(KeyEvent.VK_RIGHT, moveTowardsDirection(Direction.EAST));
+            .addKey(KeyEvent.VK_DOWN, moveTowardsDirection(Direction.SOUTH))
+            .addKey(KeyEvent.VK_LEFT, moveTowardsDirection(Direction.WEST))
+            .addKey(KeyEvent.VK_RIGHT, moveTowardsDirection(Direction.EAST));
     }
 
     private Action moveTowardsDirection(Direction direction) {
