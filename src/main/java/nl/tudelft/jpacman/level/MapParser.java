@@ -44,44 +44,8 @@ public class MapParser {
         this.boardCreator = boardFactory;
     }
 
-    /**
-     * Parses the text representation of the board into an actual level.
-     *
-     * <ul>
-     * <li>Supported characters:
-     * <li>' ' (space) an empty square.case 'b':
-     *                 Square ghostSquare = makeGhostSquare(ghosts, levelCreator.createGhost(0));
-     *                 grid[x][y] = ghostSquare;
-     *                 break;
-     *             case 'i':
-     *                 Square ghostSquare1 = makeGhostSquare(ghosts, levelCreator.createGhost(1));
-     *                 grid[x][y] = ghostSquare1;
-     *                 break;
-     *             case 'p':
-     *                 Square ghostSquare2 = makeGhostSquare(ghosts, levelCreator.createGhost(2));
-     *                 grid[x][y] = ghostSquare2;
-     *                 break;
-     *             case 'c':
-     *                 Square ghostSquare3 = makeGhostSquare(ghosts, levelCreator.createGhost(3));
-     *                 grid[x][y] = ghostSquare3;
-     *                 break;
-     *             case 'P':
-     *                 Square playerSquare = boardCreator.createGround();
-     *                 grid[x][y] = playerSquare;
-     *                 startPositions.add(playerSquare);
-     *                 break;
-     * <li>'#' (bracket) a wall.
-     * <li>'.' (period) a square with a pellet.
-     * <li>'P' (capital P) a starting square for players.
-     * <li>'G' (capital G) a square with a ghost.
-     * </ul>
-     *
-     * @param map
-     *            The text representation of the board, with map[x][y]
-     *            representing the square at position x,y.
-     * @return The level as represented by this text.
-     */
-    public Level parseMap(char[][] map) {
+
+    public Level parseMap(char[][] map,String themename) {
         int width = map.length;
         int height = map[0].length;
 
@@ -90,18 +54,18 @@ public class MapParser {
         List<Ghost> ghosts = new ArrayList<>();
         List<Square> startPositions = new ArrayList<>();
 
-        makeGrid(map, width, height, grid, ghosts, startPositions);
+        makeGrid(map, width, height, grid, ghosts, startPositions,themename);
 
         Board board = boardCreator.createBoard(grid);
         return levelCreator.createLevel(board, ghosts, startPositions);
     }
 
     private void makeGrid(char[][] map, int width, int height,
-                          Square[][] grid, List<Ghost> ghosts, List<Square> startPositions) {
+                          Square[][] grid, List<Ghost> ghosts, List<Square> startPositions,String themename) {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 char c = map[x][y];
-                addSquare(grid, ghosts, startPositions, x, y, c);
+                addSquare(grid, ghosts, startPositions, x, y, c, themename);
             }
         }
     }
@@ -127,7 +91,9 @@ public class MapParser {
      *            Character describing the square type.
      */
     protected void addSquare(Square[][] grid, List<Ghost> ghosts,
-                             List<Square> startPositions, int x, int y, char c) {
+                             List<Square> startPositions, int x, int y, char c,String themename) {
+        // Theme name can enter this method
+        //System.out.println("Enter addSquare with "+themename);
         switch (c) {
             case ' ':
                 grid[x][y] = boardCreator.createGround();
@@ -193,7 +159,7 @@ public class MapParser {
      * @return The level as represented by the text.
      * @throws PacmanConfigurationException If text lines are not properly formatted.
      */
-    public Level parseMap(List<String> text) {
+    public Level parseMap(List<String> text,String themename) {
 
         checkMapFormat(text);
 
@@ -206,7 +172,7 @@ public class MapParser {
                 map[x][y] = text.get(y).charAt(x);
             }
         }
-        return parseMap(map);
+        return parseMap(map,themename);
     }
 
     /**
@@ -240,47 +206,30 @@ public class MapParser {
         }
     }
 
-    /**
-     * Parses the provided input stream as a character stream and passes it
-     * result to {@link #parseMap(List)}.
-     *
-     * @param source
-     *            The input stream that will be read.
-     * @return The parsed level as represented by the text on the input stream.
-     * @throws IOException
-     *             when the source could not be read.
-     */
-    public Level parseMap(InputStream source) throws IOException {
+
+    public Level parseMap(InputStream source,String themename) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(
             source, "UTF-8"))) {
             List<String> lines = new ArrayList<>();
             while (reader.ready()) {
                 lines.add(reader.readLine());
             }
-            return parseMap(lines);
+            return parseMap(lines,themename);
         }
     }
 
-    /**
-     * Parses the provided input stream as a character stream and passes it
-     * result to {@link #parseMap(List)}.
-     *
-     * @param mapName
-     *            Name of a resource that will be read.
-     * @return The parsed level as represented by the text on the input stream.
-     * @throws IOException
-     *             when the resource could not be read.
-     */
+
     @SuppressFBWarnings(
         value = {"OBL_UNSATISFIED_OBLIGATION", "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE"},
         justification = "try with resources always cleans up / false positive in java 11"
     )
     public Level parseMap(String mapName) throws IOException {
         try (InputStream boardStream = MapParser.class.getResourceAsStream(mapName)) {
+            System.out.println("Enter ParseMap"+mapName);
             if (boardStream == null) {
                 throw new PacmanConfigurationException("Could not get resource for: " + mapName);
             }
-            return parseMap(boardStream);
+            return parseMap(boardStream,mapName);
         }
     }
 

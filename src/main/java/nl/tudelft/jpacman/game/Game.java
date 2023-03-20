@@ -48,6 +48,10 @@ public abstract class Game extends MultiLevelLauncher implements LevelObserver {
         inProgress = false;
     }
 
+    public void setInProgress(boolean bool) {
+        this.inProgress = bool;
+    }
+
     public void selectMap(int i){
         System.out.println("Select Map "+i);
     }

@@ -1,6 +1,8 @@
 package nl.tudelft.jpacman.ui;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
@@ -189,7 +191,7 @@ public class PacManUI extends JFrame {
 
         buttonPanel = new ButtonPanel(buttons, this); 
         game.selectMap(lv_map-1);
-        game.getLevel().setInProgress(false);
+        //game.getLevel().setInProgress(false);
 
         game.getLevel().updateObservers();
         game.getLevel().start();
@@ -211,12 +213,35 @@ public class PacManUI extends JFrame {
 //        setUndecorated(true);
 
         boardPanel = new BoardPanel(game);
-        contentPanel.setLayout(new BorderLayout());
+        WaitMap waitmap = new WaitMap(game.getPlayers().get(0).getMap());
+        Timer timer = new Timer(2000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Container contentPane = getContentPane();
+                contentPanel.remove(waitmap);
+
+                contentPanel.setLayout(new BorderLayout());
+                contentPanel.add(boardPanel,BorderLayout.CENTER);
+                contentPanel.add(buttonPanel, BorderLayout.SOUTH);
+                contentPanel.add(scorePanel, BorderLayout.NORTH);
+
+                contentPanel.revalidate();
+                contentPanel.repaint();
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
+
+        Container contentPane = getContentPane();
+        contentPanel.add(waitmap);
+        pack();
+        setResizable(false);
+        /*contentPanel.setLayout(new BorderLayout());
         contentPanel.add(buttonPanel, BorderLayout.SOUTH);
         contentPanel.add(scorePanel, BorderLayout.NORTH);
         contentPanel.add(boardPanel, BorderLayout.CENTER);
         pack();
-        setResizable(false);
+        setResizable(false);*/
 
     }
 
@@ -302,10 +327,30 @@ public class PacManUI extends JFrame {
 
     public void PacManUI_PLAY_RANK(Game game) {
         contentPanel.removeAll();
-        contentPanel.add(buttonPanel, BorderLayout.SOUTH);
-        contentPanel.add(scorePanel, BorderLayout.NORTH);
+
+
         boardPanel = new BoardPanel(game);
         contentPanel.add(boardPanel, BorderLayout.CENTER);
+        WaitMap waitmap = new WaitMap(game.getPlayers().get(0).getMap());
+        Timer timer = new Timer(2000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Container contentPane = getContentPane();
+                contentPane.remove(waitmap);
+
+                contentPane.add(boardPanel);
+                contentPanel.add(buttonPanel, BorderLayout.SOUTH);
+                contentPanel.add(scorePanel, BorderLayout.NORTH);
+
+                contentPane.revalidate();
+                contentPane.repaint();
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
+
+        Container contentPane = getContentPane();
+        contentPane.add(waitmap);
         pack();
         setResizable(false);
     }
