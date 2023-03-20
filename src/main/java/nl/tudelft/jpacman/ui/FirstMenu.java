@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class FirstMenu extends JPanel {
-    private String path = "src/main/resources/main.jpg";
+    private String path = "src/main/resources/mainScreen.gif";
     private Image image = new ImageIcon(path).getImage();
     private JButton Play;
 
