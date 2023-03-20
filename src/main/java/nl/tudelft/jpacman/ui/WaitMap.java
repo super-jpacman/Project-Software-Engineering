@@ -17,7 +17,7 @@ public class WaitMap extends JPanel {
         JLabel background = new JLabel(img);
         add(background);
         System.out.println("Enter Class Waitmap");
-        setVisible(true);
+
         /*try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
