@@ -256,8 +256,8 @@ public class MultiLevelGame extends Game {
             System.out.println(temp);
             System.out.println(temp);
             PM.PacManUI_LOST("YOU LOSE",999,60);
-            PM.getBoardPanel().revalidate();
-            PM.getBoardPanel().repaint();
+//            PM.getBoardPanel().revalidate();
+//            PM.getBoardPanel().repaint();
             System.out.println(PM.getBoardPanel());
             player.setMap(1);
         }

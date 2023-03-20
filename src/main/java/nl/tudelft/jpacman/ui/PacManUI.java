@@ -157,6 +157,7 @@ public class PacManUI extends JFrame {
         setSize(368,336);
         setResizable(false);
         setLocationRelativeTo(null);
+        //Delete Bar
 
     }
     public PacManUI MainMenuUI(){
