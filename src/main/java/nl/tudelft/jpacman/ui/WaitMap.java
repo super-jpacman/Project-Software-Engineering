@@ -12,7 +12,7 @@ public class WaitMap extends JPanel {
 
         Dimension size = new Dimension(368, 336);
         setMinimumSize(size);
-        path = "src/main/resources/waitmap/waitmap"+ currentmap +".jpg";
+        path = "src/main/resources/waitmap/waitmap"+ currentmap +".gif";
         ImageIcon img = new ImageIcon(path);
         JLabel background = new JLabel(img);
         add(background);

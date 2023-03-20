@@ -36,7 +36,7 @@ public class MultiLevelGame extends Game {
     private final Object progressLock = new Object();
     private PacManUI PM;
     private Level level;
-    private boolean inProgress, status;
+    private boolean inProgress;
     private JPanel temp;
     public int getStartStage() {
         return StartStage;
@@ -60,7 +60,6 @@ public class MultiLevelGame extends Game {
         this.level = levels.get(StartStage);
         this.level.registerPlayer(player);
         this.inProgress = false;
-        this.status = false;
     }
     @Override
     public void levelWon() {
@@ -90,7 +89,7 @@ public class MultiLevelGame extends Game {
         setTotalTime(0);
         player.setAlive(true);
         List<Level> levels_ = createMap();
-        if (condition.equals('R')){
+        if (condition.equals("R")){
             levelNumber = 0;
             player.setMap(1);
         }else{
