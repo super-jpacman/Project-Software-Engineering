@@ -29,6 +29,7 @@ import nl.tudelft.jpacman.sprite.PacManSprites;
 import nl.tudelft.jpacman.ui.ScorePanel.ScoreFormatter;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
+import static nl.tudelft.jpacman.Launcher.theme;
 
 /**
  * The default JPacMan UI frame. The PacManUI consists of the following
@@ -186,6 +187,7 @@ public class PacManUI extends JFrame {
     }
 
     public void PLAY_AT_MAP(int lv_map) {
+        theme = lv_map;
 
         contentPanel.removeAll();
 
@@ -194,6 +196,9 @@ public class PacManUI extends JFrame {
         System.out.println("BTN: "+this.buttons);
         System.out.println("KEY: "+this.keyMappings);
         System.out.println("FOTMAT: "+this.scoreFormatter);
+        System.out.println("Theme: "+theme);
+
+        System.out.println("Theme: "+theme);
         System.out.println("=================================\n");
         buttonPanel = new ButtonPanel(buttons, this,this);
         game.selectMap(lv_map-1);

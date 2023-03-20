@@ -36,7 +36,7 @@ public class Player extends Unit {
     /**
      * The animations for every direction.
      */
-    private final Map<Direction, Sprite> sprites;
+    private Map<Direction, Sprite> sprites;
 
     /**
      * The animation that is to be played when Pac-Man dies.
@@ -134,6 +134,9 @@ public class Player extends Unit {
         return deathSprite;
     }
 
+    public void setSprites(Map<Direction, Sprite> spriteMap) {
+        this.sprites = spriteMap;
+    }
     /**
      * Adds points to the score of this player.
      *

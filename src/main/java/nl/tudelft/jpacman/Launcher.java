@@ -28,7 +28,7 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
  */
 @SuppressWarnings("PMD.TooManyMethods")
 public class Launcher {
-
+    public static int theme;
     private static PacManSprites SPRITE_STORE = new PacManSprites();
     public static String GAME_MODE_NOW = "";
     public static boolean MODAL = false;
