@@ -81,7 +81,7 @@ public class RankingMode extends JPanel {
 
         Start.setLayout(new FlowLayout());
         Start.setText("Start");
-        Start.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Start.setFont(new Font("Emulogic",Font.PLAIN,10));
         Start.setFocusPainted(false);
         Start.setBackground(Color.black);
         Start.setForeground(Color.white);
@@ -102,7 +102,7 @@ public class RankingMode extends JPanel {
 
         Leaderboard.setLayout(new FlowLayout());
         Leaderboard.setText("Leaderboard");
-        Leaderboard.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Leaderboard.setFont(new Font("Emulogic",Font.PLAIN,10));
         Leaderboard.setFocusPainted(false);
         Leaderboard.setBackground(Color.black);
         Leaderboard.setForeground(Color.white);
@@ -122,7 +122,7 @@ public class RankingMode extends JPanel {
 
         back.setLayout(new FlowLayout());
         back.setText("Back");
-        back.setFont(new Font("Emulogic",Font.PLAIN,12));
+        back.setFont(new Font("Emulogic",Font.PLAIN,10));
         back.setFocusPainted(false);
         back.setBackground(Color.black);
         back.setForeground(Color.white);
@@ -143,7 +143,7 @@ public class RankingMode extends JPanel {
         background.add(Leaderboard);
         background.add(back);
         setVisible(true);
-
+        PM.setResizable(false);
     }
     class RoundedButton implements Border {
         private int roundRadius;

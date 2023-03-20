@@ -18,6 +18,23 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class selectMap extends JPanel {
+    private String[] Map_Title = {"Map1 Desc"
+        ,"Map2 Desc"
+        ,"Map3 Desc"
+        ,"Map4 Desc"
+        ,"Map5 Desc"};
+
+    private String[] Theme = {"Theme 1"
+        ,"Theme 2"
+        ,"Theme 3"
+        ,"Theme 4"
+        ,"Theme 5"};
+
+    private String[] BG = {"src\\main\\resources\\img\\1.jpg",
+        "src\\main\\resources\\img\\2.jpg",
+        "src\\main\\resources\\img\\3.jpg",
+        "src\\main\\resources\\img\\4.jpg",
+        "src\\main\\resources\\img\\5.jpg"};
     private String path = "src/main/resources/main.jpg";
     private Image image = new ImageIcon(path).getImage();
     private JButton Map1;
@@ -102,6 +119,8 @@ public class selectMap extends JPanel {
         img_map.setBackground(Color.white);
         img_map.setOpaque(true);
         img_map.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
+        ImageIcon icon = new ImageIcon("src\\main\\resources\\img\\1.jpg");
+        img_map.setIcon(icon);
 
         // END SETTING
 
@@ -114,27 +133,26 @@ public class selectMap extends JPanel {
         Header.setBounds(86, 10, 600, 40);
 
         //Title
-        Title.setText("Map Story");
+        Title.setText(Map_Title[0]);
         Title.setForeground(new Color(0xFFFFFF));
         Title.setFont(new Font("Emulogic",Font.BOLD,14));
         Title.setIconTextGap(-60);
         Title.setBackground(new Color(1f,0f,0f,0f ));
-        Title.setOpaque(true);
+        Title.setOpaque(false);
         Title.setBounds(155, 190, 600, 40);
         //Theme
-        String theme = "Christmas";
-        Detail.setText("Theme : "+ theme);
+        Detail.setText("Theme : "+ Theme[0]);
         Detail.setForeground(new Color(0xFFFFFF));
         Detail.setFont(new Font("Emulogic",Font.BOLD,10));
         Detail.setIconTextGap(-60);
         Detail.setBackground(new Color(1f,0f,0f,0f ));
-        Detail.setOpaque(true);
+        Detail.setOpaque(false);
         Detail.setBounds(135, 220, 600, 40);
 
         Map5=new JButton();
         Map5.setLayout(new FlowLayout());
         Map5.setText("Map5");
-        Map5.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Map5.setFont(new Font("Emulogic",Font.PLAIN,10));
         Map5.setFocusPainted(false);
         Map5.setBackground(Color.black);
         Map5.setForeground(Color.white);
@@ -150,7 +168,11 @@ public class selectMap extends JPanel {
                 img_map.setBackground(Color.GREEN);
                 Map5.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
                 System.out.println("PASS Map5");
+                PM.setResizable(false);
                 Map_lv=5;
+                Title.setText(Map_Title[4]);
+                Detail.setText("Theme : "+Theme[4]);
+                setImageBackground(BG[4]);
 
             }
         });
@@ -158,7 +180,7 @@ public class selectMap extends JPanel {
         Map4=new JButton();
         Map4.setLayout(new FlowLayout());
         Map4.setText("Map4");
-        Map4.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Map4.setFont(new Font("Emulogic",Font.PLAIN,10));
         Map4.setFocusPainted(false);
         Map4.setBackground(Color.black);
         Map4.setForeground(Color.white);
@@ -175,18 +197,24 @@ public class selectMap extends JPanel {
                 Map4.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
 
                 System.out.println("PASS Map4");
+                PM.setResizable(false);
                 Map_lv=4;
+                Title.setText(Map_Title[3]);
+                setImageBackground(BG[3]);
+                Detail.setText("Theme : "+Theme[3]);
+
             }
         });
 
         Map3=new JButton();
         Map3.setLayout(new FlowLayout());
         Map3.setText("Map3");
-        Map3.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Map3.setFont(new Font("Emulogic",Font.PLAIN,10));
         Map3.setFocusPainted(false);
         Map3.setBackground(Color.black);
         Map3.setForeground(Color.white);
         Map3.setBorder(null);
+
 //        Map3.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
         Map3.setBounds(20, 130, 70, 30);
 //        BACK.setBorder(new RoundedButton(10));
@@ -199,7 +227,12 @@ public class selectMap extends JPanel {
 
                 img_map.setBackground(Color.CYAN);
                 System.out.println("PASS Map3");
+                PM.setResizable(false);
                 Map_lv=3;
+                Title.setText(Map_Title[2]);
+                setImageBackground(BG[2]);
+                Detail.setText("Theme : "+Theme[2]);
+
             }
         });
 
@@ -223,15 +256,19 @@ public class selectMap extends JPanel {
 
                 img_map.setBackground(Color.white);
                 System.out.println("PASS Map1");
+                PM.setResizable(false);
                 Map_lv=1;
+                Detail.setText("Theme : "+Theme[0]);
+                setImageBackground(BG[0]);
+                Title.setText(Map_Title[0]);
+
             }
         });
 
         Map2=new JButton();
-
         Map2.setLayout(new FlowLayout());
         Map2.setText("Map2");
-        Map2.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Map2.setFont(new Font("Emulogic",Font.PLAIN,10));
         Map2.setFocusPainted(false);
         Map2.setBackground(Color.black);
         Map2.setForeground(Color.white);
@@ -248,15 +285,18 @@ public class selectMap extends JPanel {
 
                 img_map.setBackground(Color.PINK);
                 System.out.println("PASS Map2");
+                PM.setResizable(false);
                 Map_lv=2;
-
+                Detail.setText("Theme : "+Theme[1]);
+                Title.setText(Map_Title[1]);
+                setImageBackground(BG[1]);
             }
         });
 
         NEXT=new JButton();
         NEXT.setLayout(new FlowLayout());
         NEXT.setText("NEXT");
-        NEXT.setFont(new Font("Emulogic",Font.PLAIN,12));
+        NEXT.setFont(new Font("Emulogic",Font.PLAIN,10));
         NEXT.setFocusPainted(false);
         NEXT.setBackground(Color.black);
         NEXT.setForeground(Color.white);
@@ -273,14 +313,19 @@ public class selectMap extends JPanel {
                 NEXT.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
 
                 System.out.println("PASS NEXT");
-                Move_Map(Map_lv,PM);
+                PM.setResizable(false);
+                try {
+                    Move_Map(Map_lv,PM);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
         BACK=new JButton();
         BACK.setLayout(new FlowLayout());
         BACK.setText("BACK");
-        BACK.setFont(new Font("Emulogic",Font.PLAIN,12));
+        BACK.setFont(new Font("Emulogic",Font.PLAIN,10));
         BACK.setFocusPainted(false);
         BACK.setBackground(Color.black);
         BACK.setForeground(Color.white);
@@ -296,6 +341,7 @@ public class selectMap extends JPanel {
                 BACK.setForeground(Color.BLACK);
                 BACK.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
                 System.out.println("PASS BACK");
+                PM.setResizable(false);
                 PM.GAME_MODE();
 
             }
@@ -313,7 +359,6 @@ public class selectMap extends JPanel {
         background.add(Map2);
         background.add(Map1);
         setVisible(true);
-
     }
     class RoundedButton implements Border {
         private int roundRadius;
@@ -396,7 +441,7 @@ public class selectMap extends JPanel {
         private final String _hint;
     }
 
-    public void Move_Map(int map,PacManUI PM){
+    public void Move_Map(int map,PacManUI PM) throws InterruptedException {
         this.PM=PM;
         this.PM.PLAY_AT_MAP(map);
 
@@ -407,6 +452,10 @@ public class selectMap extends JPanel {
         Map3.setBorder(null);
         Map4.setBorder(null);
         Map5.setBorder(null);
+    }
+    public void setImageBackground(String i){
+        ImageIcon newIcon = new ImageIcon(i);
+        img_map.setIcon(newIcon);
     }
 
 //    public static void main(String[] args) throws IOException {

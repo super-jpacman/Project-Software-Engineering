@@ -1,5 +1,6 @@
 package nl.tudelft.jpacman.ui;
 
+import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.game.Game;
 
 import javax.swing.*;
@@ -34,12 +35,9 @@ public class CasualEnding extends JPanel {
     // default constructor
     public CasualEnding(String Text_Header, int Text_Score, double totalTime,PacManUI PM)
     {
-        Dimension size = new Dimension(368, 336);
-        setMinimumSize(size);
-
+        Launcher.MODAL = true;
         this.Text_Header=Text_Header;
         this.Text_Score=Text_Score;
-
         ImageIcon img = new ImageIcon(path);
         JLabel background = new JLabel(img);
 //        background.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
@@ -53,12 +51,12 @@ public class CasualEnding extends JPanel {
         Header.setText(Text_Header);
 
         Header.setForeground(new Color(0xFFFFFF));
-        Header.setFont(new Font("Emulogic",Font.BOLD,50));
+        Header.setFont(new Font("Emulogic",Font.BOLD,35));
 
-        Header.setIconTextGap(-60);
+//        Header.setIconTextGap(-60);
         Header.setBackground(new Color(1f,0f,0f,0f ));
         Header.setOpaque(true);
-        Header.setBounds(60, 20, 600, 40);
+        Header.setBounds(20, 20, 300, 35);
 
         Score.setLayout(new FlowLayout());
         Score.setText("Score "+String.valueOf(Text_Score));
@@ -67,32 +65,18 @@ public class CasualEnding extends JPanel {
         Score.setAlignmentX(JLabel.CENTER);
 
         Score.setForeground(new Color(0xFFFFFF));
-        Score.setFont(new Font("Emulogic",Font.PLAIN,32));
+        Score.setFont(new Font("Emulogic",Font.PLAIN,25));
 
-        Score.setIconTextGap(-60);
+//        Score.setIconTextGap(-60);
         Score.setBackground(new Color(1f,0f,0f,0f ));
         Score.setOpaque(true);
-        Score.setBounds(110, 90, 420, 30);
-
-        BackBTN.setLayout(new FlowLayout());
-        BackBTN.setText("BACK");
-        BackBTN.setFocusPainted(false);
-        BackBTN.setBounds(130, 280, 100, 30);
-        BackBTN.setBorder(new RoundedButton(10));
-        BackBTN.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // back to home
-                System.out.println("PASS BACK");
-                PM.GAMAE_CASUAL();
-            }
-        });
+        Score.setBounds(50, 90, 300, 30);
+        this.setBackground(Color.black);
         background.add(Header);
         background.add(Score);
         background.add(BackBTN);
         setVisible(true);
-
+        PM.setResizable(false);
     }
     class RoundedButton implements Border {
         private int roundRadius;

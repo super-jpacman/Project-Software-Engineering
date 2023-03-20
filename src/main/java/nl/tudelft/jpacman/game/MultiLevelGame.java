@@ -77,14 +77,20 @@ public class MultiLevelGame extends Game {
     public void levelWon() {
 
         stop();
-
-        if(levelNumber>=4){
-            Player p = getPlayers().get(0);
-            GE = new GameEnd("You Won !!",p.getScore(),getTotalTime(),PM);
+        if (Launcher.GAME_MODE_NOW=="CASUAL"){
+            restart();
+            Launcher.GAME_MODE_NOW="";
+            PM.GAMAE_CASUAL();
         }else{
-            start();
-        }
+            if(levelNumber>=4){
+                Player p = getPlayers().get(0);
+                GE = new GameEnd("You Won !!",p.getScore(),getTotalTime(),PM);
+            }else{
+                start();
+            }
 //        getLevel().stop();
+        }
+
     }
     @Override
     public void restart() {
@@ -92,6 +98,8 @@ public class MultiLevelGame extends Game {
             GE.setVisible(false);
             GE=null;
         }
+        stop();
+
         if(Launcher.GAME_MODE_NOW=="RANK"){
             System.out.println("RANKING RESTART");
             player.setScore(0);
@@ -111,10 +119,12 @@ public class MultiLevelGame extends Game {
             level.registerPlayer(player);
             inProgress = false;
             getLevel().addObserver(this);
+
             getLevel().stop();
+
             PM.PacManUI_PLAY_RANK(this);
         }else if(Launcher.GAME_MODE_NOW=="CASUAL"){
-            System.out.println("RANKING RESTART");
+            System.out.println("CASUAL RESTART");
             player.setScore(0);
             setTotalTime(0);
             player.setAlive(true);
@@ -127,15 +137,16 @@ public class MultiLevelGame extends Game {
             levelNumber = player.getMap();
             player.setMap(levelNumber);
             levels.clear();
+            System.out.println(levelNumber);
             levels.addAll(levels_);
             level = levels.get(0);
             level.registerPlayer(player);
             inProgress = false;
+
             getLevel().addObserver(this);
             getLevel().stop();
             PM.PLAY_AT_MAP(player.getMap());
         }
-
 
 
     }
@@ -172,17 +183,22 @@ public class MultiLevelGame extends Game {
 
             }
 
-
             // Continue to next level
             if (levelNumber < levels.size() - 1
                 && getLevel().remainingPellets() == 0
                 && getLevel().isAnyPlayerAlive())
             {
                 levelNumber++;
-                System.out.println("#######################");
+                System.out.println("⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽");
                 System.out.println(levelNumber);
-                selectMap(levelNumber);
-                System.out.println("#######################");
+
+                if(Launcher.GAME_MODE_NOW=="CASUAL"){
+                    PM.GAMAE_CASUAL();
+                }else{
+                    selectMap(levelNumber);
+                }
+
+
 //                player.setMap(levelNumber+1);
 //                level = levels.get(levelNumber);
 //                level.registerPlayer(player);
@@ -193,7 +209,7 @@ public class MultiLevelGame extends Game {
         }
     }
     @Override
-    public void selectMap(int i){
+    public void selectMap(int i) {
         if (isInProgress()) {
             return;
         }
@@ -222,7 +238,8 @@ public class MultiLevelGame extends Game {
         System.out.println("=================================\n");
     }
     public void levelLost() {
-
+        System.out.println("🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁");
+        stop();
         if (getTotalTime()>60.0){
             int minutes = (int)getTotalTime()/60;
             int remainingSec = (int)getTotalTime()%60;
@@ -230,20 +247,35 @@ public class MultiLevelGame extends Game {
         }else {
             System.out.println(getTotalTime());
         }
-        stop();
+
         Player p = getPlayers().get(0);
 
-//        System.out.println(p.getScore());
-//        System.out.println(player.isAlive());
-        temp = PM.getBoardPanel();
-        PM.setBoardPanel(new CasualEnding("TEST",999,60,PM));
-        System.out.println(temp);
-        PM.PacManUI_LOST("YOU LOSE",999,60);
-        PM.getBoardPanel().revalidate();
-        PM.getBoardPanel().repaint();
-        System.out.println(PM.getBoardPanel());
+        if (Launcher.GAME_MODE_NOW=="CASUAL"){
+            temp = PM.getBoardPanel();
+            PM.setBoardPanel(new CasualEnding("TEST",999,60,PM));
+            System.out.println(temp);
+            System.out.println(temp);
+            PM.getGame().restart();
+            PM.getGame().stop();
+            PM.PacManUI_LOST("YOU LOSE",999,60);
+            PM.getBoardPanel().revalidate();
+            PM.getBoardPanel().repaint();
+            System.out.println(PM.getBoardPanel());
 //        GE = new GameEnd("You Lose !!",p.getScore(),getTotalTime(),PM);
-        player.setMap(1);
+//            player.setMap(player.getMap());
+        }
+        else{
+            temp = PM.getBoardPanel();
+            PM.setBoardPanel(new CasualEnding("TEST",999,60,PM));
+            PM.getGame().restart();
+            PM.getGame().stop();
+            PM.PacManUI_LOST("YOU LOSE",999,60);
+            PM.getBoardPanel().revalidate();
+            PM.getBoardPanel().repaint();
+            System.out.println(PM.getBoardPanel());
+            player.setMap(1);
+        }
+
     }
     @Override
     public void stop() {

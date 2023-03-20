@@ -30,7 +30,11 @@ class PacKeyListener implements KeyListener {
         assert event != null;
         Action action = mappings.get(event.getKeyCode());
         if (action != null) {
-            action.doAction();
+            try {
+                action.doAction();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

@@ -1,12 +1,13 @@
 package nl.tudelft.jpacman.ui;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.level.Player;
@@ -30,14 +31,15 @@ public class ScorePanel extends JPanel {
      */
     private final Map<Player, JLabel> scoreLabels;
     private final Map<Player, JLabel> mapLabels;
-
+    private JButton BACK;
+    private JButton HIDE;
     /**
      * The default way in which the score is shown.
      */
     public static final ScoreFormatter DEFAULT_SCORE_FORMATTER =
         (Player player) -> String.format("Score: %3d     ", player.getScore());
     public static final ScoreFormatter DEFAULT_MAP_FORMATTER =
-        (Player player) -> String.format("   Map : %d", player.getMap());
+        (Player player) -> String.format("   Map %d", player.getMap());
     /**
      * The way to format the score information.
      */
@@ -51,32 +53,77 @@ public class ScorePanel extends JPanel {
      * @param players
      *            The players to display the scores of.
      */
-    public ScorePanel(List<Player> players) {
+    public ScorePanel(List<Player> players,PacManUI PM) {
         super();
         assert players != null;
 //        System.out.println("==========+= "+players.get(0).getMap());
-        setLayout(new BorderLayout());
-//        JMap = new JLabel("MAP " + String.valueOf(players.get(0).getMap()), JLabel.CENTER);
-//        add(JMap);
-//        for (int i = 1; i <= players.size(); i++) {
-//
-//            add(new JLabel("MAP " + Launcher.map, JLabel.CENTER));
-//        }
+        setLayout(new GridLayout(1,4,0,0));
+
+        this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.white));
+        BACK=new JButton();
+        HIDE=new JButton("HIDE");
+        HIDE.setVisible(false);
+        BACK.setText(" BACK");
+        BACK.setFont(new Font("Emulogic",Font.BOLD,10));
+        BACK.setFocusPainted(false);
+        BACK.setBackground(Color.white);
+//        BACK.setBorder(new RoundedButton(10));
+        BACK.setForeground(Color.black);
+//        BACK.setBounds(10, 0, 80, 20);
+        BACK.setBorder(BorderFactory.createMatteBorder(1, 1, 2, 2, Color.black));
+        BACK.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // back to home
+                System.out.println("PASS BACK");
+                Launcher.MODAL = false;
+                if(Launcher.GAME_MODE_NOW=="RANK"){
+                    PM.getGame().stop();
+                        PM.getGame().restart();
+                    Launcher.GAME_MODE_NOW="";
+                    System.out.println("WTF"+Launcher.GAME_MODE_NOW);
+                    PM.getGame().getLevel().updateObservers();
+                    PM.getGame().getLevel().start();
+                    PM.getGame().getLevel().stop();
+                    PM.MainMenuUI();
+                }else if(Launcher.GAME_MODE_NOW=="CASUAL"){
+                    PM.getGame().stop();
+                        PM.getGame().restart();
+                    Launcher.GAME_MODE_NOW="";
+                    System.out.println("WTF"+Launcher.GAME_MODE_NOW);
+                    PM.getGame().getLevel().setInProgress(false);
+                PM.getGame().getLevel().updateObservers();
+                PM.getGame().getLevel().start();
+                PM.getGame().getLevel().stop();
+                Launcher.GAME_MODE_NOW="";
+                    PM.MainMenuUI();
+                }
+
+
+            }
+        });
         mapLabels = new LinkedHashMap<>();
         for (Player player : players) {
             JLabel mapLabel = new JLabel(mapFormatter.format(player), JLabel.CENTER);
             mapLabels.put(player, mapLabel);
+            mapLabel.setForeground(Color.black);
+            mapLabel.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.white));
             mapLabel.setFont(new Font("Serif", Font.BOLD, 18));
 
-            add(mapLabel,BorderLayout.LINE_START);
+            add(mapLabel,BorderLayout.CENTER);
         }
         scoreLabels = new LinkedHashMap<>();
         for (Player player : players) {
             JLabel scoreLabel = new JLabel("0", JLabel.CENTER);
-
+            scoreLabel.setForeground(Color.black);
             scoreLabels.put(player, scoreLabel);
+            scoreLabel.setFont(new Font("Serif", Font.BOLD, 14));
+            scoreLabel.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.white));
             add(scoreLabel,BorderLayout.LINE_END);
         }
+        this.setBackground(Color.white);
+        add(HIDE,BorderLayout.LINE_START);
+        add(BACK,BorderLayout.LINE_START);
     }
 
     /**

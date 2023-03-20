@@ -13,7 +13,7 @@ public class PlayerFactory {
      * The sprite store containing the Pac-Man sprites.
      */
     private final PacManSprites sprites;
-
+    private Player P;
     /**
      * Creates a new player factory.
      *
@@ -41,4 +41,5 @@ public class PlayerFactory {
     protected PacManSprites getSprites() {
         return sprites;
     }
+
 }

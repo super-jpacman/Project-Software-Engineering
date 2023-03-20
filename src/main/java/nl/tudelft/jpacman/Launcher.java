@@ -29,9 +29,10 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
 @SuppressWarnings("PMD.TooManyMethods")
 public class Launcher {
 
-    private static final PacManSprites SPRITE_STORE = new PacManSprites();
+    private static PacManSprites SPRITE_STORE = new PacManSprites();
     public static String GAME_MODE_NOW = "";
-    public static int map = 1;
+    public static boolean MODAL = false;
+    public static String THEME = "/sprite/pacman.png";
     public static final String DEFAULT_MAP = "/board.txt";
     private String levelMap = DEFAULT_MAP;
 

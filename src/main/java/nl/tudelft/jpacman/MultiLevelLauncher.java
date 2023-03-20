@@ -17,7 +17,7 @@ public class MultiLevelLauncher extends Launcher {
 
     private static final int NUMBER_OF_LEVELS = 5;
 
-
+    private Player player;
     private MultiLevelGame multiGame;
 
     @Override
@@ -65,12 +65,12 @@ public class MultiLevelLauncher extends Launcher {
         getPacManUI().start();
 
     }
-    public void selectMap(int i){}
+    public void selectMap(int i) throws InterruptedException {}
 
     @Override
     public MultiLevelGame makeGame() {
         try{
-            Player player = getPlayerFactory().createPacMan();
+            player = getPlayerFactory().createPacMan();
             List<Level> levels = new ArrayList<>();
             for (int i = 1; i < NUMBER_OF_LEVELS+1; i++) {
                 String _INDEX_MAP_ = String.valueOf(i);
