@@ -23,7 +23,10 @@ public class GameMode extends JPanel {
     private String path = "src/main/resources/main.jpg";
     private Image image = new ImageIcon(path).getImage();
     private JButton CasualMode;
+    String[] Desc_Text = {"This is Ranking Mode","This is Casual Mode"};
+
     private JButton RankingMode;
+    private JLabel Desc;
 
     private JButton BACK;
 
@@ -65,6 +68,9 @@ public class GameMode extends JPanel {
         this.Text_Header=Text_Header;
         this.Text_Score=Text_Score;
 
+        Desc = new JLabel("Description");
+
+
         ImageIcon img = new ImageIcon(path);
         JLabel background = new JLabel(img);
         Header=new JLabel("Header");
@@ -78,6 +84,15 @@ public class GameMode extends JPanel {
         Header.setBackground(new Color(1f,0f,0f,0f ));
         Header.setOpaque(true);
         Header.setBounds(90, 10, 600, 40);
+
+        Desc.setText("");
+        Desc.setForeground(new Color(0xFFFFFF));
+        Desc.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Desc.setIconTextGap(-60);
+        Desc.setBackground(new Color(1f,0f,0f,0f ));
+        Desc.setOpaque(false);
+        Desc.setBounds(70, 70, 600, 40);
+
 
         BACK=new JButton();
         BACK.setLayout(new FlowLayout());
@@ -122,6 +137,14 @@ public class GameMode extends JPanel {
                 PM.GAMAE_CASUAL();
             }
         });
+        CasualMode.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Desc.setText(Desc_Text[1]);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Desc.setText("");
+            }
+        });
 
         RankingMode=new JButton();
 
@@ -151,11 +174,20 @@ public class GameMode extends JPanel {
 
             }
         });
+        RankingMode.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Desc.setText(Desc_Text[0]);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Desc.setText("");
+            }
+        });
 
         background.add(BACK);
         background.add(Header);
         background.add(RankingMode);
         background.add(CasualMode);
+        background.add(Desc);
         setVisible(true);
         PM.setResizable(false);
     }
