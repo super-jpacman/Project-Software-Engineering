@@ -65,7 +65,7 @@ public class MultiLevelLauncher extends Launcher {
         getPacManUI().start();
 
     }
-    public void selectMap(int i){}
+    public void selectMap(int i) throws InterruptedException {}
 
     @Override
     public MultiLevelGame makeGame() {

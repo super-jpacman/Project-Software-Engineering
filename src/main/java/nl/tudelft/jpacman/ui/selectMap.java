@@ -279,7 +279,11 @@ public class selectMap extends JPanel {
 
                 System.out.println("PASS NEXT");
                 PM.setResizable(false);
-                Move_Map(Map_lv,PM);
+                try {
+                    Move_Map(Map_lv,PM);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
@@ -402,7 +406,7 @@ public class selectMap extends JPanel {
         private final String _hint;
     }
 
-    public void Move_Map(int map,PacManUI PM){
+    public void Move_Map(int map,PacManUI PM) throws InterruptedException {
         this.PM=PM;
         this.PM.PLAY_AT_MAP(map);
 

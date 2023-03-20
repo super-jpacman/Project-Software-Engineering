@@ -48,13 +48,13 @@ public abstract class Game extends MultiLevelLauncher implements LevelObserver {
         inProgress = false;
     }
 
-    public void selectMap(int i){
+    public void selectMap(int i) {
         System.out.println("Select Map "+i);
     }
     /**
      * Starts or resumes the game.
      */
-    public void start() {
+    public void start() throws InterruptedException {
         System.out.println("2💤💤💤💤💤💤💤");
         synchronized (progressLock) {
             if (isInProgress()) {
@@ -119,11 +119,13 @@ public abstract class Game extends MultiLevelLauncher implements LevelObserver {
 
     @Override
     public void levelWon() {
+        System.out.println("🛹🛹🛹🛹🛹🛹🛹");
         stop();
     }
 
     @Override
     public void levelLost() {
+        System.out.println("🛹🛹🛹🛹🛹🛹🛹");
         stop();
 
     }

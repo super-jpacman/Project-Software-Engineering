@@ -1,12 +1,15 @@
 package nl.tudelft.jpacman.ui;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -24,6 +27,8 @@ import nl.tudelft.jpacman.npc.ghost.GhostFactory;
 import nl.tudelft.jpacman.points.PointCalculatorLoader;
 import nl.tudelft.jpacman.sprite.PacManSprites;
 import nl.tudelft.jpacman.ui.ScorePanel.ScoreFormatter;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
  * The default JPacMan UI frame. The PacManUI consists of the following
@@ -157,11 +162,14 @@ public class PacManUI extends JFrame {
         setSize(368,336);
         setResizable(false);
         setLocationRelativeTo(null);
+        //Delete Bar
 
     }
     public PacManUI MainMenuUI(){
         contentPanel.removeAll();
 //        setSize(368,336);
+        game.getPlayers().get(0).setMap(1);
+
         contentPanel.add(new FirstMenu(this), BorderLayout.CENTER);
         pack();
         setResizable(false);
@@ -178,6 +186,17 @@ public class PacManUI extends JFrame {
     }
 
     public void PLAY_AT_MAP(int lv_map) {
+
+
+        /// TRANFERATION MAP
+        // contentPanel.removeAll();
+//        contentPanel.setLayout(new BorderLayout());
+//        contentPanel.add(new WaitMap(1), BorderLayout.CENTER);
+//        pack();
+//        setResizable(false);
+        ///
+
+        ////
         contentPanel.removeAll();
         System.out.println("================PLAY_AT_MAP=================");
         System.out.println("GAME: "+this.game);
@@ -185,11 +204,9 @@ public class PacManUI extends JFrame {
         System.out.println("KEY: "+this.keyMappings);
         System.out.println("FOTMAT: "+this.scoreFormatter);
         System.out.println("=================================\n");
-
-        buttonPanel = new ButtonPanel(buttons, this); 
+        buttonPanel = new ButtonPanel(buttons, this);
         game.selectMap(lv_map-1);
         game.getLevel().setInProgress(false);
-
         game.getLevel().updateObservers();
         game.getLevel().start();
         game.getLevel().stop();

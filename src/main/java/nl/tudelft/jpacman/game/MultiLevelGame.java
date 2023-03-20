@@ -92,6 +92,7 @@ public class MultiLevelGame extends Game {
             GE.setVisible(false);
             GE=null;
         }
+
         if(Launcher.GAME_MODE_NOW=="RANK"){
             System.out.println("RANKING RESTART");
             player.setScore(0);
@@ -111,7 +112,9 @@ public class MultiLevelGame extends Game {
             level.registerPlayer(player);
             inProgress = false;
             getLevel().addObserver(this);
+
             getLevel().stop();
+
             PM.PacManUI_PLAY_RANK(this);
         }else if(Launcher.GAME_MODE_NOW=="CASUAL"){
             System.out.println("CASUAL RESTART");
@@ -132,6 +135,7 @@ public class MultiLevelGame extends Game {
             level = levels.get(0);
             level.registerPlayer(player);
             inProgress = false;
+
             getLevel().addObserver(this);
             getLevel().stop();
             PM.PLAY_AT_MAP(player.getMap());
@@ -178,10 +182,16 @@ public class MultiLevelGame extends Game {
                 && getLevel().isAnyPlayerAlive())
             {
                 levelNumber++;
-                System.out.println("#######################");
+                System.out.println("⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽");
                 System.out.println(levelNumber);
-                selectMap(levelNumber);
-                System.out.println("#######################");
+
+                if(Launcher.GAME_MODE_NOW=="CASUAL"){
+                    PM.GAMAE_CASUAL();
+                }else{
+                    selectMap(levelNumber);
+                }
+
+
 //                player.setMap(levelNumber+1);
 //                level = levels.get(levelNumber);
 //                level.registerPlayer(player);
@@ -192,7 +202,7 @@ public class MultiLevelGame extends Game {
         }
     }
     @Override
-    public void selectMap(int i){
+    public void selectMap(int i) {
         if (isInProgress()) {
             return;
         }
@@ -256,8 +266,8 @@ public class MultiLevelGame extends Game {
             System.out.println(temp);
             System.out.println(temp);
             PM.PacManUI_LOST("YOU LOSE",999,60);
-            PM.getBoardPanel().revalidate();
-            PM.getBoardPanel().repaint();
+//            PM.getBoardPanel().revalidate();
+//            PM.getBoardPanel().repaint();
             System.out.println(PM.getBoardPanel());
             player.setMap(1);
         }

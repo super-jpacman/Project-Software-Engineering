@@ -38,7 +38,11 @@ class ButtonPanel extends JPanel {
             btn.add(JB);
 
             btn.get(count).addActionListener(e -> {
-                buttons.get(caption).doAction();
+                try {
+                    buttons.get(caption).doAction();
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
                 parent.requestFocusInWindow();
             });
             add(btn.get(count));

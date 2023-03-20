@@ -10,5 +10,5 @@ public interface Action {
     /**
      * Executes the action.
      */
-    void doAction();
+    void doAction() throws InterruptedException;
 }
