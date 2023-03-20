@@ -54,7 +54,7 @@ public abstract class Game extends MultiLevelLauncher implements LevelObserver {
     /**
      * Starts or resumes the game.
      */
-    public void start() throws InterruptedException {
+    public void start() {
         System.out.println("2💤💤💤💤💤💤💤");
         synchronized (progressLock) {
             if (isInProgress()) {

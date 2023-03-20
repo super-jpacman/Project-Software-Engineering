@@ -1,5 +1,7 @@
 package nl.tudelft.jpacman.ui;
 
+import nl.tudelft.jpacman.Launcher;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Map;
@@ -19,16 +21,26 @@ class ButtonPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private ArrayList<JButton> btn = new ArrayList<JButton>();
 
+    public int getCount() {
+        return count;
+    }
+    private PacManUI PM;
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    private int count =0;
     /**
      * Create a new button panel with a button for every action.
      * @param buttons The map of caption - action for each button.
      * @param parent The parent frame, used to return window focus.
      */
-    ButtonPanel(Map<String, Action> buttons, final JFrame parent) {
+    ButtonPanel(Map<String, Action> buttons,JFrame parent,PacManUI PM) {
         super();
+        this.PM = PM;
         assert buttons != null;
         assert parent != null;
-        int count =0;
+        count =0;
         setLayout(new GridLayout(1,4,50,50));
         for (final String caption : buttons.keySet()) {
             JButton JB = new JButton(caption);
@@ -38,11 +50,20 @@ class ButtonPanel extends JPanel {
             btn.add(JB);
 
             btn.get(count).addActionListener(e -> {
-                try {
-                    buttons.get(caption).doAction();
-                } catch (InterruptedException ex) {
-                    throw new RuntimeException(ex);
-                }
+//                System.out.println(count+"GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"+Launcher.MODAL);
+//                if(count == 2){
+//                    Launcher.MODAL = false;
+//                    PM.getGame().restart();
+//                    System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG");
+//                }
+//                if(!Launcher.MODAL){
+                    try {
+                        buttons.get(caption).doAction();
+                    } catch (InterruptedException ex) {
+                        throw new RuntimeException(ex);
+                    }
+//                }
+
                 parent.requestFocusInWindow();
             });
             add(btn.get(count));

@@ -76,17 +76,26 @@ public class ScorePanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS BACK");
+                Launcher.MODAL = false;
                 if(Launcher.GAME_MODE_NOW=="RANK"){
                     PM.getGame().stop();
                         PM.getGame().restart();
                     Launcher.GAME_MODE_NOW="";
                     System.out.println("WTF"+Launcher.GAME_MODE_NOW);
+                    PM.getGame().getLevel().updateObservers();
+                    PM.getGame().getLevel().start();
+                    PM.getGame().getLevel().stop();
                     PM.MainMenuUI();
                 }else if(Launcher.GAME_MODE_NOW=="CASUAL"){
                     PM.getGame().stop();
                         PM.getGame().restart();
                     Launcher.GAME_MODE_NOW="";
                     System.out.println("WTF"+Launcher.GAME_MODE_NOW);
+                    PM.getGame().getLevel().setInProgress(false);
+                PM.getGame().getLevel().updateObservers();
+                PM.getGame().getLevel().start();
+                PM.getGame().getLevel().stop();
+                Launcher.GAME_MODE_NOW="";
                     PM.MainMenuUI();
                 }
 

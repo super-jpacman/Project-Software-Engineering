@@ -142,7 +142,7 @@ public class PacManUI extends JFrame {
         PacKeyListener keys = new PacKeyListener(keyMappings);
         addKeyListener(keys);
 
-        buttonPanel = new ButtonPanel(buttons, this);
+        buttonPanel = new ButtonPanel(buttons, this,this);
 
         scorePanel = new ScorePanel(game.getPlayers(),this);
         if (scoreFormatter != null) {
@@ -187,24 +187,15 @@ public class PacManUI extends JFrame {
 
     public void PLAY_AT_MAP(int lv_map) {
 
-
-        /// TRANFERATION MAP
-        // contentPanel.removeAll();
-//        contentPanel.setLayout(new BorderLayout());
-//        contentPanel.add(new WaitMap(1), BorderLayout.CENTER);
-//        pack();
-//        setResizable(false);
-        ///
-
-        ////
         contentPanel.removeAll();
+
         System.out.println("================PLAY_AT_MAP=================");
         System.out.println("GAME: "+this.game);
         System.out.println("BTN: "+this.buttons);
         System.out.println("KEY: "+this.keyMappings);
         System.out.println("FOTMAT: "+this.scoreFormatter);
         System.out.println("=================================\n");
-        buttonPanel = new ButtonPanel(buttons, this);
+        buttonPanel = new ButtonPanel(buttons, this,this);
         game.selectMap(lv_map-1);
         game.getLevel().setInProgress(false);
         game.getLevel().updateObservers();
@@ -276,7 +267,7 @@ public class PacManUI extends JFrame {
         PacKeyListener keys = new PacKeyListener(keyMappings);
         addKeyListener(keys);
 
-        buttonPanel = new ButtonPanel(buttons, this);
+        buttonPanel = new ButtonPanel(buttons, this,this);
 
         scorePanel = new ScorePanel(game.getPlayers(),this);
         if (scoreFormatter != null) {

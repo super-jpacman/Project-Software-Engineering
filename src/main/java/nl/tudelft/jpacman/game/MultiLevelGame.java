@@ -77,14 +77,20 @@ public class MultiLevelGame extends Game {
     public void levelWon() {
 
         stop();
-
-        if(levelNumber>=4){
-            Player p = getPlayers().get(0);
-            GE = new GameEnd("You Won !!",p.getScore(),getTotalTime(),PM);
+        if (Launcher.GAME_MODE_NOW=="CASUAL"){
+            restart();
+            Launcher.GAME_MODE_NOW="";
+            PM.GAMAE_CASUAL();
         }else{
-            start();
-        }
+            if(levelNumber>=4){
+                Player p = getPlayers().get(0);
+                GE = new GameEnd("You Won !!",p.getScore(),getTotalTime(),PM);
+            }else{
+                start();
+            }
 //        getLevel().stop();
+        }
+
     }
     @Override
     public void restart() {
@@ -92,6 +98,7 @@ public class MultiLevelGame extends Game {
             GE.setVisible(false);
             GE=null;
         }
+        stop();
 
         if(Launcher.GAME_MODE_NOW=="RANK"){
             System.out.println("RANKING RESTART");
@@ -231,7 +238,8 @@ public class MultiLevelGame extends Game {
         System.out.println("=================================\n");
     }
     public void levelLost() {
-
+        System.out.println("🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁");
+        stop();
         if (getTotalTime()>60.0){
             int minutes = (int)getTotalTime()/60;
             int remainingSec = (int)getTotalTime()%60;
@@ -239,13 +247,9 @@ public class MultiLevelGame extends Game {
         }else {
             System.out.println(getTotalTime());
         }
-        stop();
 
         Player p = getPlayers().get(0);
 
-//        System.out.println(p.getScore());
-//        System.out.println(player.isAlive());
-        System.out.println(player.getMap());
         if (Launcher.GAME_MODE_NOW=="CASUAL"){
             temp = PM.getBoardPanel();
             PM.setBoardPanel(new CasualEnding("TEST",999,60,PM));
@@ -263,11 +267,11 @@ public class MultiLevelGame extends Game {
         else{
             temp = PM.getBoardPanel();
             PM.setBoardPanel(new CasualEnding("TEST",999,60,PM));
-            System.out.println(temp);
-            System.out.println(temp);
+            PM.getGame().restart();
+            PM.getGame().stop();
             PM.PacManUI_LOST("YOU LOSE",999,60);
-//            PM.getBoardPanel().revalidate();
-//            PM.getBoardPanel().repaint();
+            PM.getBoardPanel().revalidate();
+            PM.getBoardPanel().repaint();
             System.out.println(PM.getBoardPanel());
             player.setMap(1);
         }

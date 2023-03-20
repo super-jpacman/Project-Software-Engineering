@@ -1,6 +1,7 @@
 
 package nl.tudelft.jpacman.ui;
 
+import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.game.Game;
 
 import javax.swing.*;
@@ -140,7 +141,14 @@ public class GameMode extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS RankingMode");
+
+                PM.getGame().getLevel().setInProgress(false);
+                PM.getGame().getLevel().updateObservers();
+                PM.getGame().getLevel().start();
+                PM.getGame().getLevel().stop();
+                Launcher.GAME_MODE_NOW="";
                 PM.GAMAE_RANKING();
+
             }
         });
 

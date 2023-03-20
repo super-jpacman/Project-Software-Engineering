@@ -1,5 +1,6 @@
 package nl.tudelft.jpacman.ui;
 
+import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.game.Game;
 
 import javax.swing.*;
@@ -34,7 +35,7 @@ public class CasualEnding extends JPanel {
     // default constructor
     public CasualEnding(String Text_Header, int Text_Score, double totalTime,PacManUI PM)
     {
-
+        Launcher.MODAL = true;
         this.Text_Header=Text_Header;
         this.Text_Score=Text_Score;
         ImageIcon img = new ImageIcon(path);
