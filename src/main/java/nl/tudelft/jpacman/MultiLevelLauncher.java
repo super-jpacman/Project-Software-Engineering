@@ -74,6 +74,7 @@ public class MultiLevelLauncher extends Launcher {
             List<Level> levels = new ArrayList<>();
             for (int i = 1; i < NUMBER_OF_LEVELS+1; i++) {
                 String _INDEX_MAP_ = String.valueOf(i);
+                theme = i;
                 levels.add(makeLevel(_INDEX_MAP_));
             }
 

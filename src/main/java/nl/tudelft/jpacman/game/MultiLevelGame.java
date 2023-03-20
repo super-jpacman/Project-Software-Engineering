@@ -5,6 +5,7 @@ import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
+import nl.tudelft.jpacman.sprite.PacManSprites;
 import nl.tudelft.jpacman.ui.GameEnd;
 import nl.tudelft.jpacman.ui.PacManUI;
 import nl.tudelft.jpacman.ui.CasualEnding;
@@ -18,6 +19,8 @@ public class MultiLevelGame extends Game {
     StopWatch stopWatch = new StopWatch();
     private int totalScore=0;
     private double totalTime=0;
+    private final PacManSprites sprites = new PacManSprites();
+
 
     public int getTotalScore() {
         return totalScore;
@@ -188,6 +191,9 @@ public class MultiLevelGame extends Game {
                 && getLevel().remainingPellets() == 0
                 && getLevel().isAnyPlayerAlive())
             {
+                theme = getPlayers().get(0).getMap() + 1;
+                setSkin("/sprite/theme/"+theme+"/pacman.png");
+
                 levelNumber++;
                 System.out.println("⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽");
                 System.out.println(levelNumber);
@@ -321,7 +327,10 @@ public class MultiLevelGame extends Game {
     public Level getLevel() {
         return level;
     }
-
+    public void setSkin(String skin) {
+        this.sprites.setPacmanSkin(skin);
+        this.player.setSprites(sprites.getPacmanSprites());
+    }
     public int getLevelNumber() {
         return this.levelNumber;
     }

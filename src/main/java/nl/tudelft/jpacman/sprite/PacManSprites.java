@@ -8,10 +8,12 @@ import nl.tudelft.jpacman.PacmanConfigurationException;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.npc.ghost.GhostColor;
 
+import static nl.tudelft.jpacman.Launcher.theme;
+
 /**
  * Sprite Store containing the classic Pac-Man sprites.
  *
- * @author Jeroen Roosen 
+ * @author Jeroen Roosen
  */
 public class PacManSprites extends SpriteStore {
 
@@ -25,6 +27,9 @@ public class PacManSprites extends SpriteStore {
         Direction.SOUTH,
         Direction.WEST
     };
+
+    private String pacmanSkin = "/sprite/theme/1/pacman.png";
+
 
     /**
      * The image size in pixels.
@@ -51,11 +56,16 @@ public class PacManSprites extends SpriteStore {
      */
     private static final int ANIMATION_DELAY = 200;
 
+
     /**
      * @return A map of animated Pac-Man sprites for all directions.
      */
     public Map<Direction, Sprite> getPacmanSprites() {
-        return directionSprite("/sprite/pacman.png", PACMAN_ANIMATION_FRAMES);
+        return directionSprite(pacmanSkin, PACMAN_ANIMATION_FRAMES);
+    }
+
+    public void setPacmanSkin(String pacmanSkin) {
+        this.pacmanSkin = pacmanSkin;
     }
 
     /**
@@ -105,31 +115,45 @@ public class PacManSprites extends SpriteStore {
      */
     public Map<Direction, Sprite> getGhostSprite(GhostColor color) {
         assert color != null;
+        String resource;
 
-        String resource = "/sprite/ghost_" + color.name().toLowerCase()
-            + ".png";
-        return directionSprite(resource, GHOST_ANIMATION_FRAMES);
+
+        if(theme > 1){
+            resource = "/sprite/theme/"+theme+"/"+"ghost_" + color.name().toLowerCase() + ".png";
+            return directionSprite(resource, GHOST_ANIMATION_FRAMES);}
+        else {
+            resource = "/sprite/theme/"+theme+"/"+"ghost_" + color.name().toLowerCase() + ".png";
+            return directionSprite(resource, GHOST_ANIMATION_FRAMES);}
     }
 
     /**
      * @return The sprite for the wall.
      */
     public Sprite getWallSprite() {
-        return loadSprite("/sprite/wall.png");
+        if(theme > 1){
+            return loadSprite("/sprite/theme/"+theme+"/wall.png");}
+        else {
+            return loadSprite("/sprite/theme/"+theme+"/wall.png");}
     }
 
     /**
      * @return The sprite for the ground.
      */
     public Sprite getGroundSprite() {
-        return loadSprite("/sprite/floor.png");
+        if(theme > 1){
+            return loadSprite("/sprite/theme/"+theme+"/floor.png");}
+        else {
+            return loadSprite("/sprite/theme/"+theme+"/floor.png");}
     }
 
     /**
      * @return The sprite for the
      */
     public Sprite getPelletSprite() {
-        return loadSprite("/sprite/pellet.png");
+        if(theme > 1){
+            return loadSprite("/sprite/theme/"+theme+"/pellet.png");}
+        else {
+            return loadSprite("/sprite/theme/"+theme+"/pellet.png");}
     }
 
     /**
