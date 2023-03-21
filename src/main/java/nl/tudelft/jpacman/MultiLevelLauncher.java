@@ -107,11 +107,11 @@ public class MultiLevelLauncher extends Launcher {
 //    }
 
     public void createPac(){
-        if(Launcher.GAME_THEME_NOW==1){
-            Launcher.setTheme();
-        }else {
-            Launcher.setTheme();
-        }
+        System.out.println("THEME ::::: "+Launcher.GAME_THEME_NOW);
+        System.out.println("PlayerFactory ::::: "+PF);
+        System.out.println("player ::::: "+player);
+        Launcher.GAME_THEME_NOW =1;
+        Launcher.setTheme();
         PF = getPlayerFactory();
         player = PF.createPacMan();
     }

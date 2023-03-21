@@ -36,57 +36,28 @@ public class Launcher {
     public static String GHOST;
 
     public static void setTheme(){
-        if(Launcher.GAME_THEME_NOW==1){
-            Launcher.PANMAN= "/sprite/pacman.png";
-            Launcher.PANMAN_NIM_DEAD = "/sprite/dead.png";
-            Launcher.FLOOR = "/sprite/floor.png";
-            Launcher.WALL = "/sprite/wall.png";
-            Launcher.PELLET = "/sprite/pellet.png";
-            Launcher.GHOST = "/sprite/ghost_";
-        }else if (Launcher.GAME_THEME_NOW==2){
-            Launcher.PANMAN= "/sprite/mspacman.png";
-            Launcher.PANMAN_NIM_DEAD = "/sprite/dead.png";
-            Launcher.FLOOR = "/sprite/wall.png";
-            Launcher.WALL = "/sprite/floor.png";
-            Launcher.PELLET = "/sprite/pellet.png";
-            Launcher.GHOST = "/sprite/ghost_";
-        }else if (Launcher.GAME_THEME_NOW==3){
-            Launcher.PANMAN= "/sprite/pacman.png";
-            Launcher.PANMAN_NIM_DEAD = "/sprite/dead.png";
-            Launcher.FLOOR = "/sprite/floor.png";
-            Launcher.WALL = "/sprite/wall.png";
-            Launcher.PELLET = "/sprite/pellet.png";
-            Launcher.GHOST = "/sprite/ghost_";
-        }
-        else if (Launcher.GAME_THEME_NOW==4){
-            Launcher.PANMAN= "/sprite/mspacman.png";
-            Launcher.PANMAN_NIM_DEAD = "/sprite/dead.png";
-            Launcher.FLOOR = "/sprite/wall.png";
-            Launcher.WALL = "/sprite/floor.png";
-            Launcher.PELLET = "/sprite/pellet.png";
-            Launcher.GHOST = "/sprite/ghost_";
-        }else if (Launcher.GAME_THEME_NOW==5){
-            Launcher.PANMAN= "/sprite/pacman.png";
-            Launcher.PANMAN_NIM_DEAD = "/sprite/dead.png";
-            Launcher.FLOOR = "/sprite/floor.png";
-            Launcher.WALL = "/sprite/wall.png";
-            Launcher.PELLET = "/sprite/pellet.png";
-            Launcher.GHOST = "/sprite/ghost_";
-        }else{
-            Launcher.PANMAN= "/sprite/mspacman.png";
-            Launcher.PANMAN_NIM_DEAD = "/sprite/dead.png";
-            Launcher.FLOOR = "/sprite/wall.png";
-            Launcher.WALL = "/sprite/floor.png";
-            Launcher.PELLET = "/sprite/pellet.png";
-            Launcher.GHOST = "/sprite/ghost_";
+        if(Launcher.GAME_THEME_NOW>=1){
+            Launcher.PANMAN= "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/pacman.png";
+            Launcher.PANMAN_NIM_DEAD = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/dead.png";
+            Launcher.FLOOR = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/floor.png";
+            Launcher.WALL = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/wall.png";
+            Launcher.PELLET = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/pellet.png";
+            Launcher.GHOST = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/ghost_";
+        } else{
+            Launcher.PANMAN= "/sprite/theme/1/pacman.png";
+            Launcher.PANMAN_NIM_DEAD = "/sprite/theme/1/dead.png";
+            Launcher.FLOOR = "/sprite/theme/1/floor.png";
+            Launcher.WALL = "/sprite/theme/1//wall.png";
+            Launcher.PELLET = "/sprite/theme/1/pellet.png";
+            Launcher.GHOST = "/sprite/theme/1/ghost_";
         }
 
     }
     public static PacManSprites SPRITE_STORE = new PacManSprites();
-
+    public static boolean InGame = true;
 
     public static String GAME_MODE_NOW = "";
-    public static int GAME_THEME_NOW = 1;
+    public static int GAME_THEME_NOW = 2;
     public static boolean MODAL = false;
 
     public static final String DEFAULT_MAP = "/board.txt";
@@ -289,6 +260,7 @@ public class Launcher {
      *             When a resource could not be read.
      */
     public static MultiLevelLauncher WTF_GAME;
+
     public static void main(String[] args) throws IOException {
         if (args.length > 0 && args[0].equals("--singlelevel")) {
             new Launcher().launch();

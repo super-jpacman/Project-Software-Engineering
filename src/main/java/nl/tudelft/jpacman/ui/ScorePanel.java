@@ -75,6 +75,7 @@ public class ScorePanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // back to home
+                Launcher.InGame=false;
                 System.out.println("PASS BACK");
                 Launcher.MODAL = false;
                 if(Launcher.GAME_MODE_NOW=="RANK"){

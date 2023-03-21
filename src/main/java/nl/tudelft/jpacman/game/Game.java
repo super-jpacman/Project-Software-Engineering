@@ -126,6 +126,10 @@ public abstract class Game extends MultiLevelLauncher implements LevelObserver {
         stop();
     }
 
+    public void setSkin_Pac(){
+        System.out.println("🛹🛹🛹🛹🛹🛹🛹");
+    }
+
     @Override
     public void levelLost() {
         System.out.println("🛹🛹🛹🛹🛹🛹🛹");
