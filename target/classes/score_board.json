@@ -1,6 +1,1 @@
-[{"name":"TestPlayer1","time":7878.0,"point":100},
-  {"name":"TestPlayer2","time":555.0,"point":200},
-  {"name":"TestPlayer3","time":10.0,"point":150},
-  {"name":"TestPlayer4","time":30.0,"point":350},
-  {"name":"TestPlayer5","time":30.0,"point":350}
-]
+[{"name":"TestPlayer1","time":7878.0,"point":100},{"name":"TestPlayer2","time":555.0,"point":200},{"name":"TestPlayer3","time":10.0,"point":150},{"name":"TestPlayer4","time":30.0,"point":350},{"name":"TestPlayer5","time":30.0,"point":350},{"name":"TestPlayer","time":50.0,"point":100},{"name":"TestPlayer","time":50.0,"point":100},{"name":"TestPlayer","time":50.0,"point":100}]
