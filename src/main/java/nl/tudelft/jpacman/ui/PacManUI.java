@@ -145,6 +145,7 @@ public class PacManUI extends JFrame {
 
         buttonPanel = new ButtonPanel(buttons, this,this);
 
+
         scorePanel = new ScorePanel(game.getPlayers(),this);
         if (scoreFormatter != null) {
             scorePanel.setScoreFormatter(scoreFormatter);
