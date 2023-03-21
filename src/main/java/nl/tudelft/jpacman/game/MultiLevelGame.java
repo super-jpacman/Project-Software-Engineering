@@ -112,7 +112,11 @@ public class MultiLevelGame extends Game {
             PM.PacManUI_LOST("You Won !!",p.getScore(),getTotalTime());
         }else{
             if(levelNumber>=4){
-                PM.RANK_END("You Won !!",p.getScore(),getTotalTime());
+                int point =p.getScore();
+                double time =getTotalTime();
+                restart();
+                PM.RANK_END("You Won !!",point,time);
+
             }else{
                 start();
             }
