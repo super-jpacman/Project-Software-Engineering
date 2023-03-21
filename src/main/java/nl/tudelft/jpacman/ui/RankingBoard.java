@@ -88,7 +88,7 @@ public class RankingBoard extends JPanel {
             Collections.sort(jsonArray, jsonObjectComparator);
 
             if (jsonArray.size()>10){
-                for (int i = 0;i<10;i++){
+                for (int i = 0;i<7;i++){
                     JLabel list = new JLabel();
                     JSONObject obj = (JSONObject) jsonArray.get(i);
                     int num = i+1;
@@ -99,10 +99,10 @@ public class RankingBoard extends JPanel {
                     DateFormat format__ = new SimpleDateFormat("mmss");
                     DateFormat format_ = new SimpleDateFormat("mm:ss");
                     Date formattime = format__.parse(s);
-                    String format2 = "%1$-7s %2$-16s %3$-12s %4$-10s\n";
+                    String format2 = "%1$-6s %2$-10s %3$-9s %4$-4s\n";
                     list.setText(String.format(format2,num,name,point,format_.format(formattime)));
-                    list.setFont(new Font("Emulogic",Font.ITALIC,6));
-                    list.setBounds(45, 90+(i*20), 323, 20);
+                    list.setFont(new Font("Emulogic",Font.ITALIC,8));
+                    list.setBounds(45, 90+(i*25), 323, 20);
                     background.add(list);
                 }
             }else{
@@ -118,10 +118,10 @@ public class RankingBoard extends JPanel {
                     DateFormat format_ = new SimpleDateFormat("mm:ss");
 
                     Date formattime = format__.parse(s);
-                    String format2 = "%1$-7s %2$-16s %3$-12s %4$-10s\n";
+                    String format2 = "%1$-6s %2$-10s %3$-9s %4$-4s\n";
                     list.setText(String.format(format2,num,name,point,format_.format(formattime)));
-                    list.setFont(new Font("Emulogic",Font.ITALIC,6));
-                    list.setBounds(45, 90+(i*20), 323, 20);
+                    list.setFont(new Font("Emulogic",Font.ITALIC,8));
+                    list.setBounds(45, 90+(i*25), 323, 20);
                     background.add(list);
                 }
             }
