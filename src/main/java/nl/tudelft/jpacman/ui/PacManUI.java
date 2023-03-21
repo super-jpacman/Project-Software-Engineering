@@ -214,7 +214,6 @@ public class PacManUI extends JFrame {
 //                System.out.println("FOTMAT: " + scoreFormatter);
 //                System.out.println("=================================\n");
         contentPanel.removeAll();
-<<<<<<< HEAD
         buttonPanel = new ButtonPanel(buttons, this, this);
         game.selectMap(lv_map - 1);
         game.getLevel().setInProgress(false);
@@ -230,17 +229,6 @@ public class PacManUI extends JFrame {
 //                System.out.println("isAnyPlayerAlive: " + game.getLevel().isAnyPlayerAlive());
 //                System.out.println("isInProgress: " + game.getLevel().isInProgress());
 //                System.out.println("=================================\n");
-=======
-//        // SET LOADING PAGE
-//        contentPanel.add(new WaitMap(lv_map), BorderLayout.CENTER);
-//        pack();
-//        setResizable(false);
-//        // END LOAD
-
-
-        System.out.println("🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓");
-        System.out.println("INGAME ::::"+Launcher.InGame);
->>>>>>> 4cf19cf050392f2664cd180bf4279cbb2a8ffe8a
 
         if (scoreFormatter != null) {
             scorePanel.setScoreFormatter(scoreFormatter);
@@ -319,16 +307,11 @@ public class PacManUI extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    public void PacManUI_LOST(String Text_Header, int Text_Score, double totalTime,String condition) {
+    public void PacManUI_LOST(String Text_Header, int Text_Score, double totalTime) {
         contentPanel.removeAll();
         contentPanel.add(buttonPanel, BorderLayout.SOUTH);
         contentPanel.add(scorePanel, BorderLayout.NORTH);
-        if (condition.equals("c")){
-            contentPanel.add(new CasualEnding(Text_Header, Text_Score, totalTime, this), BorderLayout.CENTER);
-        }else{
-            contentPanel.add(new GameEnd(Text_Header, Text_Score, totalTime, this), BorderLayout.CENTER);
-        }
-
+        contentPanel.add(new CasualEnding(Text_Header, Text_Score, totalTime, this), BorderLayout.CENTER);
         //TEST GAME GUI
 //
 //        contentPanel.add(new RankingBoard(), BorderLayout.CENTER);

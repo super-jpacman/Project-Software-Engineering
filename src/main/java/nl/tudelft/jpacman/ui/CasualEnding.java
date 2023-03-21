@@ -40,6 +40,7 @@ public class CasualEnding extends JPanel {
         this.Text_Score=Text_Score;
         ImageIcon img = new ImageIcon(path);
         JLabel background = new JLabel(img);
+//        background.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
         add(background);
 
         Header=new JLabel("Header");

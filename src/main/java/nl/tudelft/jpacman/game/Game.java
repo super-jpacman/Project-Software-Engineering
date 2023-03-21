@@ -128,7 +128,6 @@ public abstract class Game extends MultiLevelLauncher implements LevelObserver {
 
     public void setSkin_Pac(){
         System.out.println("🛹🛹🛹🛹🛹🛹🛹");
-
     }
 
     @Override
