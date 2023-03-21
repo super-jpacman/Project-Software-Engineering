@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class GameMode extends JPanel {
-    private String path = "src/main/resources/main.jpg";
+    private String path = "src/main/resources/blackwall.jpg";
     String[] Desc_Text = {"This is Ranking Mode","This is Casual Mode"};
     private JLabel Desc;
 

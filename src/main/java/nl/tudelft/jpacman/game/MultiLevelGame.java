@@ -40,7 +40,7 @@ public class MultiLevelGame extends Game {
     public void setTotalTime(double totalTime) {
         this.totalTime = totalTime;
     }
-private MultiLevelLauncher multiLevelLauncher;
+    private MultiLevelLauncher multiLevelLauncher;
     private GameEnd GE;
     private Player player;
 

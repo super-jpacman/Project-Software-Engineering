@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class selectMap extends JPanel {
-    private String path = "src/main/resources/main.jpg";
+    private String path = "src/main/resources/blackwall.jpg";
     private String[] Map_Title = {"Map1 Desc"
         ,"Map2 Desc"
         ,"Map3 Desc"
