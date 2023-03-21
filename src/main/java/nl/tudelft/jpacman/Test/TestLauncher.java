@@ -1,5 +1,6 @@
-package nl.tudelft.jpacman;
+package nl.tudelft.jpacman.Test;
 
+import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.game.MultiLevelGame;
 import nl.tudelft.jpacman.level.Level;
@@ -16,6 +17,7 @@ import java.util.List;
 
 public class TestLauncher extends Launcher {
 
+    public TestLauncher(){}
     public static int getNumberOfLevels() {
         return NUMBER_OF_LEVELS;
     }

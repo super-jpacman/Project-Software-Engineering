@@ -1,6 +1,6 @@
 package UC002.Unuse_Test;
 
-import nl.tudelft.jpacman.TestLauncher;
+import nl.tudelft.jpacman.Test.TestLauncher;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.SaveScore;

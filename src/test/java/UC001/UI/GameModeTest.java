@@ -1,6 +1,5 @@
 package UC001.UI;
 
-import nl.tudelft.jpacman.ui.FirstMenu;
 import nl.tudelft.jpacman.ui.GameMode;
 import nl.tudelft.jpacman.ui.PacManUI;
 import org.fest.swing.fixture.FrameFixture;
@@ -9,8 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class GameModeTest {
     private FrameFixture mFrame;
@@ -31,7 +29,7 @@ public class GameModeTest {
     @Test
     public void TC02() throws InterruptedException {
         JFrame frame = new JFrame();
-        GameMode gameMode = new GameMode(pacManUI);
+        GameModeForTest gameMode = new GameModeForTest(pacManUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(gameMode);
         frame.pack();

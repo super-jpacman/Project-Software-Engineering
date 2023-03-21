@@ -1,14 +1,10 @@
 package UC002;
 
-import nl.tudelft.jpacman.TestMultiLevelLauncher;
-import nl.tudelft.jpacman.board.Board;
+import nl.tudelft.jpacman.Test.TestMultiLevelLauncher;
 import nl.tudelft.jpacman.board.Direction;
-import nl.tudelft.jpacman.board.Square;
-import nl.tudelft.jpacman.board.Unit;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.game.MultiLevelGame;
 import nl.tudelft.jpacman.level.Player;
-import nl.tudelft.jpacman.npc.ghost.*;
 import nl.tudelft.jpacman.ui.PacManUI;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,107 +14,51 @@ import org.junit.jupiter.api.Test;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.mockito.Mockito.spy;
 
 public class TS004_new {
     TestMultiLevelLauncher testMultiLevelLauncher;
     @BeforeEach
     public void setup(){
-        testMultiLevelLauncher = new TestMultiLevelLauncher();
+        testMultiLevelLauncher = spy(new TestMultiLevelLauncher());
         testMultiLevelLauncher.setMapTest("");
-        testMultiLevelLauncher.setLengthOfMap(1,5);
+        testMultiLevelLauncher.GAME_MODE_NOW = "CASUAL";
     }
-    @DisplayName("Game stop Expected Inky,Pinky,Clyde,Blinky cannot move")
+    @DisplayName("TC01 : when at stage 3 and click restart Expected got to stage 3 and score 0")
     @Test
     public void TC01() throws InterruptedException {
+        testMultiLevelLauncher.setLengthOfMap(1,5);
         testMultiLevelLauncher.launch();
         MultiLevelGame game = testMultiLevelLauncher.getGame();
         PacManUI pacManUI = testMultiLevelLauncher.getPacManUI();
-        pacManUI.PacManUI_PLAY_RANK(game);
+        pacManUI.PLAY_AT_MAP(3);
         Player player = game.getPlayers().get(0);
-        Board board = game.getLevel().getBoard();
-        Inky inky = Navigation.findUnitInBoard(Inky.class,board);
-        Blinky blinky = Navigation.findUnitInBoard(Blinky.class,board);
-        Clyde clyde = Navigation.findUnitInBoard(Clyde.class,board);
-        Pinky pinky = Navigation.findUnitInBoard(Pinky.class,board);
-        Square Inkybefore = inky.getSquare();
-        Square Blinkybefore = blinky.getSquare();
-        Square Clydebefore = clyde.getSquare();
-        Square Pinkybefore = pinky.getSquare();
-        Thread.sleep(1000);
-        Square Inkyafter = inky.getSquare();
-        Square Blinkyafter = blinky.getSquare();
-        Square Clydeafter = clyde.getSquare();
-        Square Pinkyafter = pinky.getSquare();
-        assertEquals(Inkybefore,Inkyafter);
-        assertEquals(Blinkybefore,Blinkyafter);
-        assertEquals(Clydebefore,Clydeafter);
-        assertEquals(Pinkybefore,Pinkyafter);
+        game.start();
+        game.restart();
+        assertEquals(3,player.getMap());
+        assertEquals(0,player.getScore());
     }
-    @DisplayName("Game stop Expected Inky,Pinky,Clyde,Blinky cannot move")
+    @DisplayName("TC02 : When end stage 1 Expected stage is 1 as before")
     @Test
     public void TC02() throws InterruptedException {
+        testMultiLevelLauncher.setLengthOfMap(7,11);
+        testMultiLevelLauncher.setMapTest("_Without_Ghost");
         testMultiLevelLauncher.launch();
         MultiLevelGame game = testMultiLevelLauncher.getGame();
         PacManUI pacManUI = testMultiLevelLauncher.getPacManUI();
-        pacManUI.PacManUI_PLAY_RANK(game);
+        pacManUI.PLAY_AT_MAP(1);
         Player player = game.getPlayers().get(0);
-        Board board = game.getLevel().getBoard();
-        Inky inky = Navigation.findUnitInBoard(Inky.class,board);
-        Blinky blinky = Navigation.findUnitInBoard(Blinky.class,board);
-        Clyde clyde = Navigation.findUnitInBoard(Clyde.class,board);
-        Pinky pinky = Navigation.findUnitInBoard(Pinky.class,board);
-        Square Inkybefore = inky.getSquare();
-        Square Blinkybefore = blinky.getSquare();
-        Square Clydebefore = clyde.getSquare();
-        Square Pinkybefore = pinky.getSquare();
         game.start();
-        Thread.sleep(1000);
-        Square Inkyafter = inky.getSquare();
-        Square Blinkyafter = blinky.getSquare();
-        Square Clydeafter = clyde.getSquare();
-        Square Pinkyafter = pinky.getSquare();
-        assertNotEquals(Inkybefore,Inkyafter);
-        assertNotEquals(Blinkybefore,Blinkyafter);
-        assertNotEquals(Clydebefore,Clydeafter);
-        assertNotEquals(Pinkybefore,Pinkyafter);
-    }
-    @DisplayName("Game start Expected pacman cannot move")
-    @Test
-    public void TC03() throws InterruptedException {
-        testMultiLevelLauncher.launch();
-        MultiLevelGame game = testMultiLevelLauncher.getGame();
-        PacManUI pacManUI = testMultiLevelLauncher.getPacManUI();
-        pacManUI.PacManUI_PLAY_RANK(game);
-        Player player = game.getPlayers().get(0);
-        Board board = game.getLevel().getBoard();
-        Square before = player.getSquare();
-        for(int i = 0 ; i <= 10 ; i++){
+        while(game.isInProgress() != false){
             move(player,game,getRandomDirection(),1);
         }
-        Square after = player.getSquare();
-        assertEquals(before,after);
-    }
-    @DisplayName("Game start Expected pacman can move")
-    @Test
-    public void TC04() throws InterruptedException {
-        testMultiLevelLauncher.launch();
-        MultiLevelGame game = testMultiLevelLauncher.getGame();
-        PacManUI pacManUI = testMultiLevelLauncher.getPacManUI();
-        pacManUI.PacManUI_PLAY_RANK(game);
-        Player player = game.getPlayers().get(0);
-        Square before = player.getSquare();
-        game.start();
-        for(int i = 0 ; i <= 10 ; i++){
-            move(player,game,getRandomDirection(),1);
-            Thread.sleep(500);
-        }
-        Square after = player.getSquare();
-        assertNotEquals(before,after);
+        assertEquals(1,player.getMap());
     }
     @AfterEach
     public void teardown(){
         testMultiLevelLauncher.dispose();
+        testMultiLevelLauncher.GAME_MODE_NOW = "";
+        testMultiLevelLauncher.GAME_THEME_NOW = 2;
     }
     private Direction getRandomDirection() {
         return Direction.values()[new Random().nextInt(Direction.values().length)];
@@ -126,7 +66,7 @@ public class TS004_new {
     public static void move(Player player, Game game, Direction dir, int numSteps) throws InterruptedException {
         for (int i = 0; i < numSteps; i++) {
             game.move(player, dir);
-            Thread.sleep(5);
+            Thread.sleep(0);
         }
     }
 }
