@@ -1,22 +1,19 @@
 package nl.tudelft.jpacman.ui;
 
     import nl.tudelft.jpacman.game.Game;
-    import nl.tudelft.jpacman.points.SaveScore;
-
+    import org.json.simple.*;
+    import org.json.simple.parser.*;
+    import org.json.simple.parser.ParseException;
     import javax.swing.*;
     import javax.swing.border.Border;
-    import javax.swing.text.AttributeSet;
-    import javax.swing.text.BadLocationException;
-    import javax.swing.text.PlainDocument;
+    import javax.swing.text.*;
     import java.awt.*;
-    import java.awt.event.ActionEvent;
-    import java.awt.event.ActionListener;
-    import java.awt.geom.Area;
-    import java.awt.geom.Rectangle2D;
-    import java.awt.geom.RoundRectangle2D;
-    import java.io.File;
-    import java.io.IOException;
-    import java.util.Objects;
+    import java.awt.event.*;
+    import java.awt.geom.*;
+    import java.io.*;
+    import java.text.*;
+    import java.util.*;
+
 
 public class RankingBoard extends JPanel {
     private String path = "src/main/resources/ranking.jpg";
@@ -68,18 +65,71 @@ public class RankingBoard extends JPanel {
         headTable.setBounds(45, 70, 323, 30);
 //        headTable.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.red));
 
-        //SCORE DISPLAY LIST
-        String format2 = "%1$-7s %2$-16s %3$-12s %4$-10s\n";
-        for (int i = 0;i<10;i++){
-            JLabel list = new JLabel();
-            int num = i+1;
-            String name = "name "+String.valueOf(i+1);
-            int point = (i+1)*10;
-            String time = String.format("%d:%d",i*10,i*10);
-            list.setText(String.format(format2,num,name,point,time));
-            list.setFont(new Font("Emulogic",Font.ITALIC,6));
-            list.setBounds(45, 90+(i*20), 323, 20);
-            background.add(list);
+        Comparator<JSONObject> jsonObjectComparator = new Comparator<JSONObject>() {
+            @Override
+            public int compare(JSONObject o1, JSONObject o2) {
+                int point1 = Integer.parseInt(o1.get("point").toString());
+                int point2 = Integer.parseInt(o2.get("point").toString());
+                double time1 = Double.parseDouble(o1.get("time").toString());
+                double time2 = Double.parseDouble(o2.get("time").toString());
+
+                if (point1 == point2) {
+                    return Double.compare(time1, time2);
+                } else {
+                    return Integer.compare(point2, point1);
+                }
+            }
+        };
+
+
+        try {
+
+            JSONArray jsonArray = (JSONArray) new JSONParser().parse(new FileReader("src/main/resources/score_board.json"));
+            Collections.sort(jsonArray, jsonObjectComparator);
+
+            if (jsonArray.size()>10){
+                for (int i = 0;i<10;i++){
+                    JLabel list = new JLabel();
+                    JSONObject obj = (JSONObject) jsonArray.get(i);
+                    int num = i+1;
+                    String name = (String) obj.get("name");
+                    Long point = (Long) obj.get("point");
+                    double time = (Double) obj.get("time");
+                    String s = String.format("%06d", (int)time);
+                    DateFormat format__ = new SimpleDateFormat("mmss");
+                    DateFormat format_ = new SimpleDateFormat("mm:ss");
+                    Date formattime = format__.parse(s);
+                    String format2 = "%1$-7s %2$-16s %3$-12s %4$-10s\n";
+                    list.setText(String.format(format2,num,name,point,format_.format(formattime)));
+                    list.setFont(new Font("Emulogic",Font.ITALIC,6));
+                    list.setBounds(45, 90+(i*20), 323, 20);
+                    background.add(list);
+                }
+            }else{
+                for (int i = 0;i<jsonArray.size();i++){
+                    JLabel list = new JLabel();
+                    JSONObject obj = (JSONObject) jsonArray.get(i);
+                    int num = i+1;
+                    String name = (String) obj.get("name");
+                    Long point = (Long) obj.get("point");
+                    double time = (Double) obj.get("time");
+                    String s = String.format("%06d", (int)time);
+                    DateFormat format__ = new SimpleDateFormat("mmss");
+                    DateFormat format_ = new SimpleDateFormat("mm:ss");
+
+                    Date formattime = format__.parse(s);
+                    String format2 = "%1$-7s %2$-16s %3$-12s %4$-10s\n";
+                    list.setText(String.format(format2,num,name,point,format_.format(formattime)));
+                    list.setFont(new Font("Emulogic",Font.ITALIC,6));
+                    list.setBounds(45, 90+(i*20), 323, 20);
+                    background.add(list);
+                }
+            }
+
+        } catch (IOException | ParseException ex) {
+            ex.printStackTrace();
+        } catch (java.text.ParseException e) {
+            throw new RuntimeException(e);
         }
 
         //END DISPLAY

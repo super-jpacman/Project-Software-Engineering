@@ -201,6 +201,8 @@ public class PacManUI extends JFrame {
 //        pack();
 //        setResizable(false);
 //        // END LOAD
+
+
         System.out.println("🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓");
         System.out.println("INGAME ::::"+Launcher.InGame);
 
