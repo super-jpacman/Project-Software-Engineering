@@ -344,8 +344,14 @@ public class PacManUI extends JFrame {
      */
 
     public void PacManUI_PLAY_RANK(Game game) {
+        Launcher.GAME_MODE_NOW="RANK";
         contentPanel.removeAll();
-
+        Launcher.GAME_THEME_NOW=getGame().getPlayers().get(0).getMap();
+        System.out.println(getGame().getPlayers().get(0).getMap());
+        System.out.println(getGame().getPlayers().get(0).getMap());
+        System.out.println(getGame().getPlayers().get(0).getMap());
+        Launcher.setTheme();
+        getGame().setSkin_Pac();
         ////
 
 

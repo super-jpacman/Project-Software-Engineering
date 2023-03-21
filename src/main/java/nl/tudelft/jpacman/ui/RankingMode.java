@@ -95,7 +95,12 @@ public class RankingMode extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS Start");
+                Launcher.GAME_MODE_NOW="RANK";
                 System.out.println("Launcher GAME MODE : "+ Launcher.GAME_MODE_NOW);
+                System.out.println("Launcher GAME MODE : "+ PM.getGame().getPlayers().get(0).getMap());
+                Launcher.GAME_THEME_NOW=PM.getGame().getPlayers().get(0).getMap();
+                Launcher.setTheme();
+                PM.getGame().setSkin_Pac();
                 PM.LoadingPage(PM.getGame().getPlayers().get(0).getMap());
             }
         });
@@ -247,6 +252,7 @@ public class RankingMode extends JPanel {
         @Override public void setBorder(Border border) {
             // No!
         }
+
         @Override
         public void paint(Graphics g) {
             super.paint(g);
