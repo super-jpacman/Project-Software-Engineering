@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class RankingMode extends JPanel {
-    private String path = "src/main/resources/Blackwall.jpg";
+    private String path = "src/main/resources/rm.gif";
     private Image image = new ImageIcon(path).getImage();
     private JButton Start;
     private JButton Leaderboard;
@@ -82,12 +82,12 @@ public class RankingMode extends JPanel {
 
         Start.setLayout(new FlowLayout());
         Start.setText("Start");
-        Start.setFont(new Font("Emulogic",Font.PLAIN,10));
+        Start.setFont(new Font("Emulogic",Font.PLAIN,12));
         Start.setFocusPainted(false);
         Start.setBackground(Color.black);
         Start.setForeground(Color.white);
         Start.setBorder(null);
-        Start.setBounds(135, 160, 100, 30);
+        Start.setBounds(135, 140, 100, 30);
 //        Play.setBorder(new RoundedButton(10));
         Start.addActionListener(new ActionListener(){
 
@@ -97,19 +97,29 @@ public class RankingMode extends JPanel {
                 System.out.println("PASS Start");
                 System.out.println("Launcher GAME MODE : "+ Launcher.GAME_MODE_NOW);
                 PM.LoadingPage(PM.getGame().getPlayers().get(0).getMap());
-
             }
         });
+        Start.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Start.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
+                Start.setFont(new Font("Emulogic",Font.PLAIN,15));
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Start.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.WHITE));
+                Start.setFont(new Font("Emulogic",Font.PLAIN,12));
+            }
+        });
+
         Leaderboard=new JButton();
 
         Leaderboard.setLayout(new FlowLayout());
         Leaderboard.setText("Leaderboard");
-        Leaderboard.setFont(new Font("Emulogic",Font.PLAIN,10));
+        Leaderboard.setFont(new Font("Emulogic",Font.PLAIN,12));
         Leaderboard.setFocusPainted(false);
         Leaderboard.setBackground(Color.black);
         Leaderboard.setForeground(Color.white);
         Leaderboard.setBorder(null);
-        Leaderboard.setBounds(112, 190, 150, 30);
+        Leaderboard.setBounds(86, 190, 200, 30);
 //        Play.setBorder(new RoundedButton(10));
         Leaderboard.addActionListener(new ActionListener(){
 
@@ -120,27 +130,55 @@ public class RankingMode extends JPanel {
                 PM.RANKING_BOARD();
             }
         });
+        Leaderboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Leaderboard.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
+                Leaderboard.setFont(new Font("Emulogic",Font.PLAIN,15));
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Leaderboard.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.WHITE));
+                Leaderboard.setFont(new Font("Emulogic",Font.PLAIN,12));
+            }
+        });
         back=new JButton();
 
         back.setLayout(new FlowLayout());
-        back.setText("Back");
-        back.setFont(new Font("Emulogic",Font.PLAIN,10));
+        back.setText("<html><div style='text-align: center;'>BACK</html>");
+        back.setFont(new Font("Emulogic",Font.PLAIN,12));
         back.setFocusPainted(false);
         back.setBackground(Color.black);
         back.setForeground(Color.white);
         back.setBorder(null);
-        back.setBounds(2, 300, 100, 30);
-//        Play.setBorder(new RoundedButton(10));
+        back.setBounds(10, 290, 70, 30);
         back.addActionListener(new ActionListener(){
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 // back to home
-                System.out.println("PASS Start");
                 PM.GAME_MODE();
             }
         });
-        background.add(Ranking);
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                back.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
+                back.setFont(new Font("Emulogic",Font.PLAIN,15));
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                back.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.WHITE));
+                back.setFont(new Font("Emulogic",Font.PLAIN,12));
+            }
+        });
+
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                back.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
+                back.setFont(new Font("Emulogic",Font.PLAIN,14));
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                back.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.WHITE));
+                back.setFont(new Font("Emulogic",Font.PLAIN,11));
+            }
+        });
+//        background.add(Ranking);
         background.add(Start);
         background.add(Leaderboard);
         background.add(back);

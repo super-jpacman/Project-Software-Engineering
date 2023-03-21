@@ -20,8 +20,9 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class GameMode extends JPanel {
-    private String path = "src/main/resources/blackwall.jpg";
-    String[] Desc_Text = {"This is Ranking Mode","This is Casual Mode"};
+    private String path = "src/main/resources/gm.gif";
+    String[] Desc_Text = {"<html><div style='text-align: center;'>Ranking Mode will recorded your score and compete on the leader board</html>"
+        ,"<html><div style='text-align: center;'>You can select map that you want to play in Casual Mode and your will not record</html>"};
     private JLabel Desc;
 
     private Image image = new ImageIcon(path).getImage();
@@ -86,23 +87,24 @@ public class GameMode extends JPanel {
         Header.setBounds(90, 10, 600, 40);
 
         Desc.setText("");
-        Desc.setForeground(new Color(0xFFFFFF));
-        Desc.setFont(new Font("Emulogic",Font.PLAIN,12));
+
+        Desc.setForeground(Color.YELLOW);
+        Desc.setFont(new Font("Emulogic",Font.PLAIN,10));
         Desc.setIconTextGap(-60);
         Desc.setBackground(new Color(1f,0f,0f,0f ));
         Desc.setOpaque(false);
-        Desc.setBounds(70, 70, 600, 40);
+        Desc.setBounds(35, 90, 300, 70);
 
         BACK=new JButton();
         BACK.setLayout(new FlowLayout());
-        BACK.setText("BACK");
-        BACK.setFont(new Font("Emulogic",Font.PLAIN,10));
+        BACK.setText("<html><div style='text-align: center;'>BACK</html>");
+        BACK.setFont(new Font("Emulogic",Font.PLAIN,12));
         BACK.setFocusPainted(false);
         BACK.setBackground(Color.black);
         BACK.setForeground(Color.white);
-        BACK.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.WHITE));
-        BACK.setBounds(10, 290, 100, 30);
-//        BACK.setBorder(new RoundedButton(10));
+        BACK.setBorder(null);
+        BACK.setBounds(10, 290, 70, 30);
+//
         BACK.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -110,80 +112,95 @@ public class GameMode extends JPanel {
                 BACK.setBackground(Color.white);
                 BACK.setForeground(Color.BLACK);
                 BACK.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
-                System.out.println("PASS BACK");
                 PM.MainMenuUI();
+            }
+        });
+        BACK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BACK.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
+                BACK.setFont(new Font("Emulogic",Font.PLAIN,14));
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BACK.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.WHITE));
+                BACK.setFont(new Font("Emulogic",Font.PLAIN,12));
             }
         });
 
         CasualMode=new JButton();
         CasualMode.setLayout(new FlowLayout());
-        CasualMode.setText("Casual!");
-        CasualMode.setFont(new Font("Emulogic",Font.PLAIN,10));
+        CasualMode.setText("<html><div style='text-align: center;'>Casual!</html>");
+        CasualMode.setFont(new Font("Emulogic",Font.PLAIN,12));
         CasualMode.setFocusPainted(false);
         CasualMode.setBackground(Color.black);
         CasualMode.setForeground(Color.white);
         CasualMode.setBorder(null);
-        CasualMode.setBounds(130, 190, 100, 30);
-//        Play.setBorder(new RoundedButton(10));
+        CasualMode.setBounds(140, 180, 100, 30);
         CasualMode.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 // back to home
-                System.out.println("PASS CasualMode");
                 CasualMode.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
-
                 PM.GAMAE_CASUAL();
             }
         });
         CasualMode.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Desc.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.WHITE));
                 Desc.setText(Desc_Text[1]);
+                CasualMode.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
+                CasualMode.setFont(new Font("Emulogic",Font.PLAIN,14));
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
+                Desc.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.WHITE));
                 Desc.setText("");
+                CasualMode.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.WHITE));
+                CasualMode.setFont(new Font("Emulogic",Font.PLAIN,12));
             }
         });
 
         RankingMode=new JButton();
 
         RankingMode.setLayout(new FlowLayout());
-        RankingMode.setText("Ranking");
-        RankingMode.setFont(new Font("Emulogic",Font.PLAIN,10));
+        RankingMode.setText("<html><div style='text-align: center;'>Ranking!!</html>");
+        RankingMode.setFont(new Font("Emulogic",Font.PLAIN,12));
         RankingMode.setFocusPainted(false);
         RankingMode.setBackground(Color.black);
         RankingMode.setForeground(Color.white);
         RankingMode.setBorder(null);
-        RankingMode.setBounds(130, 160, 100, 30);
-//        Play.setBorder(new RoundedButton(10));
+        RankingMode.setBounds(140, 220, 100, 30);
         RankingMode.addActionListener(new ActionListener(){
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 // back to home
-                System.out.println("PASS RankingMode");
                 RankingMode.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
                 PM.getGame().getLevel().setInProgress(false);
                 PM.getGame().getLevel().updateObservers();
-
                 PM.getGame().getLevel().start();
                 PM.getGame().getLevel().stop();
 //                PM.getGame().restart();
                 Launcher.GAME_MODE_NOW="";
                 PM.GAMAE_RANKING();
-
             }
         });
         RankingMode.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
+
                 Desc.setText(Desc_Text[0]);
+                Desc.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.WHITE));
+                RankingMode.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
+                RankingMode.setFont(new Font("Emulogic",Font.PLAIN,14));
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
+                Desc.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.WHITE));
                 Desc.setText("");
+                RankingMode.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.WHITE));
+                RankingMode.setFont(new Font("Emulogic",Font.PLAIN,12));
             }
         });
 
         background.add(BACK);
-        background.add(Header);
+//        background.add(Header);
         background.add(RankingMode);
         background.add(CasualMode);
         background.add(Desc);

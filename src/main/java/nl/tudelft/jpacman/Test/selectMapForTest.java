@@ -1,9 +1,8 @@
-package nl.tudelft.jpacman.ui;
+package nl.tudelft.jpacman.Test;
 
 import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.game.Game;
-import nl.tudelft.jpacman.level.PlayerFactory;
-import nl.tudelft.jpacman.sprite.PacManSprites;
+import nl.tudelft.jpacman.ui.PacManUI;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -20,19 +19,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-public class selectMap extends JPanel {
-    private String path = "src/main/resources/sm.gif";
+public class selectMapForTest extends JPanel {
+    private String path = "src/main/resources/main.jpg";
     private String[] Map_Title = {"Map1 Desc"
         ,"Map2 Desc"
         ,"Map3 Desc"
         ,"Map4 Desc"
-        ,"Let's play Pacman Original!"};
+        ,"Map5 Desc"};
 
-    private String[] Theme = {"Christmas"
-        ,"Easter Egg"
-        ,"Halloween"
-        ,"Valentine"
-        ,"Original"};
+    private String[] Theme = {"Theme 1"
+        ,"Theme 2"
+        ,"Theme 3"
+        ,"Theme 4"
+        ,"Theme 5"};
     private String[] BG = {"src\\main\\resources\\img\\1.jpg",
         "src\\main\\resources\\img\\2.jpg",
         "src\\main\\resources\\img\\3.jpg",
@@ -56,16 +55,23 @@ public class selectMap extends JPanel {
     private boolean enable;
     private JLabel Header;
 
-
     public int getMap_lv() {
         return Map_lv;
     }
     public void ClickMap1(){
+        System.out.println(PM.getGame());
         Map1.doClick();
     }
     public void ClickMap2(){
+        System.out.println(PM.getGame());
         Map2.doClick();
     }
+
+    public String getMove_Map() {
+        return Move_Map;
+    }
+
+    private String Move_Map = "not move";
     public void ClickMap3(){
         Map3.doClick();
     }
@@ -89,13 +95,9 @@ public class selectMap extends JPanel {
     private JLabel Title;
     private JLabel Detail;
     private static final int SQUARE_SIZE = 16;
-    private boolean map1_click_state = true;
-    private boolean map2_click_state = false;
-    private boolean map3_click_state = false;
-    private boolean map4_click_state = false;
-    private boolean map5_click_state = false;
+
     // default constructor
-    public selectMap(PacManUI PM)
+    public selectMapForTest(PacManUI PM)
     {
 
         try {
@@ -125,10 +127,10 @@ public class selectMap extends JPanel {
         add(background);
 
         // SETTING IMAGE SELECT
-        img_map.setBounds(125, 82, 220, 160);
+        img_map.setBounds(125, 62, 200, 120);
         img_map.setBackground(Color.white);
         img_map.setOpaque(true);
-        img_map.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.WHITE));
+        img_map.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
         ImageIcon icon = new ImageIcon("src\\main\\resources\\img\\1.jpg");
         img_map.setIcon(icon);
 
@@ -149,26 +151,26 @@ public class selectMap extends JPanel {
         Title.setIconTextGap(-60);
         Title.setBackground(new Color(1f,0f,0f,0f ));
         Title.setOpaque(true);
-        Title.setBounds(125, 200, 200, 40);
+        Title.setBounds(155, 190, 600, 40);
         //Theme
         Detail.setText("Theme : "+ Theme[0]);
-        Detail.setForeground(Color.white);
-        Detail.setFont(new Font("Emulogic",Font.BOLD,11));
+        Detail.setForeground(new Color(0xFFFFFF));
+        Detail.setFont(new Font("Emulogic",Font.BOLD,10));
         Detail.setIconTextGap(-60);
         Detail.setBackground(new Color(1f,0f,0f,0f ));
         Detail.setOpaque(true);
-        Detail.setBounds(125, 235, 300, 40);
+        Detail.setBounds(135, 220, 600, 40);
 
         Map5=new JButton();
         Map5.setLayout(new FlowLayout());
-        Map5.setText("<html><div style='text-align: center;'>MAP 5</html>");
-        Map5.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Map5.setText("Map5");
+        Map5.setFont(new Font("Emulogic",Font.PLAIN,10));
         Map5.setFocusPainted(false);
         Map5.setBackground(Color.black);
         Map5.setForeground(Color.white);
         Map5.setBorder(null);
 //        Map5.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
-        Map5.setBounds(20, 220, 70, 30);
+        Map5.setBounds(20, 200, 70, 30);
 //        NEXT.setBorder(new RoundedButton(10));
         Map5.addActionListener(new ActionListener(){
             @Override
@@ -177,46 +179,27 @@ public class selectMap extends JPanel {
                 closeAllBTN();
                 img_map.setBackground(Color.GREEN);
                 Map5.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+                System.out.println("PASS Map5");
                 PM.setResizable(false);
                 Map_lv=5;
                 Title.setText(Map_Title[4]);
                 Detail.setText("Theme : "+Theme[4]);
-                Detail.setForeground(Color.YELLOW);
                 setImageBackground(BG[4]);
 
-                map5_click_state = true;
-                map4_click_state = false;
-                map3_click_state = false;
-                map2_click_state = false;
-                map1_click_state = false;
-
-            }
-        });
-        Map5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                if (map5_click_state) {
-                    Map5.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.WHITE));
-                }    else {
-                    Map5.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                if (!map5_click_state)
-                    Map5.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.WHITE));
 
             }
         });
 
         Map4=new JButton();
         Map4.setLayout(new FlowLayout());
-        Map4.setText("<html><div style='text-align: center;'>MAP 4</html>");
-        Map4.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Map4.setText("Map4");
+        Map4.setFont(new Font("Emulogic",Font.PLAIN,10));
         Map4.setFocusPainted(false);
         Map4.setBackground(Color.black);
         Map4.setForeground(Color.white);
         Map4.setBorder(null);
 //        Map4.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
-        Map4.setBounds(20, 185, 70, 30);
+        Map4.setBounds(20, 165, 70, 30);
 //        NEXT.setBorder(new RoundedButton(10));
         Map4.addActionListener(new ActionListener(){
             @Override
@@ -225,47 +208,28 @@ public class selectMap extends JPanel {
                 closeAllBTN();
                 img_map.setBackground(Color.BLUE);
                 Map4.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+
+                System.out.println("PASS Map4");
                 PM.setResizable(false);
                 Map_lv=4;
                 Title.setText(Map_Title[3]);
                 setImageBackground(BG[3]);
-                Detail.setForeground(Color.PINK);
                 Detail.setText("Theme : "+Theme[3]);
-
-                map5_click_state = false;
-                map4_click_state = true;
-                map3_click_state = false;
-                map2_click_state = false;
-                map1_click_state = false;
-
-            }
-        });
-        Map4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                if (map4_click_state) {
-                    Map4.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.WHITE));
-                }    else {
-                    Map4.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                if (!map4_click_state)
-                    Map4.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.WHITE));
 
             }
         });
 
         Map3=new JButton();
         Map3.setLayout(new FlowLayout());
-        Map3.setText("<html><div style='text-align: center;'>MAP 3</html>");
-        Map3.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Map3.setText("Map3");
+        Map3.setFont(new Font("Emulogic",Font.PLAIN,10));
         Map3.setFocusPainted(false);
         Map3.setBackground(Color.black);
         Map3.setForeground(Color.white);
         Map3.setBorder(null);
 
 //        Map3.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
-        Map3.setBounds(20, 150, 70, 30);
+        Map3.setBounds(20, 130, 70, 30);
 //        BACK.setBorder(new RoundedButton(10));
         Map3.addActionListener(new ActionListener(){
             @Override
@@ -273,47 +237,28 @@ public class selectMap extends JPanel {
                 // back to home
                 closeAllBTN();
                 Map3.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+
                 img_map.setBackground(Color.CYAN);
+                System.out.println("PASS Map3");
                 PM.setResizable(false);
                 Map_lv=3;
                 Title.setText(Map_Title[2]);
                 setImageBackground(BG[2]);
-                Detail.setForeground(Color.ORANGE);
                 Detail.setText("Theme : "+Theme[2]);
-
-                map5_click_state = false;
-                map4_click_state = false;
-                map3_click_state = true;
-                map2_click_state = false;
-                map1_click_state = false;
-
-            }
-        });
-        Map3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                if (map3_click_state) {
-                    Map3.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.WHITE));
-                }    else {
-                    Map3.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                if (!map3_click_state)
-                    Map3.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.WHITE));
 
             }
         });
 
         Map1=new JButton();
         Map1.setLayout(new FlowLayout());
-        Map1.setText("<html><div style='text-align: center;'>MAP 1</html>");
-        Map1.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Map1.setText("Map1");
+        Map1.setFont(new Font("Emulogic",Font.PLAIN,10));
         Map1.setFocusPainted(false);
         Map1.setBackground(Color.black);
         Map1.setForeground(Color.white);
         Map1.setBorder(null);
         Map1.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
-        Map1.setBounds(20, 80, 70, 30);
+        Map1.setBounds(20, 60, 70, 30);
 //        Play.setBorder(new RoundedButton(10));
         Map1.addActionListener(new ActionListener(){
             @Override
@@ -323,45 +268,25 @@ public class selectMap extends JPanel {
                 Map1.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
 
                 img_map.setBackground(Color.white);
+                System.out.println("PASS Map1");
                 PM.setResizable(false);
                 Map_lv=1;
                 Detail.setText("Theme : "+Theme[0]);
                 setImageBackground(BG[0]);
-                Detail.setForeground(Color.white);
                 Title.setText(Map_Title[0]);
-
-                map5_click_state = false;
-                map4_click_state = false;
-                map3_click_state = false;
-                map2_click_state = false;
-                map1_click_state = true;
-
-            }
-        });
-        Map1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                if (map1_click_state) {
-                    Map1.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.WHITE));
-                }    else {
-                    Map1.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                if (!map1_click_state)
-                    Map1.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.WHITE));
 
             }
         });
 
         Map2=new JButton();
         Map2.setLayout(new FlowLayout());
-        Map2.setText("<html><div style='text-align: center;'>MAP 2</html>");
-        Map2.setFont(new Font("Emulogic",Font.PLAIN,12));
+        Map2.setText("Map2");
+        Map2.setFont(new Font("Emulogic",Font.PLAIN,10));
         Map2.setFocusPainted(false);
         Map2.setBackground(Color.black);
         Map2.setForeground(Color.white);
         Map2.setBorder(null);
-        Map2.setBounds(20, 115, 70, 30);
+        Map2.setBounds(20, 95, 70, 30);
 //        Play.setBorder(new RoundedButton(10));
         Map2.addActionListener(new ActionListener(){
 
@@ -370,49 +295,28 @@ public class selectMap extends JPanel {
                 // back to home
                 closeAllBTN();
                 Map2.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
-
-                System.out.println(PM.getGame().getPlayers().get(0).getSprite());
-                System.out.println(PM.getGame().getPlayers().get(0).getSprites());
                 img_map.setBackground(Color.PINK);
+                System.out.println("PASS Map2");
                 PM.setResizable(false);
                 Map_lv=2;
                 Detail.setText("Theme : "+Theme[1]);
                 Title.setText(Map_Title[1]);
-                Detail.setForeground(Color.GREEN);
                 setImageBackground(BG[1]);
 
-                map5_click_state = false;
-                map4_click_state = false;
-                map3_click_state = false;
-                map2_click_state = true;
-                map1_click_state = false;
-
-            }
-        });
-        Map2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                if (map2_click_state) {
-                    Map2.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.WHITE));
-                }    else {
-                    Map2.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
-                }
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                if (!map2_click_state)
-                    Map2.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.WHITE));
 
             }
         });
 
         NEXT=new JButton();
         NEXT.setLayout(new FlowLayout());
-        NEXT.setText("<html><div style='text-align: center;'>NEXT</html>");
-        NEXT.setFont(new Font("Emulogic",Font.PLAIN,14));
+        NEXT.setText("NEXT");
+        NEXT.setFont(new Font("Emulogic",Font.PLAIN,10));
         NEXT.setFocusPainted(false);
         NEXT.setBackground(Color.black);
         NEXT.setForeground(Color.white);
-        NEXT.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
-        NEXT.setBounds(260, 290, 70, 30);
+        NEXT.setBorder(null);
+        NEXT.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+        NEXT.setBounds(260, 290, 100, 30);
 //        NEXT.setBorder(new RoundedButton(10));
         NEXT.addActionListener(new ActionListener(){
             @Override
@@ -422,32 +326,24 @@ public class selectMap extends JPanel {
                 NEXT.setForeground(Color.BLACK);
                 NEXT.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
 
-                PM.setResizable(false);
-                set_THEME(Map_lv);
-                Move_Map(Map_lv,PM);
+                System.out.println("PASS NEXT");
+                //PM.setResizable(false);
+                //set_THEME(Map_lv);
+                Move_Map = "yes";
+                //Move_Map(Map_lv,PM);
             }
         });
-        NEXT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                NEXT.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.YELLOW));
-                NEXT.setForeground(Color.YELLOW);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                NEXT.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
-                NEXT.setForeground(Color.WHITE);
-            }
-        });
-
 
         BACK=new JButton();
         BACK.setLayout(new FlowLayout());
-        BACK.setText("<html><div style='text-align: center;'>BACK</html>");
-        BACK.setFont(new Font("Emulogic",Font.PLAIN,12));
+        BACK.setText("BACK");
+        BACK.setFont(new Font("Emulogic",Font.PLAIN,10));
         BACK.setFocusPainted(false);
         BACK.setBackground(Color.black);
         BACK.setForeground(Color.white);
         BACK.setBorder(null);
-        BACK.setBounds(10, 290, 70, 30);
+        BACK.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+        BACK.setBounds(10, 290, 100, 30);
 //        BACK.setBorder(new RoundedButton(10));
         BACK.addActionListener(new ActionListener(){
             @Override
@@ -462,23 +358,13 @@ public class selectMap extends JPanel {
 
             }
         });
-        BACK.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                BACK.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
-                BACK.setFont(new Font("Emulogic",Font.PLAIN,15));
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                BACK.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.WHITE));
-                BACK.setFont(new Font("Emulogic",Font.PLAIN,12));
-            }
-        });
 
         background.add(NEXT);
         background.add(BACK);
         background.add(img_map);
-//        background.add(Title);
+        background.add(Title);
         background.add(Detail);
-//        background.add(Header);
+        background.add(Header);
         background.add(Map5);
         background.add(Map4);
         background.add(Map3);
@@ -566,12 +452,13 @@ public class selectMap extends JPanel {
         }
         private final String _hint;
     }
-
+    public void Move_Map_Test() {
+        System.out.println("move");
+    }
     public void Move_Map(int map,PacManUI PM) {
         this.PM=PM;
         Launcher.GAME_THEME_NOW=map;
-        this.PM.LoadingPage(map);
-//        this.PM.PLAY_AT_MAP(map);
+        this.PM.PLAY_AT_MAP(map);
     }
     public void closeAllBTN(){
         Map1.setBorder(null);
@@ -590,6 +477,14 @@ public class selectMap extends JPanel {
         ImageIcon newIcon = new ImageIcon(i);
         img_map.setIcon(newIcon);
     }
-
+//    public static void main(String[] args) throws IOException {
+//        JFrame j = new JFrame();
+//        Container contentPanel = j.getContentPane();
+//        contentPanel.setLayout(new BorderLayout());
+//
+//        contentPanel.add(new FirstMenu());
+//        j.setSize(368,336);
+//        j.setVisible(true);
+//    }
 }
 

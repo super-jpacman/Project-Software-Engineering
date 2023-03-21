@@ -117,7 +117,7 @@ public class PacManUI extends JFrame {
     public PacManUI(final Game game, final Map<String, Action> buttons,
                     final Map<Integer, Action> keyMappings,
                     ScoreFormatter scoreFormatter) {
-        super("Super JPacman");
+        super("Super JPacman : Hell Factory");
 
 
         assert game != null;
