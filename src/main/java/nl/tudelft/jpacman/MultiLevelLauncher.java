@@ -12,6 +12,7 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class MultiLevelLauncher extends Launcher {
@@ -74,6 +75,13 @@ public class MultiLevelLauncher extends Launcher {
 
     @Override
     public MultiLevelGame makeGame() {
+
+        try {
+            TimeUnit.SECONDS.sleep(2);
+            System.out.println("ghgfhghfghf");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         createPac();
         try{
