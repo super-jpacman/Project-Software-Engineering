@@ -309,11 +309,16 @@ public class PacManUI extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    public void PacManUI_LOST(String Text_Header, int Text_Score, double totalTime) {
+    public void PacManUI_LOST(String Text_Header, int Text_Score, double totalTime,String condition) {
         contentPanel.removeAll();
         contentPanel.add(buttonPanel, BorderLayout.SOUTH);
         contentPanel.add(scorePanel, BorderLayout.NORTH);
-        contentPanel.add(new CasualEnding(Text_Header, Text_Score, totalTime, this), BorderLayout.CENTER);
+        if (condition.equals("c")){
+            contentPanel.add(new CasualEnding(Text_Header, Text_Score, totalTime, this), BorderLayout.CENTER);
+        }else{
+            contentPanel.add(new GameEnd(Text_Header, Text_Score, totalTime, this), BorderLayout.CENTER);
+        }
+
         //TEST GAME GUI
 //
 //        contentPanel.add(new RankingBoard(), BorderLayout.CENTER);
