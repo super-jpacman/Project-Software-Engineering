@@ -181,6 +181,7 @@ private MultiLevelLauncher multiLevelLauncher;
 
             getLevel().addObserver(this);
             getLevel().stop();
+//            PM.LoadingPage();
             PM.PLAY_AT_MAP(player.getMap());
         }
 
@@ -276,9 +277,11 @@ private MultiLevelLauncher multiLevelLauncher;
             return;
         }
         // First start and unpause
-
-
         player.setMap(i+1);
+
+//        PM.LoadingPage(player.getMap());
+        System.out.println("🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:");
+
         level = levels.get(i);
         level.registerPlayer(player);
         System.out.println(level);

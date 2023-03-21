@@ -451,7 +451,8 @@ public class selectMap extends JPanel {
     public void Move_Map(int map,PacManUI PM) {
         this.PM=PM;
         Launcher.GAME_THEME_NOW=map;
-        this.PM.PLAY_AT_MAP(map);
+        this.PM.LoadingPage(map);
+//        this.PM.PLAY_AT_MAP(map);
     }
     public void closeAllBTN(){
         Map1.setBorder(null);

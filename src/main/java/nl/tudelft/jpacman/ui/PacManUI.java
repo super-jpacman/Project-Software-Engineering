@@ -141,7 +141,7 @@ public class PacManUI extends JFrame {
         addKeyListener(keys);
 
         buttonPanel = new ButtonPanel(buttons, this, this);
-        
+
         scorePanel = new ScorePanel(game.getPlayers(), this);
 
         if (scoreFormatter != null) {
@@ -187,68 +187,68 @@ public class PacManUI extends JFrame {
     public void LoadingPage(int lv_map){
         contentPanel.removeAll();
         // SET LOADING PAGE
-        contentPanel.add(new WaitMap(lv_map), BorderLayout.CENTER);
+        contentPanel.add(new WaitMap(lv_map,this), BorderLayout.CENTER);
         pack();
         setResizable(false);
+
         // END LOAD
     }
 
     public PacManUI PLAY_AT_MAP(int lv_map) {
 
+//        contentPanel.removeAll();
+////        // SET LOADING PAGE
+////        contentPanel.add(new WaitMap(lv_map), BorderLayout.CENTER);
+////        pack();
+////        setResizable(false);
+////        // END LOAD
+
+//        System.out.println("🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓");
+//        System.out.println("INGAME ::::"+Launcher.InGame);
+//
+//                System.out.println("🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓");
+//                System.out.println("================PLAY_AT_MAP=================");
+//                System.out.println("GAME: " + game);
+//                System.out.println("BTN: " + buttons);
+//                System.out.println("KEY: " + keyMappings);
+//                System.out.println("FOTMAT: " + scoreFormatter);
+//                System.out.println("=================================\n");
         contentPanel.removeAll();
-//        // SET LOADING PAGE
-//        contentPanel.add(new WaitMap(lv_map), BorderLayout.CENTER);
-//        pack();
-//        setResizable(false);
-//        // END LOAD
-        System.out.println("🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓");
-        System.out.println("INGAME ::::"+Launcher.InGame);
+        buttonPanel = new ButtonPanel(buttons, this, this);
+        game.selectMap(lv_map - 1);
+        game.getLevel().setInProgress(false);
+        game.getLevel().updateObservers();
+        game.getLevel().start();
+        game.getLevel().stop();
+//                System.out.println("==============PLAY_AT_MAP===================");
+//                System.out.println("game: " + game);
+//                System.out.println("isInProgress: " + game.isInProgress());
+//                System.out.println("getPlayers: " + game.getPlayers());
+//                System.out.println("isAlive: " + game.getPlayers().get(0).isAlive());
+//                System.out.println("getMap: " + game.getPlayers().get(0).getMap());
+//                System.out.println("isAnyPlayerAlive: " + game.getLevel().isAnyPlayerAlive());
+//                System.out.println("isInProgress: " + game.getLevel().isInProgress());
+//                System.out.println("=================================\n");
 
-                System.out.println("🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓🐱‍👓");
-                System.out.println("================PLAY_AT_MAP=================");
-                System.out.println("GAME: " + game);
-                System.out.println("BTN: " + buttons);
-                System.out.println("KEY: " + keyMappings);
-                System.out.println("FOTMAT: " + scoreFormatter);
-                System.out.println("=================================\n");
-
-                contentPanel.removeAll();
-                buttonPanel = new ButtonPanel(buttons, this, this);
-                game.selectMap(lv_map - 1);
-                game.getLevel().setInProgress(false);
-                game.getLevel().updateObservers();
-                game.getLevel().start();
-                game.getLevel().stop();
-                System.out.println("==============PLAY_AT_MAP===================");
-                System.out.println("game: " + game);
-                System.out.println("isInProgress: " + game.isInProgress());
-                System.out.println("getPlayers: " + game.getPlayers());
-                System.out.println("isAlive: " + game.getPlayers().get(0).isAlive());
-                System.out.println("getMap: " + game.getPlayers().get(0).getMap());
-                System.out.println("isAnyPlayerAlive: " + game.getLevel().isAnyPlayerAlive());
-                System.out.println("isInProgress: " + game.getLevel().isInProgress());
-                System.out.println("=================================\n");
-
-                if (scoreFormatter != null) {
-                    scorePanel.setScoreFormatter(scoreFormatter);
-                }
+        if (scoreFormatter != null) {
+            scorePanel.setScoreFormatter(scoreFormatter);
+        }
 
 //        setUndecorated(true);
 
-                boardPanel = new BoardPanel(game);
-                contentPanel.setLayout(new BorderLayout());
-                contentPanel.add(buttonPanel, BorderLayout.SOUTH);
-                contentPanel.add(scorePanel, BorderLayout.NORTH);
-                contentPanel.add(boardPanel, BorderLayout.CENTER);
-                pack();
-                setResizable(false);
-
-
+        boardPanel = new BoardPanel(game);
+        contentPanel.setLayout(new BorderLayout());
+        contentPanel.add(buttonPanel, BorderLayout.SOUTH);
+        contentPanel.add(scorePanel, BorderLayout.NORTH);
+        contentPanel.add(boardPanel, BorderLayout.CENTER);
+        pack();
+        setResizable(false);
         /// ENDSET
         return this;
     }
 
     public void RANKING_BOARD() {
+        System.out.println("Launcher GAME MODE : "+ getContentPane());
         contentPanel.removeAll();
 //        setSize(368,336);
         contentPanel.add(new RankingBoard(this), BorderLayout.CENTER);

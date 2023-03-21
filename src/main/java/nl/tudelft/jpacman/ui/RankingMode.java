@@ -1,5 +1,6 @@
 package nl.tudelft.jpacman.ui;
 
+import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.MultiLevelLauncher;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.points.SaveScore;
@@ -94,7 +95,8 @@ public class RankingMode extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS Start");
-                PM.PacManUI_PLAY_RANK(PM.getGame());
+                System.out.println("Launcher GAME MODE : "+ Launcher.GAME_MODE_NOW);
+                PM.LoadingPage(PM.getGame().getPlayers().get(0).getMap());
 
             }
         });
