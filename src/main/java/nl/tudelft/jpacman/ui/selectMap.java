@@ -22,6 +22,23 @@ import java.util.Objects;
 
 public class selectMap extends JPanel {
     private String path = "src/main/resources/main.jpg";
+    private String[] Map_Title = {"Map1 Desc"
+        ,"Map2 Desc"
+        ,"Map3 Desc"
+        ,"Map4 Desc"
+        ,"Map5 Desc"};
+
+    private String[] Theme = {"Theme 1"
+        ,"Theme 2"
+        ,"Theme 3"
+        ,"Theme 4"
+        ,"Theme 5"};
+    private String[] BG = {"src\\main\\resources\\img\\1.jpg",
+        "src\\main\\resources\\img\\2.jpg",
+        "src\\main\\resources\\img\\3.jpg",
+        "src\\main\\resources\\img\\4.jpg",
+        "src\\main\\resources\\img\\5.jpg"};
+
     private Image image = new ImageIcon(path).getImage();
     private JButton Map1;
     private JButton Map2;
@@ -107,6 +124,8 @@ public class selectMap extends JPanel {
         img_map.setBackground(Color.white);
         img_map.setOpaque(true);
         img_map.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
+        ImageIcon icon = new ImageIcon("src\\main\\resources\\img\\1.jpg");
+        img_map.setIcon(icon);
 
         // END SETTING
 
@@ -119,7 +138,7 @@ public class selectMap extends JPanel {
         Header.setBounds(86, 10, 600, 40);
 
         //Title
-        Title.setText("Map Story");
+        Title.setText(Map_Title[0]);
         Title.setForeground(new Color(0xFFFFFF));
         Title.setFont(new Font("Emulogic",Font.BOLD,14));
         Title.setIconTextGap(-60);
@@ -127,8 +146,7 @@ public class selectMap extends JPanel {
         Title.setOpaque(true);
         Title.setBounds(155, 190, 600, 40);
         //Theme
-        String theme = "Christmas";
-        Detail.setText("Theme : "+ theme);
+        Detail.setText("Theme : "+ Theme[0]);
         Detail.setForeground(new Color(0xFFFFFF));
         Detail.setFont(new Font("Emulogic",Font.BOLD,10));
         Detail.setIconTextGap(-60);
@@ -157,6 +175,10 @@ public class selectMap extends JPanel {
                 System.out.println("PASS Map5");
                 PM.setResizable(false);
                 Map_lv=5;
+                Title.setText(Map_Title[4]);
+                Detail.setText("Theme : "+Theme[4]);
+                setImageBackground(BG[4]);
+
 
             }
         });
@@ -183,6 +205,10 @@ public class selectMap extends JPanel {
                 System.out.println("PASS Map4");
                 PM.setResizable(false);
                 Map_lv=4;
+                Title.setText(Map_Title[3]);
+                setImageBackground(BG[3]);
+                Detail.setText("Theme : "+Theme[3]);
+
             }
         });
 
@@ -209,6 +235,10 @@ public class selectMap extends JPanel {
                 System.out.println("PASS Map3");
                 PM.setResizable(false);
                 Map_lv=3;
+                Title.setText(Map_Title[2]);
+                setImageBackground(BG[2]);
+                Detail.setText("Theme : "+Theme[2]);
+
             }
         });
 
@@ -234,6 +264,10 @@ public class selectMap extends JPanel {
                 System.out.println("PASS Map1");
                 PM.setResizable(false);
                 Map_lv=1;
+                Detail.setText("Theme : "+Theme[0]);
+                setImageBackground(BG[0]);
+                Title.setText(Map_Title[0]);
+
             }
         });
 
@@ -261,6 +295,10 @@ public class selectMap extends JPanel {
                 System.out.println("PASS Map2");
                 PM.setResizable(false);
                 Map_lv=2;
+                Detail.setText("Theme : "+Theme[1]);
+                Title.setText(Map_Title[1]);
+                setImageBackground(BG[1]);
+
 
             }
         });
@@ -426,6 +464,11 @@ public class selectMap extends JPanel {
         Launcher.GAME_THEME_NOW=i;
         Launcher.setTheme();
         PM.getGame().setSkin_Pac();
+    }
+
+    public void setImageBackground(String i){
+        ImageIcon newIcon = new ImageIcon(i);
+        img_map.setIcon(newIcon);
     }
 //    public static void main(String[] args) throws IOException {
 //        JFrame j = new JFrame();

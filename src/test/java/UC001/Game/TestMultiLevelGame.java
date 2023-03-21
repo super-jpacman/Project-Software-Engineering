@@ -18,7 +18,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class TestMultiLevelGame {
-    MultiLevelGame multiLevelGame;
+    private String path = "src/main/resources/mainScreen.gif";
     Player player = mock(Player.class);
     List<Level> levels;
     PacManUI pacManUI = mock(PacManUI.class);

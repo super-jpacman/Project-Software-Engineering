@@ -141,8 +141,9 @@ public class PacManUI extends JFrame {
         addKeyListener(keys);
 
         buttonPanel = new ButtonPanel(buttons, this, this);
-
+        
         scorePanel = new ScorePanel(game.getPlayers(), this);
+
         if (scoreFormatter != null) {
             scorePanel.setScoreFormatter(scoreFormatter);
         }
