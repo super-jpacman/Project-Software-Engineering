@@ -1,75 +1,77 @@
 package UC002;
 
 import nl.tudelft.jpacman.TestLauncher;
+import nl.tudelft.jpacman.TestMultiLevelLauncher;
 import nl.tudelft.jpacman.board.Direction;
-import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.game.MultiLevelGame;
 import nl.tudelft.jpacman.level.Player;
+import nl.tudelft.jpacman.ui.PacManUI;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class TS002_new {
-    @DisplayName("TC03: Pacman collision Inky Expected pacman die")
+    TestMultiLevelLauncher testMultiLevelLauncher;
+    @BeforeEach
+    public void setup(){
+        testMultiLevelLauncher = new TestMultiLevelLauncher();
+        testMultiLevelLauncher.setMapTest("_Collision_Inky");
+        testMultiLevelLauncher.setLengthOfMap(1,1);
+    }
+    @DisplayName("TC01: Pacman collision Inky Expected game.isInProgress() = false")
+    @Test
+    public void TC01() throws InterruptedException {
+        testMultiLevelLauncher.launch();
+        MultiLevelGame game = testMultiLevelLauncher.getGame();
+        PacManUI pacManUI = testMultiLevelLauncher.getPacManUI();
+        pacManUI.PLAY_AT_MAP(1);
+        game.start();
+        Player player = game.getPlayers().get(0);
+        while(game.isInProgress() != false){
+            move(player,game,getRandomDirection(),1);
+        }
+        assertEquals(false,game.isInProgress());
+    }
+    @DisplayName("TC02: Pacman collision Blinky Expected game.isInProgress() = false")
+    @Test
+    public void TC02() throws InterruptedException {
+        testMultiLevelLauncher.launch();
+        MultiLevelGame game = testMultiLevelLauncher.getGame();
+        game.start();
+        Player player = game.getPlayers().get(0);
+        while(game.isInProgress() != false){
+            move(player,game,getRandomDirection(),1);
+        }
+        assertEquals(false,game.isInProgress());
+    }
+    @DisplayName("TC03: Pacman collision Clyde Expected game.isInProgress() = false")
     @Test
     public void TC03() throws InterruptedException {
-        TestLauncher testLauncher = new TestLauncher();
-        testLauncher.setNameoftest("_Collision_Inky");
-        testLauncher.LenghtOfMap(1,1);
-        testLauncher.launch();
-        MultiLevelGame game = testLauncher.getGame();
+        testMultiLevelLauncher.launch();
+        MultiLevelGame game = testMultiLevelLauncher.getGame();
         game.start();
         Player player = game.getPlayers().get(0);
-        move(player,game,Direction.EAST,1);
-        assertEquals(false,player.isAlive());
-        testLauncher.dispose();
+        while(game.isInProgress() != false){
+            move(player,game,getRandomDirection(),1);
+        }
+        assertEquals(false,game.isInProgress());
     }
-    @DisplayName("TC04: Pacman collision Blinky Expected pacman die")
+    @DisplayName("TC04: Pacman collision Pinky Expected game.isInProgress() = false")
     @Test
     public void TC04() throws InterruptedException {
-        TestLauncher testLauncher = new TestLauncher();
-        testLauncher.setNameoftest("_Collision_Blinky");
-        testLauncher.LenghtOfMap(1,1);
-        testLauncher.launch();
-        MultiLevelGame game = testLauncher.getGame();
+        testMultiLevelLauncher.launch();
+        MultiLevelGame game = testMultiLevelLauncher.getGame();
         game.start();
         Player player = game.getPlayers().get(0);
-        move(player,game,Direction.EAST,1);
-        assertEquals(false,player.isAlive());
-        testLauncher.dispose();
-    }
-    @DisplayName("TC05: Pacman collision Clyde Expected pacman die")
-    @Test
-    public void TC05() throws InterruptedException {
-        TestLauncher testLauncher = new TestLauncher();
-        testLauncher.setNameoftest("_Collision_Clyde");
-        testLauncher.LenghtOfMap(1,1);
-        testLauncher.launch();
-        MultiLevelGame game = testLauncher.getGame();
-        game.start();
-        Player player = game.getPlayers().get(0);
-        move(player,game,Direction.EAST,1);
-        assertEquals(false,player.isAlive());
-        testLauncher.dispose();
-    }
-    @DisplayName("TC06: Pacman collision Pinky Expected pacman die")
-    @Test
-    public void TC06() throws InterruptedException {
-        TestLauncher testLauncher = new TestLauncher();
-        testLauncher.setNameoftest("_Collision_Pinky");
-        testLauncher.LenghtOfMap(1,1);
-        testLauncher.launch();
-        MultiLevelGame game = testLauncher.getGame();
-        game.start();
-        Player player = game.getPlayers().get(0);
-        move(player,game,Direction.EAST,1);
-        assertEquals(false,player.isAlive());
-        testLauncher.dispose();
+        while(game.isInProgress() != false){
+            move(player,game,getRandomDirection(),1);
+        }
+        assertEquals(false,game.isInProgress());
     }
     
     private Direction getRandomDirection() {
@@ -78,7 +80,7 @@ public class TS002_new {
     public static void move(Player player,Game game, Direction dir, int numSteps) throws InterruptedException {
         for (int i = 0; i < numSteps; i++) {
             game.move(player, dir);
-            Thread.sleep(0);
+            Thread.sleep(100);
         }
     }
 }

@@ -1,8 +1,9 @@
 
-package nl.tudelft.jpacman.ui;
+package UC001.UI;
 
 import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.game.Game;
+import nl.tudelft.jpacman.ui.PacManUI;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -12,27 +13,15 @@ import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.Area;
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
-public class GameMode extends JPanel {
+public class GameModeForTest extends JPanel {
     private String path = "src/main/resources/main.jpg";
     private Image image = new ImageIcon(path).getImage();
     private JButton CasualMode;
     private JButton RankingMode;
-
     private JButton BACK;
-
-    public boolean isClickRankingIsPressed() {
-        return ClickRankingIsPressed;
-    }
-
-    private boolean ClickRankingIsPressed = false;
-
     private String Text_Header;
     private Game game;
     private JLabel Header;
@@ -50,7 +39,7 @@ public class GameMode extends JPanel {
     }
 
     // default constructor
-    public GameMode(PacManUI PM)
+    public GameModeForTest(PacManUI PM)
     {
         try {
             GraphicsEnvironment ge =
@@ -146,16 +135,9 @@ public class GameMode extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // back to home
-                System.out.println("PASS RankingMode");
-                PM.getGame().getLevel().setInProgress(false);
-                PM.getGame().getLevel().updateObservers();
-
-                PM.getGame().getLevel().start();
-                PM.getGame().getLevel().stop();
 //                PM.getGame().restart();
                 Launcher.GAME_MODE_NOW="";
                 PM.GAMAE_RANKING();
-                ClickRankingIsPressed = true;
             }
         });
 

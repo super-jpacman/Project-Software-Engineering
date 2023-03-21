@@ -180,11 +180,9 @@ public class PacManUI extends JFrame {
         contentPanel.removeAll();
 //        setSize(368,336);
         contentPanel.add(new GameMode(this), BorderLayout.CENTER);
-
         pack();
         setResizable(false);
     }
-
     public PacManUI PLAY_AT_MAP(int lv_map) {
 
         contentPanel.removeAll();

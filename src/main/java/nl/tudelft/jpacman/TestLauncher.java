@@ -16,6 +16,7 @@ import java.util.List;
 
 public class TestLauncher extends Launcher {
 
+    public TestLauncher(){}
     public static int getNumberOfLevels() {
         return NUMBER_OF_LEVELS;
     }
