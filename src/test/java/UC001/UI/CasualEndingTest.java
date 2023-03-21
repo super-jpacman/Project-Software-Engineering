@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
-@Disabled
 public class CasualEndingTest {
     PacManUI pacManUI = mock(PacManUI.class);
     Game game = mock(Game.class);

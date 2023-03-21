@@ -1,6 +1,7 @@
 package UC001.Game;
 
 import nl.tudelft.jpacman.MultiLevelLauncher;
+import nl.tudelft.jpacman.Test.MultiLevelGameForTest;
 import nl.tudelft.jpacman.game.MultiLevelGame;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
@@ -67,15 +68,17 @@ public class TestMultiLevelGame {
     @DisplayName("MultiLevelGame:Level won stage 1")
     @Test
     public void TC04() throws InterruptedException {
-        MultiLevelGame multiLevelGame = new MultiLevelGame(player,levels,pointCalculator,pacManUI,playerFactory,multiLevelLauncher);
+        MultiLevelGameForTest multiLevelGame = new MultiLevelGameForTest(player,levels,pointCalculator,pacManUI,playerFactory,multiLevelLauncher);
+        multiLevelGame.GAME_MODE_NOW = "CASUAL";
         multiLevelGame.makeGame();
         multiLevelGame.getGame();
         when(multiLevelGame.getLevel().remainingPellets()).thenReturn(0);
         when(multiLevelGame.getLevel().isAnyPlayerAlive()).thenReturn(true);
         Player player = multiLevelGame.getPlayers().get(0);
-        System.out.println(multiLevelGame.getLevel().remainingPellets());
         multiLevelGame.start();
-        assertEquals(1,multiLevelGame.getLevelNumber());
+        multiLevelGame.levelWon();
+        assertEquals(0,multiLevelGame.getLevelNumber());
+        multiLevelGame.GAME_MODE_NOW = "";
     }
     @DisplayName("MultiLevelGame:Restart game")
     @Test
