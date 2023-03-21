@@ -28,8 +28,6 @@ public class GameEnd extends JFrame {
     private String Text_Header;
     private int Text_Score;
     private boolean enable;
-
-    private boolean btnIsClicked;
     public GameEnd(){}
     // default constructor
     public GameEnd(String Text_Header,int Text_Score,double totalTime,PacManUI PM)
@@ -48,7 +46,7 @@ public class GameEnd extends JFrame {
             //Handle exception
         }
         PM.setEnabled(false);
-        this.btnIsClicked = false;
+
         this.Text_Header=Text_Header;
         this.Text_Score=Text_Score;
 
@@ -105,12 +103,11 @@ public class GameEnd extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // back to home
-                btnIsClicked = true;
+
                 if(!name.getText().isEmpty()){
                     new SaveScore(name.getText(),totalTime,Text_Score);
                     dispose();
                     PM.setEnabled(true);
-
                 }else if(name.getText().length()>16) {
                     JOptionPane.showMessageDialog(new JFrame(), "Length must less than 16");
 
@@ -132,6 +129,7 @@ public class GameEnd extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
+
         setVisible(true);
 
     }
@@ -219,6 +217,7 @@ public class GameEnd extends JFrame {
         this.name.replaceSelection(name);
     }
     public void SetOnClick(){
+        assert BackBTN != null;
         BackBTN.doClick();
     }
 
@@ -229,15 +228,13 @@ public class GameEnd extends JFrame {
         System.out.println("Text_Score : "+Text_Score);
     }
 
-    public boolean isClick() {
-        return btnIsClicked;
+    public boolean isEnable() {
+        return enable;
     }
 
     public void setEnable(boolean enable) {
         this.enable = enable;
     }
-    public String getname(){
-        return this.name.getText();
-    }
 
 }
+

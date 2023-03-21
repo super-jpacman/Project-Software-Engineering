@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.PacmanConfigurationException;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.npc.ghost.GhostColor;
@@ -19,6 +20,7 @@ public class PacManSprites extends SpriteStore {
      * The sprite files are vertically stacked series for each direction, this
      * array denotes the order.
      */
+
     private static final Direction[] DIRECTIONS = {
         Direction.NORTH,
         Direction.EAST,
@@ -55,14 +57,15 @@ public class PacManSprites extends SpriteStore {
      * @return A map of animated Pac-Man sprites for all directions.
      */
     public Map<Direction, Sprite> getPacmanSprites() {
-        return directionSprite("/sprite/pacman.png", PACMAN_ANIMATION_FRAMES);
+        return directionSprite(Launcher.PANMAN, PACMAN_ANIMATION_FRAMES);
     }
+
 
     /**
      * @return The animation of a dying Pac-Man.
      */
     public AnimatedSprite getPacManDeathAnimation() {
-        String resource = "/sprite/dead.png";
+        String resource = Launcher.PANMAN_NIM_DEAD;
 
         Sprite baseImage = loadSprite(resource);
         AnimatedSprite animation = createAnimatedSprite(baseImage, PACMAN_DEATH_FRAMES,
@@ -106,7 +109,7 @@ public class PacManSprites extends SpriteStore {
     public Map<Direction, Sprite> getGhostSprite(GhostColor color) {
         assert color != null;
 
-        String resource = "/sprite/ghost_" + color.name().toLowerCase()
+        String resource = Launcher.GHOST + color.name().toLowerCase()
             + ".png";
         return directionSprite(resource, GHOST_ANIMATION_FRAMES);
     }
@@ -115,21 +118,21 @@ public class PacManSprites extends SpriteStore {
      * @return The sprite for the wall.
      */
     public Sprite getWallSprite() {
-        return loadSprite("/sprite/wall.png");
+        return loadSprite(Launcher.WALL);
     }
 
     /**
      * @return The sprite for the ground.
      */
     public Sprite getGroundSprite() {
-        return loadSprite("/sprite/floor.png");
+        return loadSprite(Launcher.FLOOR);
     }
 
     /**
      * @return The sprite for the
      */
     public Sprite getPelletSprite() {
-        return loadSprite("/sprite/pellet.png");
+        return loadSprite(Launcher.PELLET);
     }
 
     /**

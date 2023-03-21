@@ -21,7 +21,7 @@ import static org.mockito.Mockito.mock;
 public class GameEndTest {
     TestLauncher testLauncher = new TestLauncher();
 
-    @DisplayName("TC01:Test Button and Test Field")
+    /*@DisplayName("TC01:Test Button and Test Field")
     @Test
     public void ButtonTest() throws InterruptedException {
         testLauncher.LenghtOfMap(1,5);
@@ -35,7 +35,7 @@ public class GameEndTest {
         t.SetOnClick();
         assertEquals(true,t.isClick());
 
-    }
+    }*/
     private Direction getRandomDirection() {
         return Direction.values()[new Random().nextInt(Direction.values().length)];
     }

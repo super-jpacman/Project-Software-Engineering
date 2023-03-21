@@ -23,14 +23,72 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
 
 /**
  * Creates and launches the JPacMan UI.
- * 
+ *
  * @author Jeroen Roosen
  */
 @SuppressWarnings("PMD.TooManyMethods")
 public class Launcher {
+    public static String PANMAN;
+    public static String PANMAN_NIM_DEAD;
+    public static String FLOOR;
+    public static String WALL;
+    public static String PELLET;
+    public static String GHOST;
 
-    private static final PacManSprites SPRITE_STORE = new PacManSprites();
-    public static int map = 1;
+    public static void setTheme(){
+        if(Launcher.GAME_THEME_NOW==1){
+            Launcher.PANMAN= "/sprite/pacman.png";
+            Launcher.PANMAN_NIM_DEAD = "/sprite/dead.png";
+            Launcher.FLOOR = "/sprite/floor.png";
+            Launcher.WALL = "/sprite/wall.png";
+            Launcher.PELLET = "/sprite/pellet.png";
+            Launcher.GHOST = "/sprite/ghost_";
+        }else if (Launcher.GAME_THEME_NOW==2){
+            Launcher.PANMAN= "/sprite/mspacman.png";
+            Launcher.PANMAN_NIM_DEAD = "/sprite/dead.png";
+            Launcher.FLOOR = "/sprite/wall.png";
+            Launcher.WALL = "/sprite/floor.png";
+            Launcher.PELLET = "/sprite/pellet.png";
+            Launcher.GHOST = "/sprite/ghost_";
+        }else if (Launcher.GAME_THEME_NOW==3){
+            Launcher.PANMAN= "/sprite/pacman.png";
+            Launcher.PANMAN_NIM_DEAD = "/sprite/dead.png";
+            Launcher.FLOOR = "/sprite/floor.png";
+            Launcher.WALL = "/sprite/wall.png";
+            Launcher.PELLET = "/sprite/pellet.png";
+            Launcher.GHOST = "/sprite/ghost_";
+        }
+        else if (Launcher.GAME_THEME_NOW==4){
+            Launcher.PANMAN= "/sprite/mspacman.png";
+            Launcher.PANMAN_NIM_DEAD = "/sprite/dead.png";
+            Launcher.FLOOR = "/sprite/wall.png";
+            Launcher.WALL = "/sprite/floor.png";
+            Launcher.PELLET = "/sprite/pellet.png";
+            Launcher.GHOST = "/sprite/ghost_";
+        }else if (Launcher.GAME_THEME_NOW==5){
+            Launcher.PANMAN= "/sprite/pacman.png";
+            Launcher.PANMAN_NIM_DEAD = "/sprite/dead.png";
+            Launcher.FLOOR = "/sprite/floor.png";
+            Launcher.WALL = "/sprite/wall.png";
+            Launcher.PELLET = "/sprite/pellet.png";
+            Launcher.GHOST = "/sprite/ghost_";
+        }else{
+            Launcher.PANMAN= "/sprite/mspacman.png";
+            Launcher.PANMAN_NIM_DEAD = "/sprite/dead.png";
+            Launcher.FLOOR = "/sprite/wall.png";
+            Launcher.WALL = "/sprite/floor.png";
+            Launcher.PELLET = "/sprite/pellet.png";
+            Launcher.GHOST = "/sprite/ghost_";
+        }
+
+    }
+    public static PacManSprites SPRITE_STORE = new PacManSprites();
+
+
+    public static String GAME_MODE_NOW = "";
+    public static int GAME_THEME_NOW = 1;
+    public static boolean MODAL = false;
+
     public static final String DEFAULT_MAP = "/board.txt";
     private String levelMap = DEFAULT_MAP;
 
@@ -53,7 +111,8 @@ public class Launcher {
 
     private PacManUI pacManUI;
     private Game game;
-
+    private MapParser MP = new MapParser(getLevelFactory(), getBoardFactory());
+    private PlayerFactory PF = new PlayerFactory(getSpriteStore());
     /**
      * @return The game object this launcher will start when {@link #launch()}
      *         is called.
@@ -90,6 +149,13 @@ public class Launcher {
         return game;
     }
 
+    public Game makeGame_LV(String map) {
+        GameFactory gf = getGameFactory();
+        Level level = makeLevel(map);
+        game = gf.createSinglePlayerGame(level, loadPointCalculator());
+        return game;
+    }
+
     private PointCalculator loadPointCalculator() {
         return new PointCalculatorLoader().load();
     }
@@ -105,7 +171,7 @@ public class Launcher {
             return getMapParser().parseMap(getLevelMap(_INDEX_MAP_));
         } catch (IOException e) {
             throw new PacmanConfigurationException(
-                    "Unable to create level, name = " + getLevelMap("1"), e);
+                "Unable to create level, name = " + getLevelMap("1"), e);
         }
     }
 
@@ -114,7 +180,7 @@ public class Launcher {
      *         {@link #getLevelFactory()} and {@link #getBoardFactory()}.
      */
     protected MapParser getMapParser() {
-        return new MapParser(getLevelFactory(), getBoardFactory());
+        return MP;
     }
 
     /**
@@ -157,8 +223,9 @@ public class Launcher {
     /**
      * @return A new factory using the sprites from {@link #getSpriteStore()}.
      */
+
     protected PlayerFactory getPlayerFactory() {
-        return new PlayerFactory(getSpriteStore());
+        return this.PF;
     }
 
     /**
@@ -169,9 +236,9 @@ public class Launcher {
      */
     protected void addSinglePlayerKeys(final PacManUiBuilder builder) {
         builder.addKey(KeyEvent.VK_UP, moveTowardsDirection(Direction.NORTH))
-                .addKey(KeyEvent.VK_DOWN, moveTowardsDirection(Direction.SOUTH))
-                .addKey(KeyEvent.VK_LEFT, moveTowardsDirection(Direction.WEST))
-                .addKey(KeyEvent.VK_RIGHT, moveTowardsDirection(Direction.EAST));
+            .addKey(KeyEvent.VK_DOWN, moveTowardsDirection(Direction.SOUTH))
+            .addKey(KeyEvent.VK_LEFT, moveTowardsDirection(Direction.WEST))
+            .addKey(KeyEvent.VK_RIGHT, moveTowardsDirection(Direction.EAST));
     }
 
     private Action moveTowardsDirection(Direction direction) {
@@ -193,10 +260,12 @@ public class Launcher {
      * Creates and starts a JPac-Man game.
      */
     public void launch() {
+        pacManUI.MainMenuUI();
         makeGame();
         setBuilder(new PacManUiBuilder().withDefaultButtons());
         addSinglePlayerKeys(builder);
         pacManUI = builder.build(getGame());
+        pacManUI.start();
     }
 
     /**
@@ -219,12 +288,15 @@ public class Launcher {
      * @throws IOException
      *             When a resource could not be read.
      */
+    public static MultiLevelLauncher WTF_GAME;
     public static void main(String[] args) throws IOException {
         if (args.length > 0 && args[0].equals("--singlelevel")) {
             new Launcher().launch();
             System.out.println("test");
         } else {
-            new MultiLevelLauncher().launch();
+            WTF_GAME= new MultiLevelLauncher();
+            WTF_GAME.launch();
+
         }
     }
 }

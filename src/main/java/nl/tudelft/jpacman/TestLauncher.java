@@ -98,7 +98,7 @@ public class TestLauncher extends Launcher {
                 String _INDEX_MAP_ = String.valueOf(i)+Nameoftest;
                 levels.add(makeLevel(_INDEX_MAP_));
             }
-            multiGame = new MultiLevelGame(player, levels, loadPointCalculator(),getPacManUI());
+//            multiGame = new MultiLevelGame(player, levels, loadPointCalculator(),getPacManUI(),null);
             
         } finally {
         }

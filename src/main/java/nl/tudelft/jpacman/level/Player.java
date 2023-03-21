@@ -33,10 +33,18 @@ public class Player extends Unit {
 
     private int map;
 
+    public Map<Direction, Sprite> getSprites() {
+        return sprites;
+    }
+
+    public void setSprites(Map<Direction, Sprite> sprites) {
+        this.sprites = sprites;
+    }
+
     /**
      * The animations for every direction.
      */
-    private final Map<Direction, Sprite> sprites;
+    private Map<Direction, Sprite> sprites;
 
     /**
      * The animation that is to be played when Pac-Man dies.

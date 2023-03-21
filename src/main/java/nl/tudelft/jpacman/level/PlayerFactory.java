@@ -12,8 +12,8 @@ public class PlayerFactory {
     /**
      * The sprite store containing the Pac-Man sprites.
      */
-    private final PacManSprites sprites;
-
+    private static PacManSprites sprites = null;
+    private Player P;
     /**
      * Creates a new player factory.
      *
@@ -29,7 +29,7 @@ public class PlayerFactory {
      *
      * @return A new player.
      */
-    public Player createPacMan() {
+    public static Player createPacMan() {
         return new Player(getSprites().getPacmanSprites(), getSprites().getPacManDeathAnimation());
     }
 
@@ -38,7 +38,8 @@ public class PlayerFactory {
      *
      * @return The sprites for the player created.
      */
-    protected PacManSprites getSprites() {
+    protected static PacManSprites getSprites() {
         return sprites;
     }
+
 }
