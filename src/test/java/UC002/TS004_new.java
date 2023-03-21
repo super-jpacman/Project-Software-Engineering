@@ -1,10 +1,9 @@
 package UC002;
 
-import nl.tudelft.jpacman.TestMultiLevelLauncher;
+import nl.tudelft.jpacman.Test.TestMultiLevelLauncher;
 import nl.tudelft.jpacman.board.Board;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
-import nl.tudelft.jpacman.board.Unit;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.game.MultiLevelGame;
 import nl.tudelft.jpacman.level.Player;

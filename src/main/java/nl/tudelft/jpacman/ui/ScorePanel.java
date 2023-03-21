@@ -31,7 +31,17 @@ public class ScorePanel extends JPanel {
      */
     private final Map<Player, JLabel> scoreLabels;
     private final Map<Player, JLabel> mapLabels;
+
     private JButton BACK;
+
+    public boolean isCheckClick() {
+        return CheckClick;
+    }
+
+    private boolean CheckClick = false;
+    public void ClickBack(){
+        BACK.doClick();
+    }
     private JButton HIDE;
     /**
      * The default way in which the score is shown.
@@ -100,6 +110,7 @@ public class ScorePanel extends JPanel {
                 PM.getGame().rere();
                 Launcher.GAME_MODE_NOW="";
                     PM.MainMenuUI();
+                    CheckClick = true;
                 }
 
 

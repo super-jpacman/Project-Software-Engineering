@@ -46,9 +46,14 @@ import static java.util.concurrent.TimeUnit.SECONDS;
  */
 public class PacManUI extends JFrame {
 
+    public boolean isCheckPacManLost() {
+        return CheckPacManLost;
+    }
+
     /**
      * Default serialisation UID.
      */
+    private boolean CheckPacManLost = false;
     private static final long serialVersionUID = 1L;
 
     /**
@@ -325,6 +330,7 @@ public class PacManUI extends JFrame {
 //        contentPanel.add(new RankingBoard(), BorderLayout.CENTER);
         pack();
         setResizable(false);
+        CheckPacManLost = true;
     }
 //    public void reset(){
 //        getContentPane().invalidate();

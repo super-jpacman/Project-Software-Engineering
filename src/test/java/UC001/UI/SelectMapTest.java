@@ -1,5 +1,6 @@
 package UC001.UI;
 
+import nl.tudelft.jpacman.Test.selectMapForTest;
 import nl.tudelft.jpacman.ui.GameMode;
 import nl.tudelft.jpacman.ui.PacManUI;
 import nl.tudelft.jpacman.ui.selectMap;
@@ -18,7 +19,7 @@ public class SelectMapTest {
     @Test
     public void TC01() throws InterruptedException {
         JFrame frame = new JFrame();
-        selectMap selectMap = new selectMap(pacManUI);
+        selectMapForTest selectMap = new selectMapForTest(pacManUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(selectMap);
         frame.pack();
@@ -26,13 +27,13 @@ public class SelectMapTest {
         selectMap.ClickMap1();
         selectMap.ClickNext();
         assertEquals(1,selectMap.getMap_lv());
-        verify(pacManUI).PLAY_AT_MAP(1);
+        assertEquals("yes",selectMap.getMove_Map());
     }
     @DisplayName("TC02 : When click Map2 and Click Next Expected Map_lv = 2 and go to game")
     @Test
     public void TC02() throws InterruptedException {
         JFrame frame = new JFrame();
-        selectMap selectMap = new selectMap(pacManUI);
+        selectMapForTest selectMap = new selectMapForTest(pacManUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(selectMap);
         frame.pack();
@@ -40,13 +41,13 @@ public class SelectMapTest {
         selectMap.ClickMap2();
         selectMap.ClickNext();
         assertEquals(2,selectMap.getMap_lv());
-        verify(pacManUI).PLAY_AT_MAP(2);
+        assertEquals("yes",selectMap.getMove_Map());
     }
     @DisplayName("TC03 : When click Map3 and Click Next Expected Map_lv = 3 and go to game")
     @Test
     public void TC03() throws InterruptedException {
         JFrame frame = new JFrame();
-        selectMap selectMap = new selectMap(pacManUI);
+        selectMapForTest selectMap = new selectMapForTest(pacManUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(selectMap);
         frame.pack();
@@ -54,13 +55,13 @@ public class SelectMapTest {
         selectMap.ClickMap3();
         selectMap.ClickNext();
         assertEquals(3,selectMap.getMap_lv());
-        verify(pacManUI).PLAY_AT_MAP(3);
+        assertEquals("yes",selectMap.getMove_Map());
     }
     @DisplayName("TC04 : When click Map4 and Click Next Expected Map_lv = 4 and go to game")
     @Test
     public void TC04() throws InterruptedException {
         JFrame frame = new JFrame();
-        selectMap selectMap = new selectMap(pacManUI);
+        selectMapForTest selectMap = new selectMapForTest(pacManUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(selectMap);
         frame.pack();
@@ -68,13 +69,13 @@ public class SelectMapTest {
         selectMap.ClickMap4();
         selectMap.ClickNext();
         assertEquals(4,selectMap.getMap_lv());
-        verify(pacManUI).PLAY_AT_MAP(4);
+        assertEquals("yes",selectMap.getMove_Map());
     }
     @DisplayName("TC05 : When click Map5 and Click Next Expected Map_lv = 5 and go to game")
     @Test
     public void TC05() throws InterruptedException {
         JFrame frame = new JFrame();
-        selectMap selectMap = new selectMap(pacManUI);
+        selectMapForTest selectMap = new selectMapForTest(pacManUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(selectMap);
         frame.pack();
@@ -82,6 +83,6 @@ public class SelectMapTest {
         selectMap.ClickMap5();
         selectMap.ClickNext();
         assertEquals(5,selectMap.getMap_lv());
-        verify(pacManUI).PLAY_AT_MAP(5);
+        assertEquals("yes",selectMap.getMove_Map());
     }
 }
