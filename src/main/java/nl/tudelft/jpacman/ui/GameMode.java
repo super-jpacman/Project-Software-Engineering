@@ -30,12 +30,6 @@ public class GameMode extends JPanel {
 
     private JButton BACK;
 
-    public boolean isClickRankingIsPressed() {
-        return ClickRankingIsPressed;
-    }
-
-    private boolean ClickRankingIsPressed = false;
-
     private String Text_Header;
     private Game game;
     private JLabel Header;
@@ -169,6 +163,7 @@ public class GameMode extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS RankingMode");
+
                 PM.getGame().getLevel().setInProgress(false);
                 PM.getGame().getLevel().updateObservers();
 
@@ -177,7 +172,7 @@ public class GameMode extends JPanel {
 //                PM.getGame().restart();
                 Launcher.GAME_MODE_NOW="";
                 PM.GAMAE_RANKING();
-                ClickRankingIsPressed = true;
+
             }
         });
         RankingMode.addMouseListener(new java.awt.event.MouseAdapter() {

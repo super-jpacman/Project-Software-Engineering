@@ -1,10 +1,17 @@
 package UC001.UI;
 
-import nl.tudelft.jpacman.Test.TestLauncher;
+import nl.tudelft.jpacman.TestLauncher;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.game.Game;
+import nl.tudelft.jpacman.game.MultiLevelGame;
 import nl.tudelft.jpacman.level.Player;
+import nl.tudelft.jpacman.ui.GameEnd;
+import nl.tudelft.jpacman.ui.PacManUI;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -60,12 +60,9 @@ public class selectMap extends JPanel {
         return Map_lv;
     }
     public void ClickMap1(){
-        System.out.println(PM.getGame());
         Map1.doClick();
     }
     public void ClickMap2(){
-        System.out.println("sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
-        System.out.println(PM.getGame());
         Map2.doClick();
     }
     public void ClickMap3(){
@@ -291,6 +288,9 @@ public class selectMap extends JPanel {
                 // back to home
                 closeAllBTN();
                 Map2.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+
+                System.out.println(PM.getGame().getPlayers().get(0).getSprite());
+                System.out.println(PM.getGame().getPlayers().get(0).getSprites());
                 img_map.setBackground(Color.PINK);
                 System.out.println("PASS Map2");
                 PM.setResizable(false);
@@ -451,7 +451,8 @@ public class selectMap extends JPanel {
     public void Move_Map(int map,PacManUI PM) {
         this.PM=PM;
         Launcher.GAME_THEME_NOW=map;
-        this.PM.PLAY_AT_MAP(map);
+        this.PM.LoadingPage(map);
+//        this.PM.PLAY_AT_MAP(map);
     }
     public void closeAllBTN(){
         Map1.setBorder(null);
