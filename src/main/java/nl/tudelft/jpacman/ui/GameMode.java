@@ -100,8 +100,7 @@ public class GameMode extends JPanel {
         BACK.setFocusPainted(false);
         BACK.setBackground(Color.black);
         BACK.setForeground(Color.white);
-        BACK.setBorder(null);
-        BACK.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+        BACK.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.WHITE));
         BACK.setBounds(10, 290, 100, 30);
 //        BACK.setBorder(new RoundedButton(10));
         BACK.addActionListener(new ActionListener(){
@@ -111,7 +110,6 @@ public class GameMode extends JPanel {
                 BACK.setBackground(Color.white);
                 BACK.setForeground(Color.BLACK);
                 BACK.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.YELLOW));
-
                 System.out.println("PASS BACK");
                 PM.MainMenuUI();
             }
@@ -125,7 +123,6 @@ public class GameMode extends JPanel {
         CasualMode.setBackground(Color.black);
         CasualMode.setForeground(Color.white);
         CasualMode.setBorder(null);
-        CasualMode.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
         CasualMode.setBounds(130, 190, 100, 30);
 //        Play.setBorder(new RoundedButton(10));
         CasualMode.addActionListener(new ActionListener(){
@@ -133,6 +130,8 @@ public class GameMode extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS CasualMode");
+                CasualMode.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
+
                 PM.GAMAE_CASUAL();
             }
         });
@@ -154,7 +153,6 @@ public class GameMode extends JPanel {
         RankingMode.setBackground(Color.black);
         RankingMode.setForeground(Color.white);
         RankingMode.setBorder(null);
-        RankingMode.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
         RankingMode.setBounds(130, 160, 100, 30);
 //        Play.setBorder(new RoundedButton(10));
         RankingMode.addActionListener(new ActionListener(){
@@ -163,7 +161,7 @@ public class GameMode extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // back to home
                 System.out.println("PASS RankingMode");
-
+                RankingMode.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.white));
                 PM.getGame().getLevel().setInProgress(false);
                 PM.getGame().getLevel().updateObservers();
 

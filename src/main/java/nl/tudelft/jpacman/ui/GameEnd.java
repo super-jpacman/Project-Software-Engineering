@@ -18,7 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-public class GameEnd extends JFrame {
+public class GameEnd extends JPanel {
     private String path = "src/main/resources/end.jpg";
     private Image image = new ImageIcon(path).getImage();
     private JButton BackBTN;
@@ -32,6 +32,8 @@ public class GameEnd extends JFrame {
     // default constructor
     public GameEnd(String Text_Header,int Text_Score,double totalTime,PacManUI PM)
     {
+        Dimension size = new Dimension(368, 336);
+        setSize(size);
         try {
             GraphicsEnvironment ge =
                 GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -45,14 +47,13 @@ public class GameEnd extends JFrame {
         } catch (FontFormatException | IOException e) {
             //Handle exception
         }
-        PM.setEnabled(false);
 
         this.Text_Header=Text_Header;
         this.Text_Score=Text_Score;
 
         ImageIcon img = new ImageIcon(path);
         JLabel background = new JLabel(img);
-        background.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
+//        background.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
         add(background);
 
         Header=new JLabel("Header");
@@ -103,32 +104,22 @@ public class GameEnd extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // back to home
-
                 if(!name.getText().isEmpty()){
                     new SaveScore(name.getText(),totalTime,Text_Score);
-                    dispose();
-                    PM.setEnabled(true);
+                    PM.MainMenuUI();
+
                 }else if(name.getText().length()>16) {
                     JOptionPane.showMessageDialog(new JFrame(), "Length must less than 16");
 
                 }else{
                     JOptionPane.showMessageDialog(new JFrame(), "Enter Your Name!");
                 }
-
             }
         });
         background.add(Header);
         background.add(Score);
         background.add(name);
         background.add(BackBTN);
-
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setResizable(false);
-        //Delete Bar
-        setUndecorated(true);
-
-        pack();
-        setLocationRelativeTo(null);
 
         setVisible(true);
 

@@ -111,7 +111,7 @@ private MultiLevelLauncher multiLevelLauncher;
         }else{
             if(levelNumber>=4){
                 Player p = getPlayers().get(0);
-                GE = new GameEnd("You Won !!",p.getScore(),getTotalTime(),PM);
+                PM.RANK_END("You LOSE !!",p.getScore(),getTotalTime());
             }else{
                 start();
             }
@@ -278,8 +278,10 @@ private MultiLevelLauncher multiLevelLauncher;
         }
         // First start and unpause
         player.setMap(i+1);
+        if (Launcher.GAME_MODE_NOW=="RANK"){
+            PM.LoadingPage(player.getMap());
+        }
 
-//        PM.LoadingPage(player.getMap());
         System.out.println("🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:");
 
         level = levels.get(i);
@@ -317,7 +319,7 @@ private MultiLevelLauncher multiLevelLauncher;
 
         if (Launcher.GAME_MODE_NOW=="CASUAL"){
             temp = PM.getBoardPanel();
-            PM.setBoardPanel(new CasualEnding("TEST",999,60,PM));
+//            PM.setBoardPanel(new CasualEnding("TEST",999,60,PM));
             System.out.println(temp);
             System.out.println(temp);
             PM.getGame().restart();
@@ -331,10 +333,17 @@ private MultiLevelLauncher multiLevelLauncher;
         }
         else{
             temp = PM.getBoardPanel();
-            PM.setBoardPanel(new CasualEnding("TEST",999,60,PM));
+//            PM.setBoardPanel(new CasualEnding("TEST",999,60,PM));
+            int point=p.getScore();
+            Double time = getTotalTime();
+            System.out.println("🍛🍛🍛🍛🍛🍛🍛🍛🍛");
+            System.out.println("SCORE : "+point);
+            System.out.println("TIME : "+time);
+            System.out.println("🍛🍛🍛🍛🍛🍛🍛🍛🍛");
             PM.getGame().restart();
             PM.getGame().stop();
-            PM.PacManUI_LOST("YOU LOSE",999,60);
+            PM.RANK_END("You LOSE !!",point,time);
+//            PM.PacManUI_LOST("YOU LOSE",999,60);
             PM.getBoardPanel().revalidate();
             PM.getBoardPanel().repaint();
             System.out.println(PM.getBoardPanel());

@@ -184,6 +184,14 @@ public class PacManUI extends JFrame {
         pack();
         setResizable(false);
     }
+
+    public void RANK_END(String Text_Header,int Text_Score,double totalTime) {
+        contentPanel.removeAll();
+//        setSize(368,336);
+        contentPanel.add(new GameEnd(Text_Header,Text_Score,totalTime,this), BorderLayout.CENTER);
+        pack();
+        setResizable(false);
+    }
     public void LoadingPage(int lv_map){
         contentPanel.removeAll();
         // SET LOADING PAGE
