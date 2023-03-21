@@ -86,7 +86,7 @@ public class Launcher {
 
 
     public static String GAME_MODE_NOW = "";
-    public static int GAME_THEME_NOW = 1;
+    public static int GAME_THEME_NOW = 2;
     public static boolean MODAL = false;
 
     public static final String DEFAULT_MAP = "/board.txt";
@@ -289,6 +289,7 @@ public class Launcher {
      *             When a resource could not be read.
      */
     public static MultiLevelLauncher WTF_GAME;
+
     public static void main(String[] args) throws IOException {
         if (args.length > 0 && args[0].equals("--singlelevel")) {
             new Launcher().launch();

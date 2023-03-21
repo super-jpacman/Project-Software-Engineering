@@ -7,6 +7,7 @@ import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.level.PlayerFactory;
 import nl.tudelft.jpacman.points.PointCalculator;
+import nl.tudelft.jpacman.sprite.PacManSprites;
 import nl.tudelft.jpacman.ui.GameEnd;
 import nl.tudelft.jpacman.ui.PacManUI;
 import nl.tudelft.jpacman.ui.CasualEnding;
@@ -39,7 +40,7 @@ public class MultiLevelGame extends Game {
     }
 private MultiLevelLauncher multiLevelLauncher;
     private GameEnd GE;
-    private final Player player;
+    private Player player;
 
     public List<Level> getLevels() {
         return levels;
@@ -137,6 +138,7 @@ private MultiLevelLauncher multiLevelLauncher;
             for (int i = 1; i < 5+1; i++) {
                 Launcher.GAME_THEME_NOW=i;
                 Launcher.setTheme();
+
                 String _INDEX_MAP_ = String.valueOf(i);
                 levels_.add(makeLevel(_INDEX_MAP_));
 
@@ -379,7 +381,10 @@ private MultiLevelLauncher multiLevelLauncher;
     public Level getLevel() {
         return level;
     }
-
+    @Override
+    public void setSkin_Pac(){
+        this.player.setSprites(Launcher.SPRITE_STORE.getPacmanSprites());
+    }
     public int getLevelNumber() {
         return this.levelNumber;
     }

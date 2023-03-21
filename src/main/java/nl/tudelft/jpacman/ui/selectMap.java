@@ -286,6 +286,7 @@ public class selectMap extends JPanel {
 
                 System.out.println("PASS NEXT");
                 PM.setResizable(false);
+                set_THEME(Map_lv);
                 Move_Map(Map_lv,PM);
             }
         });
@@ -421,7 +422,11 @@ public class selectMap extends JPanel {
         Map4.setBorder(null);
         Map5.setBorder(null);
     }
-
+    public void set_THEME(int i){
+        Launcher.GAME_THEME_NOW=i;
+        Launcher.setTheme();
+        PM.getGame().setSkin_Pac();
+    }
 //    public static void main(String[] args) throws IOException {
 //        JFrame j = new JFrame();
 //        Container contentPanel = j.getContentPane();
