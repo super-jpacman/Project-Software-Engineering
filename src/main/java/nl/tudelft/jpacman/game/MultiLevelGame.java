@@ -126,6 +126,11 @@ public class MultiLevelGame extends Game {
     }
     @Override
     public void restart() {
+        System.out.println(Launcher.GAME_MODE_NOW);
+        System.out.println(Launcher.GAME_MODE_NOW);
+        System.out.println(Launcher.GAME_MODE_NOW);
+        System.out.println(Launcher.GAME_MODE_NOW);
+        System.out.println(Launcher.GAME_MODE_NOW);
 
 
         Launcher.InGame=false;
@@ -140,12 +145,13 @@ public class MultiLevelGame extends Game {
             player.setScore(0);
             setTotalTime(0);
             player.setAlive(true);
-
+            System.out.println(player.getMap());
+            Launcher.GAME_THEME_NOW=player.getMap();
+            PM.getGame().setSkin_Pac();
             List<Level> levels_ = new ArrayList<>();
             for (int i = 1; i < 5+1; i++) {
                 Launcher.GAME_THEME_NOW=i;
                 Launcher.setTheme();
-
                 String _INDEX_MAP_ = String.valueOf(i);
                 levels_.add(makeLevel(_INDEX_MAP_));
 
@@ -155,8 +161,11 @@ public class MultiLevelGame extends Game {
             levels.clear();
             levels.addAll(levels_);
             level = levels.get(0);
+            Launcher.GAME_THEME_NOW=player.getMap();
+            PM.getGame().setSkin_Pac();
             level.registerPlayer(player);
             inProgress = false;
+
             getLevel().addObserver(this);
 
             getLevel().stop();
@@ -171,6 +180,7 @@ public class MultiLevelGame extends Game {
             for (int i = 1; i < 5+1; i++) {
                 Launcher.GAME_THEME_NOW=i;
                 Launcher.setTheme();
+
                 String _INDEX_MAP_ = String.valueOf(i);
                 levels_.add(makeLevel(_INDEX_MAP_));
 
@@ -213,7 +223,8 @@ public class MultiLevelGame extends Game {
                 System.out.println("getMap: "+getPlayers().get(0).getMap());
                 System.out.println("isAnyPlayerAlive: "+getLevel().isAnyPlayerAlive());
                 System.out.println("isInProgress: "+getLevel().isInProgress());
-                System.out.println("=================================\n");
+                System.out.println("=================================\n"+Launcher.GAME_MODE_NOW);
+
                 getLevel().start();
 //                System.out.println("Start Pressed");
                 stopWatch.startWatch();
@@ -231,12 +242,20 @@ public class MultiLevelGame extends Game {
                 && getLevel().isAnyPlayerAlive())
             {
                 levelNumber++;
+                player.setMap(levelNumber+1);
                 System.out.println("⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽");
                 System.out.println(levelNumber);
+
+                System.out.println(Launcher.GAME_THEME_NOW);
+                System.out.println(Launcher.GAME_THEME_NOW);
 
                 if(Launcher.GAME_MODE_NOW=="CASUAL"){
                     PM.GAMAE_CASUAL();
                 }else{
+                    System.out.println("⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽⚽");
+                    System.out.println(player.getMap());
+                    Launcher.GAME_THEME_NOW=player.getMap();
+                    PM.getGame().setSkin_Pac();
                     selectMap(levelNumber);
                 }
 
@@ -283,7 +302,14 @@ public class MultiLevelGame extends Game {
         }
         // First start and unpause
         player.setMap(i+1);
+        System.out.println("🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:"+Launcher.GAME_MODE_NOW);
+        System.out.println("🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:🎀:"+player.getMap());
+
         if (Launcher.GAME_MODE_NOW=="RANK"){
+            Launcher.GAME_THEME_NOW=i+1;
+            Launcher.setTheme();
+            PM.getGame().setSkin_Pac();
+            PM.getGame().setSkin_Pac();
             PM.LoadingPage(player.getMap());
         }
 
@@ -358,7 +384,7 @@ public class MultiLevelGame extends Game {
     }
     @Override
     public void stop() {
-
+        System.out.println("STOP PU");
         synchronized (progressLock) {
             // Already paused or ended
             if (!isInProgress()) {
@@ -402,11 +428,16 @@ public class MultiLevelGame extends Game {
     }
     @Override
     public void setSkin_Pac(){
+        Launcher.GAME_THEME_NOW=this.player.getMap();
         this.player.setSprites(Launcher.SPRITE_STORE.getPacmanSprites());
     }
     public int getLevelNumber() {
         return this.levelNumber;
     }
-
+    public void set_THEME(int i){
+        Launcher.GAME_THEME_NOW=i;
+        Launcher.setTheme();
+        PM.getGame().setSkin_Pac();
+    }
 }
 

@@ -43,14 +43,15 @@ public class Launcher {
             Launcher.WALL = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/wall.png";
             Launcher.PELLET = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/pellet.png";
             Launcher.GHOST = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/ghost_";
-        } else{
-            Launcher.PANMAN= "/sprite/theme/1/pacman.png";
-            Launcher.PANMAN_NIM_DEAD = "/sprite/theme/1/dead.png";
-            Launcher.FLOOR = "/sprite/theme/1/floor.png";
-            Launcher.WALL = "/sprite/theme/1//wall.png";
-            Launcher.PELLET = "/sprite/theme/1/pellet.png";
-            Launcher.GHOST = "/sprite/theme/1/ghost_";
         }
+//        else{
+//            Launcher.PANMAN= "/sprite/theme/1/pacman.png";
+//            Launcher.PANMAN_NIM_DEAD = "/sprite/theme/1/dead.png";
+//            Launcher.FLOOR = "/sprite/theme/1/floor.png";
+//            Launcher.WALL = "/sprite/theme/1//wall.png";
+//            Launcher.PELLET = "/sprite/theme/1/pellet.png";
+//            Launcher.GHOST = "/sprite/theme/1/ghost_";
+//        }
 
     }
     public static PacManSprites SPRITE_STORE = new PacManSprites();
@@ -209,7 +210,11 @@ public class Launcher {
         builder.addKey(KeyEvent.VK_UP, moveTowardsDirection(Direction.NORTH))
             .addKey(KeyEvent.VK_DOWN, moveTowardsDirection(Direction.SOUTH))
             .addKey(KeyEvent.VK_LEFT, moveTowardsDirection(Direction.WEST))
-            .addKey(KeyEvent.VK_RIGHT, moveTowardsDirection(Direction.EAST));
+            .addKey(KeyEvent.VK_RIGHT, moveTowardsDirection(Direction.EAST))
+            .addKey(87,moveTowardsDirection(Direction.NORTH))
+            .addKey(83, moveTowardsDirection(Direction.SOUTH))
+            .addKey(65, moveTowardsDirection(Direction.WEST))
+            .addKey(68, moveTowardsDirection(Direction.EAST));
     }
 
     private Action moveTowardsDirection(Direction direction) {

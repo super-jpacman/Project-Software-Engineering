@@ -23,8 +23,8 @@ public class WaitMap extends JPanel {
             //override the method
             @Override
             public void mouseClicked(MouseEvent arg0) {
-                System.out.println("🤩🤩🤩🤩🤩🤩🤩🤩🤩");
-                System.out.println("Launcher GAME MODE : "+ Launcher.GAME_MODE_NOW);
+                System.out.println("🤩🤩🤩🤩🤩LOADING PAGE🤩🤩🤩🤩");
+                System.out.println("Launcher.GAME_MODE_NOW : "+ Launcher.GAME_MODE_NOW);
                 System.out.println("Launcher GAME MODE : "+ PM.getContentPane());
 //                background.removeAll();
                 setVisible(false);
@@ -36,7 +36,7 @@ public class WaitMap extends JPanel {
                 } else if(Launcher.GAME_MODE_NOW == "RANK"){
                     PM.PacManUI_PLAY_RANK(PM.getGame());
                 }else {}
-
+                System.out.println("🤩🤩🤩🤩🤩🤩🤩🤩🤩");
 
 
             }
