@@ -3,6 +3,7 @@ package nl.tudelft.jpacman.ui;
 import nl.tudelft.jpacman.Launcher;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ class ButtonPanel extends JPanel {
      */
     private static final long serialVersionUID = 1L;
     private ArrayList<JButton> btn = new ArrayList<JButton>();
+
 
     public int getCount() {
         return count;

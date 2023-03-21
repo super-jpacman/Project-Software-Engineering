@@ -1,5 +1,6 @@
 package nl.tudelft.jpacman.ui;
 
+import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.game.Game;
 
 import javax.swing.*;
@@ -31,6 +32,7 @@ public class FirstMenu extends JPanel {
     // default constructor
     public FirstMenu(PacManUI PM)
     {
+        Launcher.InGame=true;
         try {
             GraphicsEnvironment ge =
                 GraphicsEnvironment.getLocalGraphicsEnvironment();

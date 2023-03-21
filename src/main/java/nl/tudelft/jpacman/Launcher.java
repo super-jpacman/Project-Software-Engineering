@@ -83,7 +83,7 @@ public class Launcher {
 
     }
     public static PacManSprites SPRITE_STORE = new PacManSprites();
-
+    public static boolean InGame = true;
 
     public static String GAME_MODE_NOW = "";
     public static int GAME_THEME_NOW = 2;

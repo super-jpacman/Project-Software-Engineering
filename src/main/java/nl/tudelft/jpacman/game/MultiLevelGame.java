@@ -13,6 +13,8 @@ import nl.tudelft.jpacman.ui.PacManUI;
 import nl.tudelft.jpacman.ui.CasualEnding;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,7 +123,7 @@ private MultiLevelLauncher multiLevelLauncher;
     public void restart() {
 
 
-
+        Launcher.InGame=false;
         if (GE!=null){
             GE.setVisible(false);
             GE=null;
@@ -388,4 +390,6 @@ private MultiLevelLauncher multiLevelLauncher;
     public int getLevelNumber() {
         return this.levelNumber;
     }
+
 }
+
