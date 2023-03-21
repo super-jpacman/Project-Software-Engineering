@@ -104,14 +104,15 @@ private MultiLevelLauncher multiLevelLauncher;
     public void levelWon() {
 
         stop();
+        Player p = getPlayers().get(0);
         if (Launcher.GAME_MODE_NOW=="CASUAL"){
             restart();
             Launcher.GAME_MODE_NOW="";
-            PM.GAMAE_CASUAL();
+
+            PM.PacManUI_LOST("You Won !!",p.getScore(),getTotalTime());
         }else{
             if(levelNumber>=4){
-                Player p = getPlayers().get(0);
-                PM.RANK_END("You LOSE !!",p.getScore(),getTotalTime());
+                PM.RANK_END("You Won !!",p.getScore(),getTotalTime());
             }else{
                 start();
             }

@@ -22,10 +22,10 @@ public class CasualEnding extends JPanel {
     private Image image = new ImageIcon(path).getImage();
     private JButton BackBTN;
     private JLabel Header;
-    private JLabel Score;
+//    private JLabel Score;
     private String Text_Header;
     private Game game;
-    private int Text_Score;
+//    private int Text_Score;
     private boolean enable;
     private static final int SQUARE_SIZE = 16;
     public void ClickBackBTN(){
@@ -35,9 +35,10 @@ public class CasualEnding extends JPanel {
     // default constructor
     public CasualEnding(String Text_Header, int Text_Score, double totalTime,PacManUI PM)
     {
+        Launcher.GAME_MODE_NOW="CASUAL";
         Launcher.MODAL = true;
         this.Text_Header=Text_Header;
-        this.Text_Score=Text_Score;
+//        this.Text_Score=Text_Score;
         ImageIcon img = new ImageIcon(path);
         JLabel background = new JLabel(img);
 //        background.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.white));
@@ -45,35 +46,35 @@ public class CasualEnding extends JPanel {
 
         Header=new JLabel("Header");
         BackBTN=new JButton();
-        Score=new JLabel("Score");
+//        Score=new JLabel("Score");
 
 
         Header.setText(Text_Header);
 
         Header.setForeground(new Color(0xFFFFFF));
-        Header.setFont(new Font("Emulogic",Font.BOLD,35));
+        Header.setFont(new Font("Emulogic",Font.BOLD,25));
 
 //        Header.setIconTextGap(-60);
         Header.setBackground(new Color(1f,0f,0f,0f ));
         Header.setOpaque(true);
-        Header.setBounds(20, 20, 300, 35);
+        Header.setBounds(80, 20, 300, 35);
 
-        Score.setLayout(new FlowLayout());
-        Score.setText("Score "+String.valueOf(Text_Score));
-        Score.setHorizontalTextPosition(JLabel.CENTER);
-        Score.setVerticalTextPosition(JLabel.TOP);
-        Score.setAlignmentX(JLabel.CENTER);
-
-        Score.setForeground(new Color(0xFFFFFF));
-        Score.setFont(new Font("Emulogic",Font.PLAIN,25));
-
-//        Score.setIconTextGap(-60);
-        Score.setBackground(new Color(1f,0f,0f,0f ));
-        Score.setOpaque(true);
-        Score.setBounds(50, 90, 300, 30);
+//        Score.setLayout(new FlowLayout());
+//        Score.setText("Score "+String.valueOf(Text_Score));
+//        Score.setHorizontalTextPosition(JLabel.CENTER);
+//        Score.setVerticalTextPosition(JLabel.TOP);
+//        Score.setAlignmentX(JLabel.CENTER);
+//
+//        Score.setForeground(new Color(0xFFFFFF));
+//        Score.setFont(new Font("Emulogic",Font.PLAIN,25));
+//
+////        Score.setIconTextGap(-60);
+//        Score.setBackground(new Color(1f,0f,0f,0f ));
+//        Score.setOpaque(true);
+//        Score.setBounds(50, 90, 300, 30);
         this.setBackground(Color.black);
         background.add(Header);
-        background.add(Score);
+//        background.add(Score);
         background.add(BackBTN);
         setVisible(true);
         PM.setResizable(false);
@@ -166,7 +167,7 @@ public class CasualEnding extends JPanel {
     public void showData(){
         System.out.println("BackBTN : "+BackBTN);
         System.out.println("Text_Header : "+Text_Header);
-        System.out.println("Text_Score : "+Text_Score);
+//        System.out.println("Text_Score : "+Text_Score);
     }
 
     public boolean isEnable() {

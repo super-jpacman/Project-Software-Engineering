@@ -78,6 +78,7 @@ public class ScorePanel extends JPanel {
                 Launcher.InGame=false;
                 System.out.println("PASS BACK");
                 Launcher.MODAL = false;
+                System.out.println("sadasdasd"+Launcher.GAME_MODE_NOW);
                 if(Launcher.GAME_MODE_NOW=="RANK"){
                     PM.getGame().stop();
                         PM.getGame().restart();
@@ -89,7 +90,7 @@ public class ScorePanel extends JPanel {
                     PM.MainMenuUI();
                 }else if(Launcher.GAME_MODE_NOW=="CASUAL"){
                     PM.getGame().stop();
-                        PM.getGame().restart();
+                    PM.getGame().restart();
                     Launcher.GAME_MODE_NOW="";
                     System.out.println("WTF"+Launcher.GAME_MODE_NOW);
                     PM.getGame().getLevel().setInProgress(false);

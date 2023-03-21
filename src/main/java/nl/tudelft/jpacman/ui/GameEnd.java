@@ -1,5 +1,6 @@
 package nl.tudelft.jpacman.ui;
 
+import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.points.SaveScore;
 
 import javax.swing.*;
@@ -106,6 +107,7 @@ public class GameEnd extends JPanel {
                 // back to home
                 if(!name.getText().isEmpty()){
                     new SaveScore(name.getText(),totalTime,Text_Score);
+                    Launcher.GAME_MODE_NOW="RANK";
                     PM.MainMenuUI();
 
                 }else if(name.getText().length()>16) {
