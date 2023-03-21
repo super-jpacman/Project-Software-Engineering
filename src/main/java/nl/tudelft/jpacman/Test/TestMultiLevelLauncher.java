@@ -1,5 +1,7 @@
-package nl.tudelft.jpacman;
+package nl.tudelft.jpacman.Test;
 
+import nl.tudelft.jpacman.Launcher;
+import nl.tudelft.jpacman.MultiLevelLauncher;
 import nl.tudelft.jpacman.game.MultiLevelGame;
 import nl.tudelft.jpacman.game.StopWatch;
 import nl.tudelft.jpacman.level.Level;

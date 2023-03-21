@@ -1,8 +1,5 @@
 package UC001.UI;
 
-import nl.tudelft.jpacman.TestMultiLevelLauncher;
-import nl.tudelft.jpacman.game.MultiLevelGame;
-import nl.tudelft.jpacman.ui.FirstMenu;
 import nl.tudelft.jpacman.ui.GameMode;
 import nl.tudelft.jpacman.ui.PacManUI;
 import org.fest.swing.fixture.FrameFixture;

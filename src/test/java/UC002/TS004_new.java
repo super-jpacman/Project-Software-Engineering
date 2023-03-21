@@ -1,6 +1,6 @@
 package UC002;
 
-import nl.tudelft.jpacman.TestMultiLevelLauncher;
+import nl.tudelft.jpacman.Test.TestMultiLevelLauncher;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.game.MultiLevelGame;
@@ -58,6 +58,7 @@ public class TS004_new {
     public void teardown(){
         testMultiLevelLauncher.dispose();
         testMultiLevelLauncher.GAME_MODE_NOW = "";
+        testMultiLevelLauncher.GAME_THEME_NOW = 2;
     }
     private Direction getRandomDirection() {
         return Direction.values()[new Random().nextInt(Direction.values().length)];

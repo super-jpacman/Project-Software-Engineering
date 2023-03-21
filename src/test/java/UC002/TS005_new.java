@@ -1,6 +1,6 @@
 package UC002;
 
-import nl.tudelft.jpacman.TestMultiLevelLauncher;
+import nl.tudelft.jpacman.Test.TestMultiLevelLauncher;
 import nl.tudelft.jpacman.board.Board;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
