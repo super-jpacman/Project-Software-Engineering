@@ -135,6 +135,15 @@ public class MapParser {
             case '#':
                 grid[x][y] = boardCreator.createWall();
                 break;
+            case '1':
+                grid[x][y] = boardCreator.createWall1();
+                break;
+            case '2':
+                grid[x][y] = boardCreator.createWall2();
+                break;
+            case '3':
+                grid[x][y] = boardCreator.createWall3();
+                break;
             case '.':
                 Square pelletSquare = boardCreator.createGround();
                 grid[x][y] = pelletSquare;

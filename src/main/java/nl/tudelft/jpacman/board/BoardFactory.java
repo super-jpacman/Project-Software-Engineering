@@ -74,6 +74,16 @@ public class BoardFactory {
     public Square createWall() {
         return new Wall(sprites.getWallSprite());
     }
+    public Square createWall1() {
+        return new Wall(sprites.getWallSprite1());
+    }
+    public Square createWall2() {
+        return new Wall(sprites.getWallSprite2());
+    }
+
+    public Square createWall3() {
+        return new Wall(sprites.getWallSprite3());
+    }
 
     /**
      * A wall is a square that is inaccessible to anyone.

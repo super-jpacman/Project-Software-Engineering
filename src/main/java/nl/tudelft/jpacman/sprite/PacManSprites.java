@@ -120,6 +120,16 @@ public class PacManSprites extends SpriteStore {
     public Sprite getWallSprite() {
         return loadSprite(Launcher.WALL);
     }
+    public Sprite getWallSprite1() {
+        return loadSprite("/sprite/theme/4/wall1.png");//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    }
+    public Sprite getWallSprite2() {
+        return loadSprite("/sprite/theme/4/wall2.png");//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    }
+
+    public Sprite getWallSprite3() {
+        return loadSprite("/sprite/theme/4/wall3.png");//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    }
 
     /**
      * @return The sprite for the ground.

@@ -44,14 +44,14 @@ public class Launcher {
             Launcher.PELLET = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/pellet.png";
             Launcher.GHOST = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/ghost_";
         }
-//        else{
-//            Launcher.PANMAN= "/sprite/theme/1/pacman.png";
-//            Launcher.PANMAN_NIM_DEAD = "/sprite/theme/1/dead.png";
-//            Launcher.FLOOR = "/sprite/theme/1/floor.png";
-//            Launcher.WALL = "/sprite/theme/1//wall.png";
-//            Launcher.PELLET = "/sprite/theme/1/pellet.png";
-//            Launcher.GHOST = "/sprite/theme/1/ghost_";
-//        }
+        else{
+            Launcher.PANMAN= "/sprite/theme/1/pacman.png";
+            Launcher.PANMAN_NIM_DEAD = "/sprite/theme/1/dead.png";
+            Launcher.FLOOR = "/sprite/theme/1/floor.png";
+            Launcher.WALL = "/sprite/theme/1//wall.png";
+            Launcher.PELLET = "/sprite/theme/1/pellet.png";
+            Launcher.GHOST = "/sprite/theme/1/ghost_";
+        }
 
     }
     public static PacManSprites SPRITE_STORE = new PacManSprites();
