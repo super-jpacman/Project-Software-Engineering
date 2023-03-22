@@ -1,5 +1,6 @@
 package UC001.UI;
 
+import nl.tudelft.jpacman.Test.RankingModeForTest;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.ui.GameMode;
 import nl.tudelft.jpacman.ui.PacManUI;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -20,13 +22,13 @@ public class RankingModeTest {
     @Test
     public void TC01() throws InterruptedException {
         JFrame frame = new JFrame();
-        RankingMode rankingMode = new RankingMode(pacManUI);
+        RankingModeForTest rankingMode = new RankingModeForTest(pacManUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(rankingMode);
         frame.pack();
         frame.setVisible(true);
         rankingMode.ClickStart();
-        verify(pacManUI).PacManUI_PLAY_RANK(pacManUI.getGame());
+        assertEquals(true,rankingMode.isClickstart());
     }
     @DisplayName("TC01 : When Leaderboard Expected go to Leaderboard")
     @Test

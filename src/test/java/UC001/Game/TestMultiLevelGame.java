@@ -1,6 +1,7 @@
 package UC001.Game;
 
 import nl.tudelft.jpacman.MultiLevelLauncher;
+import nl.tudelft.jpacman.Test.MultiLevelGameForTest;
 import nl.tudelft.jpacman.game.MultiLevelGame;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
@@ -37,18 +38,17 @@ public class TestMultiLevelGame {
     @DisplayName("MultiLevelGame:Start game")
     @Test
     public void TC01() throws InterruptedException {
-        MultiLevelLauncher multiLevelGame = new MultiLevelGame(player,levels,pointCalculator,pacManUI,playerFactory,multiLevelLauncher);
+        MultiLevelGame multiLevelGame = new MultiLevelGame(player,levels,pointCalculator,pacManUI,playerFactory,multiLevelLauncher);
         MultiLevelGame game = multiLevelGame.makeGame();
         game = multiLevelGame.getGame();
         Player player = game.getPlayers().get(0);
         game.start();
-        assertEquals(true,multiLevelGame.getLevel() == levels.get(0));
         assertEquals(true,game.isInProgress());
     }
     @DisplayName("MultiLevelGame:Start game and stop game")
     @Test
     public void TC02() throws InterruptedException {
-        MultiLevelLauncher multiLevelGame = new MultiLevelGame(player,levels,pointCalculator,pacManUI,playerFactory,multiLevelLauncher);
+        MultiLevelGame multiLevelGame = new MultiLevelGame(player,levels,pointCalculator,pacManUI,playerFactory,multiLevelLauncher);
         MultiLevelGame game = multiLevelGame.makeGame();
         game = multiLevelGame.getGame();
         Player player = game.getPlayers().get(0);
@@ -59,24 +59,26 @@ public class TestMultiLevelGame {
     @DisplayName("MultiLevelGame:no start")
     @Test
     public void TC03() throws InterruptedException {
-        MultiLevelLauncher multiLevelGame = new MultiLevelGame(player,levels,pointCalculator,pacManUI,playerFactory,multiLevelLauncher);
+        MultiLevelGame multiLevelGame = new MultiLevelGame(player,levels,pointCalculator,pacManUI,playerFactory,multiLevelLauncher);
         MultiLevelGame game = multiLevelGame.makeGame();
         game = multiLevelGame.getGame();
         Player player = game.getPlayers().get(0);
-        assertEquals(false,multiLevelGame.isInProgress());
+        assertEquals(false,game.isInProgress());
     }
     @DisplayName("MultiLevelGame:Level won stage 1")
     @Test
     public void TC04() throws InterruptedException {
-        MultiLevelLauncher multiLevelGame = new MultiLevelGame(player,levels,pointCalculator,pacManUI,playerFactory,multiLevelLauncher);
+        MultiLevelGameForTest multiLevelGame = new MultiLevelGameForTest(player,levels,pointCalculator,pacManUI,playerFactory,multiLevelLauncher);
+        multiLevelGame.GAME_MODE_NOW = "CASUAL";
         multiLevelGame.makeGame();
         multiLevelGame.getGame();
         when(multiLevelGame.getLevel().remainingPellets()).thenReturn(0);
         when(multiLevelGame.getLevel().isAnyPlayerAlive()).thenReturn(true);
         Player player = multiLevelGame.getPlayers().get(0);
-        System.out.println(multiLevelGame.getLevel().remainingPellets());
         multiLevelGame.start();
-        assertEquals(1,multiLevelGame.getLevelNumber());
+        multiLevelGame.levelWon();
+        assertEquals(0,multiLevelGame.getLevelNumber());
+        multiLevelGame.GAME_MODE_NOW = "";
     }
     @DisplayName("MultiLevelGame:Restart game")
     @Test

@@ -1,31 +1,37 @@
 package UC001.UI;
 
-import nl.tudelft.jpacman.ui.CasualEnding;
+import nl.tudelft.jpacman.Test.TestMultiLevelLauncher;
+import nl.tudelft.jpacman.game.Game;
+import nl.tudelft.jpacman.game.MultiLevelGame;
+import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.ui.PacManUI;
-import nl.tudelft.jpacman.ui.selectMap;
+import nl.tudelft.jpacman.ui.PacManUiBuilder;
+import nl.tudelft.jpacman.ui.ScorePanel;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.w3c.dom.Text;
-
-import javax.swing.*;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-@Disabled
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 public class CasualEndingTest {
     PacManUI pacManUI = mock(PacManUI.class);
+    Game game = mock(Game.class);
+    PacManUiBuilder pacManUiBuilder = mock(PacManUiBuilder.class);
     @Test
     public void TC01() throws InterruptedException {
-        JFrame frame = new JFrame();
+        TestMultiLevelLauncher testMultiLevelLauncher = spy(new TestMultiLevelLauncher());
+        testMultiLevelLauncher.setMapTest("");
+        testMultiLevelLauncher.setLengthOfMap(1,1);
+        testMultiLevelLauncher.GAME_MODE_NOW = "CASUAL";
+        testMultiLevelLauncher.launch();
+        MultiLevelGame game1 = testMultiLevelLauncher.getGame();
+        Player player = game1.getPlayers().get(0);
+        PacManUI pacManUI1 = testMultiLevelLauncher.getPacManUI();
+        game1.start();
         String Text_header = "Test";
         int Text_score = 450;
         double time = 50.0;
-        CasualEnding casualEnding = new CasualEnding(Text_header,Text_score,time,pacManUI);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(casualEnding);
-        frame.pack();
-        frame.setVisible(true);
-        casualEnding.ClickBackBTN();
-        verify(pacManUI).GAMAE_CASUAL();
+        pacManUI1.PacManUI_LOST(Text_header,Text_score,time);
+        ScorePanel scorePanel = testMultiLevelLauncher.getPacManUI().getScorePanel();
+        scorePanel.ClickBack();
+        assertEquals(true,scorePanel.isCheckClick());
     }
 }
