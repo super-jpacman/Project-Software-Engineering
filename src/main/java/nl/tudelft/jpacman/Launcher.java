@@ -31,7 +31,13 @@ public class Launcher {
     public static String PANMAN;
     public static String PANMAN_NIM_DEAD;
     public static String FLOOR;
+    public static String FLOOR1;
+    public static String FLOOR2;
+    public static String FLOOR3;
     public static String WALL;
+    public static String WALL1;
+    public static String WALL2;
+    public static String WALL3;
     public static String PELLET;
     public static String GHOST;
 
@@ -41,6 +47,9 @@ public class Launcher {
             Launcher.PANMAN_NIM_DEAD = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/dead.png";
             Launcher.FLOOR = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/floor.png";
             Launcher.WALL = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/wall.png";
+            Launcher.WALL1 = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/wall1.png";
+            Launcher.WALL2 = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/wall2.png";
+            Launcher.WALL3 = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/wall3.png";
             Launcher.PELLET = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/pellet.png";
             Launcher.GHOST = "/sprite/theme/"+Launcher.GAME_THEME_NOW+"/ghost_";
         }
@@ -49,6 +58,9 @@ public class Launcher {
             Launcher.PANMAN_NIM_DEAD = "/sprite/theme/1/dead.png";
             Launcher.FLOOR = "/sprite/theme/1/floor.png";
             Launcher.WALL = "/sprite/theme/1//wall.png";
+            Launcher.WALL1 = "/sprite/theme/1//wall1.png";
+            Launcher.WALL2 = "/sprite/theme/1//wall2.png";
+            Launcher.WALL3 = "/sprite/theme/1//wall3.png";
             Launcher.PELLET = "/sprite/theme/1/pellet.png";
             Launcher.GHOST = "/sprite/theme/1/ghost_";
         }

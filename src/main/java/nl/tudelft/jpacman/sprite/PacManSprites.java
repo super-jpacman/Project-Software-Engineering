@@ -121,14 +121,14 @@ public class PacManSprites extends SpriteStore {
         return loadSprite(Launcher.WALL);
     }
     public Sprite getWallSprite1() {
-        return loadSprite("/sprite/theme/4/wall1.png");//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        return loadSprite(Launcher.WALL1);//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     }
     public Sprite getWallSprite2() {
-        return loadSprite("/sprite/theme/4/wall2.png");//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        return loadSprite(Launcher.WALL2);//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     }
 
     public Sprite getWallSprite3() {
-        return loadSprite("/sprite/theme/4/wall3.png");//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        return loadSprite(Launcher.WALL3);//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     }
 
     /**
